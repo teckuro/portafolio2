@@ -1,0 +1,65 @@
+<footer class="border-t border-white/[0.06] bg-[#080B12]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8 mb-10">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-violet-500/20">
+            <lucide-icon name="code-2" class="w-4 h-4 text-white" [strokeWidth]="2"></lucide-icon>
+          </div>
+          <span class="text-slate-200" style="font-weight: 600;">
+            JP<span class="text-violet-400">.</span>Huerta
+          </span>
+        </div>
+        <p class="text-slate-500 text-sm leading-relaxed">
+          Desarrollador Full Stack especializado en soluciones empresariales, ERP y facturación electrónica SII.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-slate-300 text-sm mb-4" style="font-weight: 500;">Navegación</p>
+        <div class="grid grid-cols-2 gap-2">
+          <button
+            *ngFor="let link of navLinks"
+            type="button"
+            class="text-left text-sm text-slate-500 hover:text-violet-400 transition-colors"
+            (click)="scrollTo(link.id)"
+          >
+            {{ link.label }}
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-slate-300 text-sm mb-4" style="font-weight: 500;">Contacto</p>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2.5 text-sm text-slate-500">
+            <span class="w-5 h-5 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
+              <lucide-icon name="mail" class="w-3.5 h-3.5 text-violet-400"></lucide-icon>
+            </span>
+            {{ email }}
+          </div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-500">
+            <span class="w-5 h-5 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
+              <lucide-icon name="phone" class="w-3.5 h-3.5 text-violet-400"></lucide-icon>
+            </span>
+            {{ phone }}
+          </div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-500">
+            <span class="w-5 h-5 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
+              <lucide-icon name="map-pin" class="w-3.5 h-3.5 text-violet-400"></lucide-icon>
+            </span>
+            {{ location }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-slate-600 text-xs">© 2026 Juan Pablo Huerta · Todos los derechos reservados</p>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-slate-600 text-xs">Disponible para nuevas oportunidades</span>
+      </div>
+    </div>
+  </div>
+</footer>

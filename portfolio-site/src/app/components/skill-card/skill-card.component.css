@@ -1,0 +1,50 @@
+.skill-card {
+  border: 1px solid #334155;
+  border-radius: 14px;
+  background: #0f172a;
+  padding: 0.85rem;
+  transition: 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  border-color: #475569;
+}
+
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.skill-top h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #e2e8f0;
+}
+
+.skill-top span {
+  color: #93c5fd;
+  font-weight: 700;
+}
+
+.progress {
+  height: 9px;
+  border-radius: 999px;
+  background: #1e293b;
+  margin: 0.6rem 0;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22d3ee, #6366f1);
+}
+
+p {
+  margin: 0;
+  color: #93a4bc;
+  font-size: 0.85rem;
+}

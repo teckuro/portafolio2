@@ -1,0 +1,840 @@
+<app-navbar [name]="profile.name"></app-navbar>
+
+<div
+  class="min-h-screen bg-[#080B12] text-slate-100 overflow-x-hidden antialiased"
+  id="inicio"
+>
+  <main>
+    <!-- HERO -->
+    <section
+      class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6"
+    >
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          [style.background]="
+            'radial-gradient(ellipse 80% 60% at 20% 10%, rgba(109,40,217,0.14) 0%, transparent 60%),' +
+            'radial-gradient(ellipse 60% 50% at 80% 80%, rgba(6,182,212,0.10) 0%, transparent 60%),' +
+            'radial-gradient(ellipse 50% 40% at 60% 30%, rgba(79,70,229,0.08) 0%, transparent 60%)'
+          "
+        ></div>
+        <div
+          class="absolute inset-0 opacity-[0.025]"
+          style="
+            background-image: radial-gradient(
+              circle,
+              #a78bfa 1px,
+              transparent 1px
+            );
+            background-size: 40px 40px;
+          "
+        ></div>
+      </div>
+
+      <div class="relative z-10 max-w-5xl mx-auto w-full text-center">
+        <div class="flex justify-center mb-7">
+          <app-badge variant="green" [dot]="true" size="md">
+            Disponible para nuevas oportunidades
+          </app-badge>
+        </div>
+
+        <div class="flex justify-center mb-5">
+          <span class="inline-flex items-center gap-1.5 text-xs text-slate-500">
+            <lucide-icon
+              name="map-pin"
+              class="w-3 h-3 text-slate-500"
+            ></lucide-icon>
+            {{ profile.location }}
+          </span>
+        </div>
+
+        <h1
+          class="text-5xl sm:text-6xl md:text-7xl lg:text-[82px] tracking-tight leading-[1.08] mb-5"
+          style="font-weight: 800"
+        >
+          <span class="text-slate-100"
+            >{{ profile.name.split(" ")[0] }}
+            {{ profile.name.split(" ")[1] }}</span
+          >
+          <br />
+          <span
+            class="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent"
+          >
+            {{ profile.name.split(" ").slice(2).join(" ") }}
+          </span>
+        </h1>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-7">
+          <span
+            *ngFor="let role of roleTags"
+            class="px-3.5 py-1.5 rounded-full text-xs border border-white/[0.08] bg-white/[0.04] text-slate-400 backdrop-blur-sm"
+            style="font-weight: 500"
+          >
+            {{ role }}
+          </span>
+        </div>
+
+        <p class="max-w-2xl mx-auto text-slate-400 leading-relaxed mb-10">
+          Desarrollador con experiencia en sistemas empresariales críticos:
+          <span class="text-slate-300">ERP, facturación electrónica SII</span>
+          y plataformas web a medida.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-16">
+          <button
+            type="button"
+            (click)="scrollTo('proyectos')"
+            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 text-white shadow-xl shadow-violet-500/20 hover:shadow-violet-500/35 transition-shadow"
+            style="font-weight: 600"
+          >
+            Ver Proyectos
+            <lucide-icon name="arrow-right" class="w-4 h-4"></lucide-icon>
+          </button>
+          <a
+            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/[0.10] bg-white/[0.04] text-slate-300 hover:bg-white/[0.07] hover:text-white transition-all backdrop-blur-sm"
+            style="font-weight: 500"
+            href="mailto:{{ profile.email }}"
+          >
+            Contacto
+          </a>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-8 sm:gap-12 mb-16">
+          <div *ngFor="let stat of metrics" class="text-center">
+            <div
+              class="text-2xl sm:text-3xl bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent"
+              style="font-weight: 700"
+            >
+              {{ stat.value }}
+            </div>
+            <div class="text-xs text-slate-600 mt-1">{{ stat.label }}</div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="mx-auto flex flex-col items-center gap-1.5 text-slate-700 cursor-pointer text-center animate-bounce"
+          (click)="scrollTo('sobre-mi')"
+        >
+          <span class="text-[10px] tracking-[0.2em] uppercase">scroll</span>
+          <lucide-icon name="chevron-down" class="w-4 h-4"></lucide-icon>
+        </button>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="sobre-mi" class="relative py-28 px-4 sm:px-6 lg:px-8">
+      <div
+        class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-violet-700/5 blur-[120px] pointer-events-none"
+      ></div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center">
+          <app-section-header
+            eyebrow="Quién soy"
+            title="Sobre"
+            highlight="Mí"
+          ></app-section-header>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-4">
+            <app-glow-card [hover]="false" className="p-8">
+              <div class="flex flex-col items-center text-center mb-6">
+                <div
+                  class="w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-500 flex items-center justify-center mb-4 shadow-xl shadow-violet-500/25"
+                >
+                  <lucide-icon
+                    name="briefcase"
+                    class="w-9 h-9 text-white"
+                    [strokeWidth]="1.75"
+                  ></lucide-icon>
+                </div>
+                <h3 class="text-slate-100" style="font-weight: 700">
+                  {{ profile.name }}
+                </h3>
+                <p class="text-slate-500 text-sm mt-1">
+                  Analista Programador Computacional
+                </p>
+                <div class="mt-3">
+                  <app-badge variant="green" [dot]="true" size="md"
+                    >Disponible</app-badge
+                  >
+                </div>
+              </div>
+              <div class="h-px bg-white/[0.06] mb-6"></div>
+              <div class="space-y-3 text-sm text-slate-400">
+                <a
+                  class="flex items-center gap-3 hover:text-violet-300 transition-colors group"
+                  href="mailto:{{ profile.email }}"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-500/20 transition-colors"
+                  >
+                    <lucide-icon
+                      name="mail"
+                      class="w-3.5 h-3.5 text-violet-400"
+                    ></lucide-icon>
+                  </span>
+                  {{ profile.email }}
+                </a>
+                <a
+                  class="flex items-center gap-3 hover:text-violet-300 transition-colors group"
+                  href="tel:+56982185216"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-500/20 transition-colors"
+                  >
+                    <lucide-icon
+                      name="phone"
+                      class="w-3.5 h-3.5 text-violet-400"
+                    ></lucide-icon>
+                  </span>
+                  {{ profile.phone }}
+                </a>
+                <div class="flex items-center gap-3">
+                  <span
+                    class="w-7 h-7 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0"
+                  >
+                    <lucide-icon
+                      name="map-pin"
+                      class="w-3.5 h-3.5 text-violet-400"
+                    ></lucide-icon>
+                  </span>
+                  {{ profile.location }}
+                </div>
+              </div>
+              <div class="h-px bg-white/[0.06] my-6"></div>
+              <p
+                class="text-[11px] text-slate-600 uppercase tracking-widest mb-3"
+              >
+                Modalidad
+              </p>
+              <div class="space-y-2 text-xs text-slate-400">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+                  Remoto
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+                  Híbrido
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+                  Presencial (V. del Mar / Stgo)
+                </div>
+              </div>
+            </app-glow-card>
+          </div>
+
+          <div class="lg:col-span-8 space-y-5">
+            <app-glow-card [hover]="false" className="px-6 py-5">
+              <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                Analista Programador Computacional con experiencia en el
+                desarrollo y mantenimiento de soluciones tecnológicas
+                empresariales, con foco en sistemas ERP, facturación electrónica
+                y plataformas web.
+              </p>
+            </app-glow-card>
+            <app-glow-card [hover]="false" className="px-6 py-5">
+              <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                Especializado en transformar requerimientos de negocio en
+                soluciones funcionales y escalables. He trabajado en sistemas
+                que impactan directamente procesos críticos como ventas, gestión
+                tributaria y cumplimiento ante el SII.
+              </p>
+            </app-glow-card>
+            <app-glow-card [hover]="false" className="px-6 py-5">
+              <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                Experiencia en PHP/Laravel, Angular, React y bases de datos
+                relacionales. Manejo de estructuras XML para Documentos
+                Tributarios Electrónicos (DTE) bajo normativa chilena.
+              </p>
+            </app-glow-card>
+            <app-glow-card [hover]="false" className="px-6 py-5">
+              <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                Trabajo bajo metodologías ágiles (Scrum/Kanban) con Git, Jira y
+                Postman. Orientado a resultados, con foco en calidad de software
+                y eficiencia operativa.
+              </p>
+            </app-glow-card>
+            <div class="pt-2">
+              <p
+                class="text-[11px] text-slate-600 uppercase tracking-widest mb-3"
+              >
+                Palabras clave ATS
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <app-badge
+                  *ngFor="let kw of keywordTags"
+                  [variant]="kw.v"
+                  size="md"
+                  >{{ kw.label }}</app-badge
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="habilidades" class="relative py-28 px-4 sm:px-6 lg:px-8">
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-indigo-700/6 blur-[120px]"
+        ></div>
+      </div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center">
+          <app-section-header
+            eyebrow="Stack técnico"
+            title="Habilidades"
+            highlight="Técnicas"
+            subtitle="Tecnologías y herramientas con las que construyo soluciones empresariales robustas y escalables."
+          ></app-section-header>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+          <app-glow-card
+            *ngFor="let skill of skills"
+            [glowColor]="skill.glowColor"
+            className="p-5 h-full"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-11 h-11 rounded-xl border flex items-center justify-center flex-shrink-0"
+                [ngClass]="skill.iconBg"
+              >
+                <lucide-icon
+                  [name]="skill.iconName"
+                  class="w-5 h-5"
+                ></lucide-icon>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-0.5">
+                  <p
+                    class="text-slate-200 text-sm truncate pr-2"
+                    style="font-weight: 600"
+                  >
+                    {{ skill.label }}
+                  </p>
+                  <span class="text-xs text-slate-600 flex-shrink-0"
+                    >{{ skill.level }}%</span
+                  >
+                </div>
+                <p class="text-slate-600 text-xs mb-3 truncate">
+                  {{ skill.sublabel }}
+                </p>
+                <div
+                  class="h-1.5 w-full rounded-full bg-white/[0.05] overflow-hidden"
+                >
+                  <div
+                    class="h-full rounded-full"
+                    [ngClass]="skill.bar"
+                    [style.width.%]="skill.level"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </app-glow-card>
+        </div>
+
+        <app-glow-card [hover]="false" className="p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <lucide-icon
+              name="cpu"
+              class="w-4 h-4 text-slate-500"
+            ></lucide-icon>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest"
+              >Herramientas adicionales</span
+            >
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span
+              *ngFor="let tool of tools"
+              class="px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] text-xs text-slate-500 hover:text-slate-300 hover:border-white/[0.10] transition-colors cursor-default"
+            >
+              {{ tool }}
+            </span>
+          </div>
+        </app-glow-card>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="proyectos" class="relative py-28 px-4 sm:px-6 lg:px-8">
+      <div
+        class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-cyan-700/5 blur-[120px] pointer-events-none"
+      ></div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center">
+          <app-section-header
+            eyebrow="Portafolio"
+            title="Proyectos"
+            highlight="Destacados"
+            subtitle="Soluciones empresariales reales con impacto medible en operaciones, eficiencia y cumplimiento normativo."
+          ></app-section-header>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-7">
+          <div
+            *ngFor="let project of projects"
+            class="group relative h-full rounded-2xl bg-[#141820] border border-white/[0.07] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
+            [ngClass]="[project.shadow, project.borderAccent]"
+          >
+            <div
+              class="h-[3px] w-full bg-gradient-to-r flex-shrink-0"
+              [ngClass]="project.topGradient"
+            ></div>
+
+            <span
+              class="absolute top-5 right-5 text-[56px] text-white/[0.03] select-none leading-none"
+              style="font-weight: 800"
+            >
+              {{ project.number }}
+            </span>
+
+            <div class="p-7 flex flex-col flex-1">
+              <div class="flex items-start gap-4 mb-5">
+                <div
+                  class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br shadow-lg"
+                  [ngClass]="project.iconGradient"
+                >
+                  <lucide-icon
+                    [name]="project.iconName"
+                    class="w-6 h-6 text-white"
+                    [strokeWidth]="1.75"
+                  ></lucide-icon>
+                </div>
+                <div class="pt-0.5">
+                  <h3
+                    class="text-slate-100 leading-snug"
+                    style="font-weight: 600"
+                  >
+                    {{ project.title }}
+                  </h3>
+                  <p class="text-slate-600 text-xs mt-1">
+                    {{ project.subtitle }}
+                  </p>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-400 leading-relaxed mb-5 flex-1">
+                {{ project.description }}
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mb-6">
+                <app-badge
+                  *ngFor="let tag of project.tags"
+                  [variant]="tag.v"
+                  size="sm"
+                >
+                  {{ tag.label }}
+                </app-badge>
+              </div>
+
+              <div class="pt-5 border-t border-white/[0.06] space-y-2.5">
+                <p
+                  class="text-[11px] text-slate-600 uppercase tracking-widest mb-3"
+                >
+                  Impacto
+                </p>
+                <div
+                  *ngFor="let impact of project.impacts"
+                  class="flex items-start gap-2.5"
+                >
+                  <lucide-icon
+                    name="circle-check"
+                    class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5"
+                    [strokeWidth]="1.75"
+                  ></lucide-icon>
+                  <span class="text-xs text-slate-400 leading-relaxed">{{
+                    impact
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experiencia" class="relative py-28 px-4 sm:px-6 lg:px-8">
+      <div
+        class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-violet-700/5 blur-[120px] pointer-events-none"
+      ></div>
+      <div class="max-w-5xl mx-auto relative z-10">
+        <div class="text-center">
+          <app-section-header
+            eyebrow="Trayectoria"
+            title="Experiencia"
+            highlight="Profesional"
+          ></app-section-header>
+        </div>
+
+        <div class="relative pl-6 sm:pl-10">
+          <div
+            class="absolute left-2 sm:left-3.5 top-4 bottom-4 w-px bg-gradient-to-b from-violet-500/50 via-indigo-500/30 to-transparent"
+          ></div>
+          <div
+            class="absolute left-0 sm:left-1 top-6 w-5 h-5 rounded-full border-2 border-violet-500 bg-[#080B12] flex items-center justify-center shadow-lg shadow-violet-500/40"
+          >
+            <div class="w-2 h-2 rounded-full bg-violet-400"></div>
+          </div>
+
+          <app-glow-card
+            [hover]="false"
+            glowColor="violet"
+            className="p-7 sm:p-8"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-7"
+            >
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <lucide-icon
+                    name="briefcase"
+                    class="w-5 h-5 text-violet-400"
+                    [strokeWidth]="1.75"
+                  ></lucide-icon>
+                </div>
+                <div>
+                  <h3 class="text-slate-100" style="font-weight: 700">
+                    Desarrollador Full Stack
+                  </h3>
+                  <p class="text-slate-500 text-sm mt-0.5">
+                    Empresa de Tecnología · Chile
+                  </p>
+                  <div
+                    class="flex items-center gap-1.5 mt-2 text-xs text-slate-600"
+                  >
+                    <lucide-icon name="map-pin" class="w-3 h-3"></lucide-icon>
+                    Viña del Mar / Remoto
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2 sm:items-end flex-shrink-0">
+                <app-badge variant="violet" [dot]="true" size="md"
+                  >2021 – Presente</app-badge
+                >
+                <app-badge variant="green" size="sm">Full Time</app-badge>
+              </div>
+            </div>
+
+            <div class="h-px bg-white/[0.05] mb-7"></div>
+
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div
+                *ngFor="let item of experienceResponsibilities"
+                class="flex items-start gap-3 p-4 rounded-xl bg-white/[0.025] border border-white/[0.04] hover:bg-white/[0.04] transition-colors group"
+              >
+                <lucide-icon
+                  name="arrow-right"
+                  class="w-3.5 h-3.5 text-violet-400 flex-shrink-0 mt-0.5 group-hover:translate-x-0.5 transition-transform"
+                  [strokeWidth]="1.75"
+                ></lucide-icon>
+                <div>
+                  <p class="text-slate-300 text-sm" style="font-weight: 500">
+                    {{ item.title }}
+                  </p>
+                  <p class="text-slate-600 text-xs mt-0.5 leading-relaxed">
+                    {{ item.desc }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-7 pt-6 border-t border-white/[0.05]">
+              <p
+                class="text-[11px] text-slate-600 uppercase tracking-widest mb-3"
+              >
+                Tecnologías principales
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  *ngFor="let tech of techMain"
+                  class="px-2.5 py-1 text-[11px] rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                >
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
+          </app-glow-card>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="formacion" class="relative py-28 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto relative z-10">
+        <div class="text-center">
+          <app-section-header
+            eyebrow="Educación"
+            title="Formación"
+            highlight="Académica"
+          ></app-section-header>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5 mb-8">
+          <div
+            class="group relative rounded-2xl bg-[#141820] border border-white/[0.07] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-white/[0.12] hover:shadow-violet-500/10"
+          >
+            <div
+              class="h-[3px] w-full bg-gradient-to-r from-violet-600 to-indigo-500"
+            ></div>
+            <div class="p-7">
+              <div class="flex items-start gap-4 mb-5">
+                <div
+                  class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-500 flex items-center justify-center flex-shrink-0 shadow-lg"
+                >
+                  <lucide-icon
+                    name="graduation-cap"
+                    class="w-6 h-6 text-white"
+                    [strokeWidth]="1.75"
+                  ></lucide-icon>
+                </div>
+                <div class="flex-1">
+                  <h3
+                    class="text-slate-100 leading-snug"
+                    style="font-weight: 600"
+                  >
+                    Analista Programador Computacional
+                  </h3>
+                  <p class="text-slate-600 text-sm mt-1">
+                    Instituto Profesional · Chile
+                  </p>
+                  <div class="mt-2.5">
+                    <app-badge variant="violet" [dot]="true" size="md"
+                      >Titulado</app-badge
+                    >
+                  </div>
+                </div>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed mb-5">
+                Formación técnica integral en desarrollo de software,
+                estructuras de datos, bases de datos relacionales, programación
+                orientada a objetos y arquitectura de sistemas.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >Programación OOP</span
+                >
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >Bases de datos</span
+                >
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >Ingeniería de Software</span
+                >
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >Redes y Sistemas</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="group relative rounded-2xl bg-[#141820] border border-white/[0.07] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-white/[0.12] hover:shadow-cyan-500/10"
+          >
+            <div
+              class="h-[3px] w-full bg-gradient-to-r from-cyan-500 to-blue-500"
+            ></div>
+            <div class="p-7">
+              <div class="flex items-start gap-4 mb-5">
+                <div
+                  class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0 shadow-lg"
+                >
+                  <lucide-icon
+                    name="star"
+                    class="w-6 h-6 text-white"
+                    [strokeWidth]="1.75"
+                  ></lucide-icon>
+                </div>
+                <div class="flex-1">
+                  <h3
+                    class="text-slate-100 leading-snug"
+                    style="font-weight: 600"
+                  >
+                    Formación Continua en Tecnologías Web
+                  </h3>
+                  <p class="text-slate-600 text-sm mt-1">
+                    Cursos · Certificaciones · Autodidacta
+                  </p>
+                  <div class="mt-2.5">
+                    <app-badge variant="cyan" [dot]="true" size="md"
+                      >En progreso</app-badge
+                    >
+                  </div>
+                </div>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed mb-5">
+                Actualización constante en frameworks modernos, buenas prácticas
+                de desarrollo, arquitecturas escalables y herramientas del
+                ecosistema actual de desarrollo web.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >React / Angular</span
+                >
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >Laravel avanzado</span
+                >
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >API Design</span
+                >
+                <span
+                  class="px-2.5 py-1 text-xs rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-500"
+                  >DevOps básico</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-glow-card
+          [hover]="false"
+          className="rounded-2xl bg-[#141820] border border-white/[0.07] p-7"
+        >
+          <div class="flex items-center gap-3 mb-5">
+            <div
+              class="w-9 h-9 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center"
+            >
+              <lucide-icon
+                name="book-open"
+                class="w-4 h-4 text-violet-400"
+                [strokeWidth]="1.75"
+              ></lucide-icon>
+            </div>
+            <div>
+              <p class="text-slate-200 text-sm" style="font-weight: 500">
+                Competencias Transversales
+              </p>
+              <p class="text-slate-600 text-xs">
+                Habilidades blandas y capacidades profesionales
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span
+              *ngFor="let competency of competencies"
+              class="px-3.5 py-2 text-sm rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-400 hover:text-slate-300 hover:border-white/[0.10] transition-colors cursor-default"
+            >
+              {{ competency }}
+            </span>
+          </div>
+        </app-glow-card>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section
+      id="contacto"
+      class="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute inset-0"
+          style="
+            background: radial-gradient(
+              ellipse 70% 60% at 50% 50%,
+              rgba(109, 40, 217, 0.1) 0%,
+              transparent 65%
+            );
+          "
+        ></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto relative z-10 text-center">
+        <app-section-header
+          eyebrow="Trabajemos juntos"
+          title="¿Listo para"
+          highlight="crear algo?"
+          subtitle="Estoy disponible para nuevas oportunidades laborales, proyectos y consultorías en desarrollo de software."
+        ></app-section-header>
+
+        <div class="grid sm:grid-cols-3 gap-5 mb-10">
+          <a
+            *ngFor="let item of contactItems"
+            class="group block p-7 rounded-2xl bg-[#141820] border border-white/[0.07] transition-all duration-300 hover:shadow-2xl text-center"
+            [ngClass]="[item.glow, item.border]"
+            [href]="item.href"
+          >
+            <div
+              class="rounded-2xl bg-gradient-to-br flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-105 transition-transform"
+              [ngClass]="item.gradient"
+              style="width: 52px; height: 52px"
+            >
+              <lucide-icon
+                [name]="item.iconName"
+                class="w-5 h-5 text-white"
+                [strokeWidth]="1.75"
+              ></lucide-icon>
+            </div>
+            <p
+              class="text-[11px] text-slate-600 uppercase tracking-widest mb-1"
+            >
+              {{ item.label }}
+            </p>
+            <p class="text-slate-200 text-sm mb-1" style="font-weight: 600">
+              {{ item.value }}
+            </p>
+            <p class="text-slate-600 text-xs">{{ item.sub }}</p>
+          </a>
+        </div>
+
+        <div
+          class="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#141820] p-8 mb-8"
+        >
+          <div
+            class="absolute inset-0 opacity-30"
+            style="
+              background: radial-gradient(
+                ellipse 80% 100% at 50% 100%,
+                rgba(109, 40, 217, 0.15) 0%,
+                transparent 70%
+              );
+            "
+          ></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span
+                class="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+              ></span>
+              <span class="text-green-400 text-sm" style="font-weight: 600"
+                >Actualmente disponible</span
+              >
+            </div>
+            <p class="text-slate-300 mb-1" style="font-weight: 500">
+              Trabajo remoto, híbrido o presencial
+            </p>
+            <p class="text-slate-500 text-sm">Región de Valparaíso · Chile</p>
+          </div>
+        </div>
+
+        <a
+          href="mailto:teckuro6@gmail.com"
+          class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 text-white shadow-xl shadow-violet-500/25 transition-shadow hover:shadow-violet-500/40"
+          style="font-weight: 600"
+        >
+          <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
+          Envíame un mensaje
+          <lucide-icon name="arrow-right" class="w-4 h-4"></lucide-icon>
+        </a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<app-footer
+  [email]="profile.email"
+  [phone]="profile.phone"
+  [location]="profile.location"
+></app-footer>

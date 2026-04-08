@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-3 mb-14" [ngClass]="alignClass">
+  <div
+    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 w-fit"
+  >
+    <span class="w-5 h-5 rounded-md bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
+      <span class="text-violet-400 text-[11px]" style="font-weight: 900;">⚡</span>
+    </span>
+    <span class="text-[11px] text-violet-400 uppercase tracking-[0.12em]" style="font-weight: 700;">
+      {{ eyebrow }}
+    </span>
+  </div>
+
+  <h2 class="text-3xl sm:text-4xl md:text-5xl tracking-tight" style="font-weight: 700;">
+    <span class="text-slate-100">{{ title }}</span>
+    <ng-container *ngIf="highlight">
+      <span class="text-slate-100"> </span>
+      <span class="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+        {{ highlight }}
+      </span>
+    </ng-container>
+  </h2>
+
+  <p *ngIf="subtitle" class="text-slate-400 max-w-xl leading-relaxed">
+    {{ subtitle }}
+  </p>
+</div>
+

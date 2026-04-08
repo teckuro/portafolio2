@@ -1,0 +1,25 @@
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css']
+})
+export class FooterComponent {
+  @Input() email = '';
+  @Input() phone = '';
+  @Input() location = '';
+
+  readonly navLinks = [
+    { id: 'sobre-mi', label: 'Sobre Mí' },
+    { id: 'habilidades', label: 'Habilidades' },
+    { id: 'proyectos', label: 'Proyectos' },
+    { id: 'experiencia', label: 'Experiencia' },
+    { id: 'formacion', label: 'Formación' },
+    { id: 'contacto', label: 'Contacto' }
+  ] as const;
+
+  scrollTo(id: string): void {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
