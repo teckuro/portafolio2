@@ -43,13 +43,15 @@
       </div>
 
       <div class="hidden lg:flex items-center gap-3">
-        <button
-          type="button"
+        <a
+          *ngIf="cvHref"
+          [href]="cvHref"
+          download
           class="flex items-center gap-2 px-4 py-2 text-sm text-slate-400 hover:text-slate-200 transition-colors rounded-lg hover:bg-white/[0.04]"
         >
           <lucide-icon name="download" class="w-3.5 h-3.5"></lucide-icon>
           CV
-        </button>
+        </a>
         <button
           type="button"
           class="px-5 py-2 text-sm rounded-lg bg-cyan-500 hover:bg-cyan-400 text-[#0B1120] shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all"
@@ -91,13 +93,15 @@
     </button>
 
     <div class="pt-3 pb-1 flex gap-3">
-      <button
-        type="button"
+      <a
+        *ngIf="cvHref"
+        [href]="cvHref"
+        download
         class="flex-1 py-2.5 text-sm text-slate-400 border border-white/[0.08] rounded-xl hover:bg-white/[0.04] transition-all flex items-center justify-center gap-2"
       >
         <lucide-icon name="download" class="w-3.5 h-3.5"></lucide-icon>
         Descargar CV
-      </button>
+      </a>
       <button
         type="button"
         (click)="scrollTo('contacto')"

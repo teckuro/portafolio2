@@ -9,6 +9,8 @@ export class FooterComponent {
   @Input() email = '';
   @Input() phone = '';
   @Input() location = '';
+  @Input() githubUrl = '';
+  @Input() linkedinUrl = '';
 
   readonly navLinks = [
     { id: 'sobre-mi', label: 'Sobre Mí' },

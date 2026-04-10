@@ -41,6 +41,8 @@ type Project = {
   accentColor: string;
   mockup: 'invoice' | 'erp' | 'web';
   iconName: 'file-text' | 'shopping-cart' | 'globe';
+  /** Dominio mostrado en la barra del mockup del navegador */
+  previewDomain: string;
 };
 
 type ContactItem = {
@@ -55,6 +57,16 @@ type ContactItem = {
 };
 
 type Responsibility = { title: string; desc: string };
+
+type ExperienceJob = {
+  role: string;
+  company: string;
+  period: string;
+  location: string;
+  intro?: string;
+  responsibilities: Responsibility[];
+  tech: string[];
+};
 
 type Skill = {
   iconName:
@@ -92,21 +104,26 @@ export class AppComponent {
     email: 'teckuro6@gmail.com',
     phone: '+56 9 8218 5216',
     location: 'Viña del Mar, Chile',
+    cvPdf: 'assets/JuanPabloHuerta-CV.pdf',
+    githubUrl: 'https://github.com/teckuro',
+    linkedinUrl: 'https://www.linkedin.com/in/jphuerta1/',
+    portfolioUrl: 'https://angular-portafolio-phi.vercel.app/',
+    whatsappUrl: 'https://wa.me/56982185216',
     tagline:
-      'Desarrollador con experiencia en sistemas empresariales críticos: ERP, facturación electrónica SII y plataformas web a medida.'
+      'Desarrollador Full Stack con trayectoria en facturación electrónica (facturacion.cl), integraciones complejas y productos con foco en UX y código mantenible.'
   };
   readonly roleTags = [
     'Full Stack Developer',
     'PHP · Laravel',
     'Angular · React',
-    'MySQL · PostgreSQL'
+    'PostgreSQL · GraphQL'
   ];
 
   readonly metrics = [
-    { value: '3+', label: 'Años experiencia' },
+    { value: '4+', label: 'Años experiencia' },
     { value: '10+', label: 'Proyectos' },
-    { value: 'SII', label: 'Especialista DTE' },
-    { value: 'ERP', label: 'Sistemas empresariales' }
+    { value: 'SII', label: 'Facturación electrónica' },
+    { value: 'GraphQL', label: 'APIs optimizadas' }
   ];
 
   readonly skills: Skill[] = [
@@ -184,12 +201,12 @@ export class AppComponent {
     },
     {
       iconName: 'layers',
-      label: 'Agile · Scrum · Kanban',
-      sublabel: 'Jira · Sprints · Retrospectivas',
-      level: 76,
-      iconBg: 'bg-teal-400/10 border-teal-400/20 text-teal-400',
-      bar: 'bg-gradient-to-r from-teal-400 to-cyan-400',
-      glowColor: 'cyan'
+      label: 'GraphQL · APIs',
+      sublabel: 'Consultas eficientes · Integración de datos',
+      level: 78,
+      iconBg: 'bg-fuchsia-400/10 border-fuchsia-400/20 text-fuchsia-400',
+      bar: 'bg-gradient-to-r from-fuchsia-500 to-pink-400',
+      glowColor: 'violet'
     }
   ];
 
@@ -197,83 +214,85 @@ export class AppComponent {
     {
       id: 0,
       number: '01',
-      file: 'facturacion-sii.ts',
-      title: 'Sistema de Facturación Electrónica SII',
-      category: 'DTE · XML · Tributario',
+      file: 'facturacion-cl.ts',
+      title: 'Plataforma facturacion.cl · Facturación electrónica',
+      category: 'PHP · JavaScript · PostgreSQL · SII',
       problem:
-        'Las empresas generaban documentos tributarios manualmente, causando rechazos del SII, errores de validación y demoras críticas en el flujo de ventas.',
+        'Necesidad de evolucionar la plataforma web de facturación con mejor UX, integraciones externas y datos tributarios consistentes sin degradar la operación en producción.',
       solution:
-        'Plataforma para emisión, firma digital y envío automatizado de DTE. Integra ciclo completo con el SII vía APIs XML y normativa tributaria chilena vigente.',
+        'Desarrollo y optimización continua con PHP y JavaScript; integración de APIs externas; modelado en PostgreSQL (vistas, funciones, tipos) para reportería y cumplimiento. PostgreSQL aporta integridad transaccional y consultas complejas frente a cargas variables de documentos.',
       metrics: [
-        { value: '-40%', label: 'Tiempo de procesamiento', color: '#06B6D4' },
-        { value: '0%', label: 'Tasa de rechazo SII', color: '#10B981' },
-        { value: '+95%', label: 'Documentos automatizados', color: '#F8FAFC' }
+        { value: 'Prod', label: 'facturacion.cl', color: '#06B6D4' },
+        { value: 'APIs', label: 'Integraciones externas', color: '#10B981' },
+        { value: 'SII', label: 'Dominio tributario', color: '#F8FAFC' }
       ],
       tags: [
         { label: 'PHP', v: 'violet' },
-        { label: 'XML / DTE', v: 'red' },
-        { label: 'MySQL', v: 'orange' },
+        { label: 'JavaScript', v: 'yellow' },
+        { label: 'PostgreSQL', v: 'indigo' },
         { label: 'APIs REST', v: 'green' },
-        { label: 'SII', v: 'teal' }
+        { label: 'SII / DTE', v: 'teal' }
       ],
-      github: 'https://github.com',
+      github: 'https://github.com/teckuro',
       accentColor: '#06B6D4',
       mockup: 'invoice',
-      iconName: 'file-text'
+      iconName: 'file-text',
+      previewDomain: 'facturacion.cl'
     },
     {
       id: 1,
       number: '02',
-      file: 'erp-modular.ts',
-      title: 'ERP Empresarial Modular',
-      category: 'Gestión · Módulos · Multi-área',
+      file: 'portal-laravel.ts',
+      title: 'Portal de autoatención y automatización',
+      category: 'Laravel · Integraciones internas',
       problem:
-        'La empresa operaba con sistemas aislados para ventas, inventario y administración, generando duplicidad de datos, inconsistencias y pérdida de tiempo en reportería.',
+        'Procesos operativos repetitivos y comunicación fragmentada entre sistemas internos, con fricción para los usuarios finales en el canal digital.',
       solution:
-        'Módulos ERP integrados bajo arquitectura Laravel/MySQL con dashboard unificado, control de inventario en tiempo real y reportería ejecutiva automatizada.',
+        'Automatización con Laravel para reducir tareas manuales; mejora del portal de autoatención para una interacción más fluida; integración de APIs internas para unificar datos entre módulos.',
       metrics: [
-        { value: '-35%', label: 'Tiempo en reportería', color: '#06B6D4' },
-        { value: '+28%', label: 'Precisión de inventario', color: '#10B981' },
-        { value: '6', label: 'Módulos en producción', color: '#F8FAFC' }
+        { value: '-35%', label: 'Carga operativa manual', color: '#06B6D4' },
+        { value: 'UX', label: 'Canal digital unificado', color: '#10B981' },
+        { value: 'APIs', label: 'Sistemas conectados', color: '#F8FAFC' }
       ],
       tags: [
         { label: 'Laravel', v: 'violet' },
-        { label: 'JavaScript', v: 'yellow' },
-        { label: 'MySQL', v: 'orange' },
-        { label: 'ERP', v: 'indigo' },
-        { label: 'Agile', v: 'cyan' }
+        { label: 'PHP', v: 'orange' },
+        { label: 'APIs internas', v: 'green' },
+        { label: 'Autoatención', v: 'cyan' }
       ],
-      github: 'https://github.com',
+      github: 'https://github.com/teckuro',
       accentColor: '#10B981',
       mockup: 'erp',
-      iconName: 'shopping-cart'
+      iconName: 'shopping-cart',
+      previewDomain: 'portal.autoatencion.cl'
     },
     {
       id: 2,
       number: '03',
-      file: 'web-platforms.ts',
-      title: 'Plataformas Web a Medida',
-      category: 'Full Stack · B2B · Personalizado',
+      file: 'graphql-capas.ts',
+      title: 'Rendimiento y capa de datos (GraphQL)',
+      category: 'GraphQL · Escalabilidad',
       problem:
-        'Clientes con procesos críticos manuales: alta dependencia de hojas de cálculo y comunicación por email para tareas operativas.',
+        'Consultas y acoplamientos que dificultaban optimizar el rendimiento y la escalabilidad frente al crecimiento de datos y clientes concurrentes.',
       solution:
-        'Aplicaciones web full stack con Angular/React y PHP/PostgreSQL, desde el levantamiento de requerimientos hasta el despliegue en producción.',
+        'Implementación de GraphQL para gestionar consultas de forma más eficiente y predecible, alineada con estrategias de optimización de aplicaciones y despliegues en entornos cloud (AWS).',
       metrics: [
-        { value: '8+', label: 'Procesos digitalizados', color: '#06B6D4' },
-        { value: '-50%', label: 'Tiempo operativo reducido', color: '#10B981' },
-        { value: '100%', label: 'Satisfacción del cliente', color: '#F8FAFC' }
+        { value: 'GraphQL', label: 'Capa de consultas', color: '#06B6D4' },
+        { value: 'AWS', label: 'Infra cloud', color: '#10B981' },
+        { value: 'Perf', label: 'Enfoque medible', color: '#F8FAFC' }
       ],
       tags: [
-        { label: 'React', v: 'cyan' },
-        { label: 'Angular', v: 'red' },
+        { label: 'GraphQL', v: 'pink' },
+        { label: 'AWS', v: 'orange' },
+        { label: 'Docker', v: 'cyan' },
         { label: 'PostgreSQL', v: 'indigo' },
-        { label: 'PHP', v: 'violet' },
-        { label: 'REST', v: 'green' }
+        { label: 'Angular', v: 'red' }
       ],
-      github: 'https://github.com',
+      github: 'https://github.com/teckuro',
       accentColor: '#8B5CF6',
       mockup: 'web',
-      iconName: 'globe'
+      iconName: 'globe',
+      previewDomain: 'app.empresa.cl'
     }
   ];
 
@@ -293,52 +312,75 @@ export class AppComponent {
     this.activeProjectId = Math.min(this.projects.length - 1, this.activeProjectId + 1);
   }
 
-  readonly experienceResponsibilities: Responsibility[] = [
+  readonly experienceJobs: ExperienceJob[] = [
     {
-      title: 'Análisis de requerimientos',
-      desc: 'Levantamiento funcional con stakeholders y traducción a soluciones técnicas.'
+      role: 'Desarrollador Full Stack',
+      company: 'Desis Limitada',
+      period: 'ago. 2021 – ago. 2025',
+      location: 'Chile',
+      intro:
+        'Producto digital de facturación electrónica y servicios web de alto tráfico; stack PHP, JavaScript, PostgreSQL, integraciones y optimización de rendimiento.',
+      responsibilities: [
+        {
+          title: 'Plataforma facturacion.cl',
+          desc: 'Desarrollo y optimización con PHP y JavaScript para mejorar UX y funcionalidad del sitio.'
+        },
+        {
+          title: 'APIs e integraciones',
+          desc: 'Integración de APIs externas e internas para automatizar procesos y mejorar la interoperabilidad entre sistemas.'
+        },
+        {
+          title: 'Servicios web (Java / C#)',
+          desc: 'Mantenimiento y actualización de servicios legacy en Java y C# para operatividad y estabilidad.'
+        },
+        {
+          title: 'PostgreSQL en profundidad',
+          desc: 'Diseño de estructuras, vistas, funciones y tipos de datos para soportar la gestión de la información.'
+        },
+        {
+          title: 'Laravel y automatización',
+          desc: 'Automatización de procesos operativos para reducir carga manual y errores.'
+        },
+        {
+          title: 'Portal de autoatención',
+          desc: 'Evolución y mejora continua del canal digital para usuarios finales.'
+        },
+        {
+          title: 'GraphQL y rendimiento',
+          desc: 'Optimización de consultas y aplicaciones con GraphQL para una gestión más eficiente de datos.'
+        },
+        {
+          title: 'Arquitectura y soluciones a medida',
+          desc: 'Análisis y diseño técnico orientado a necesidades de negocio, escalabilidad y sostenibilidad.'
+        }
+      ],
+      tech: [
+        'PHP',
+        'Laravel',
+        'JavaScript',
+        'PostgreSQL',
+        'GraphQL',
+        'Java',
+        'C#',
+        'Angular',
+        'React'
+      ]
     },
     {
-      title: 'Desarrollo Full Stack',
-      desc: 'Implementación backend (PHP/Laravel) y frontend (Angular/React) end-to-end.'
-    },
-    {
-      title: 'Integraciones y APIs',
-      desc: 'Consumo e integración de APIs REST y servicios externos (SII, pasarelas de pago).'
-    },
-    {
-      title: 'Optimización de bases de datos',
-      desc: 'Mejora de consultas SQL, índices y arquitectura de datos en MySQL y PostgreSQL.'
-    },
-    {
-      title: 'Facturación Electrónica SII',
-      desc: 'Desarrollo y mantenimiento de módulos DTE con procesamiento de XML normativa chilena.'
-    },
-    {
-      title: 'Metodologías Ágiles',
-      desc: 'Participación activa en sprints Scrum y tableros Kanban con Jira y GitFlow.'
-    },
-    {
-      title: 'Control de versiones',
-      desc: 'Gestión de repositorios Git con estrategia de branching y code review.'
-    },
-    {
-      title: 'Soporte y mejora continua',
-      desc: 'Resolución de incidencias en producción, refactoring y documentación técnica.'
+      role: 'Programador Junior',
+      company: 'Anida Latam',
+      period: 'ene. 2021 – ago. 2021',
+      location: 'Chile',
+      intro:
+        'Primera experiencia en desarrollo de software en entorno profesional, bases de buenas prácticas y trabajo en equipo.',
+      responsibilities: [
+        {
+          title: 'Desarrollo asistido',
+          desc: 'Tareas de desarrollo y aprendizaje en proyectos de software bajo supervisión.'
+        }
+      ],
+      tech: ['JavaScript', 'PHP', 'Git']
     }
-  ];
-
-  readonly techMain: string[] = [
-    'PHP',
-    'Laravel',
-    'JavaScript',
-    'Angular',
-    'React',
-    'MySQL',
-    'PostgreSQL',
-    'Git',
-    'Jira',
-    'Postman'
   ];
 
   readonly contactItems: ContactItem[] = [
@@ -375,12 +417,12 @@ export class AppComponent {
   ];
 
   readonly whatIOffer = [
-    'Análisis de requerimientos y propuesta técnica',
-    'Desarrollo backend PHP/Laravel robusto',
-    'Frontends Angular/React modernos',
-    'Integración SII, DTE y documentos electrónicos',
-    'Implementación de módulos ERP a medida',
-    'Mantenimiento y optimización de sistemas'
+    'Desarrollo full stack PHP, Laravel, Angular y React',
+    'Plataformas de facturación electrónica e integración SII',
+    'APIs REST y GraphQL; integraciones internas y externas',
+    'PostgreSQL: modelado, vistas y optimización de consultas',
+    'Automatización de procesos y portales de autoatención',
+    'Docker, AWS y buenas prácticas de despliegue'
   ];
 
   readonly highlights = [
@@ -398,18 +440,18 @@ export class AppComponent {
     { label: 'JavaScript', v: 'yellow' },
     { label: 'Angular', v: 'red' },
     { label: 'React', v: 'cyan' },
-    { label: 'MySQL', v: 'orange' },
+    { label: 'Tailwind CSS', v: 'teal' },
     { label: 'PostgreSQL', v: 'indigo' },
+    { label: 'GraphQL', v: 'pink' },
     { label: 'APIs REST', v: 'green' },
-    { label: 'XML / DTE', v: 'pink' },
-    { label: 'SII Chile', v: 'teal' },
-    { label: 'ERP', v: 'ghost' },
-    { label: 'Agile / Scrum', v: 'ghost' }
+    { label: 'SII / DTE', v: 'teal' },
+    { label: 'Docker', v: 'ghost' },
+    { label: 'AWS', v: 'orange' }
   ];
 
   readonly tools = [
-    'VS Code', 'Postman', 'MySQL Workbench', 'pgAdmin', 'Composer', 'NPM/Yarn',
-    'Docker (básico)', 'Linux', 'XAMPP', 'Jira', 'Confluence', 'Notion'
+    'VS Code', 'Cursor', 'Postman', 'GitHub', 'Docker', 'AWS', 'pgAdmin', 'Composer', 'NPM/Yarn',
+    'Jira', 'Linux', 'XAMPP'
   ];
 
   readonly competencies = [
@@ -426,7 +468,7 @@ export class AppComponent {
   readonly certifications: Cert[] = [
     {
       org: 'Cisco Networking Academy',
-      title: 'JavaScript Essentials',
+      title: 'JavaScript Essentials 1',
       level: 'Certificación oficial',
       year: '2024',
       description:
@@ -442,20 +484,20 @@ export class AppComponent {
       iconName: 'code-2'
     },
     {
-      org: 'ETS TOEIC',
-      title: 'TOEIC - Test of English for International Communication',
-      level: 'Nivel B1+ - Comunicación profesional',
-      year: 'Vigente',
+      org: 'Comunicación',
+      title: 'Inglés y español',
+      level: 'Comunicación profesional',
+      year: 'Actual',
       description:
-        'Certificación internacional de inglés para contextos profesionales, enfocada en comunicación con equipos globales y entornos TI.',
+        'Español nativo; inglés para documentación técnica, equipos y entornos de desarrollo internacional.',
       tags: [
-        { label: 'English B1+', v: 'green' },
-        { label: 'Business', v: 'teal' },
-        { label: 'Tech Comm.', v: 'ghost' }
+        { label: 'Español', v: 'green' },
+        { label: 'Inglés', v: 'teal' },
+        { label: 'Tech', v: 'ghost' }
       ],
       accentColor: '#10B981',
-      verified: true,
-      verifyText: 'ETS Verified',
+      verified: false,
+      verifyText: '',
       iconName: 'globe'
     },
     {

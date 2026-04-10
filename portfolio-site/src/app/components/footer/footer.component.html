@@ -32,6 +32,28 @@
 
       <div>
         <p class="text-slate-300 text-sm mb-4" style="font-weight: 500;">Contacto</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <a
+            *ngIf="githubUrl"
+            [href]="githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-slate-400 border border-white/[0.08] hover:bg-white/[0.04] hover:text-cyan-400 transition-colors"
+          >
+            <lucide-icon name="github" class="w-3.5 h-3.5"></lucide-icon>
+            GitHub
+          </a>
+          <a
+            *ngIf="linkedinUrl"
+            [href]="linkedinUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-slate-400 border border-white/[0.08] hover:bg-white/[0.04] hover:text-cyan-400 transition-colors"
+          >
+            <lucide-icon name="linkedin" class="w-3.5 h-3.5"></lucide-icon>
+            LinkedIn
+          </a>
+        </div>
         <div class="space-y-2">
           <div class="flex items-center gap-2.5 text-sm text-slate-500">
             <span class="w-5 h-5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">

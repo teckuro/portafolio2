@@ -7,6 +7,8 @@ import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   @Input() name = '';
+  /** Ruta al PDF del CV en assets (ej. assets/JuanPabloHuerta-CV.pdf) */
+  @Input() cvHref = '';
 
   readonly navLinks = [
     { id: 'sobre-mi', label: 'Sobre Mí' },

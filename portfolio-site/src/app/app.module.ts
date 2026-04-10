@@ -47,7 +47,9 @@ import {
   Minus,
   ChevronRight,
   Award,
-  CheckCircle2
+  CheckCircle2,
+  Linkedin,
+  MessageCircle
 } from 'lucide-angular';
 
 @NgModule({
@@ -100,7 +102,9 @@ import {
       Minus,
       ChevronRight,
       Award,
-      CheckCircle2
+      CheckCircle2,
+      Linkedin,
+      MessageCircle
     })
   ],
   providers: [],
