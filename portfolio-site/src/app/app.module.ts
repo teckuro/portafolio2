@@ -36,7 +36,18 @@ import {
   GraduationCap,
   Star,
   BookOpen,
-  ChevronDown
+  ChevronDown,
+  Terminal,
+  Github,
+  ExternalLink,
+  Maximize2,
+  Circle,
+  AlertCircle,
+  Lightbulb,
+  Minus,
+  ChevronRight,
+  Award,
+  CheckCircle2
 } from 'lucide-angular';
 
 @NgModule({
@@ -78,7 +89,18 @@ import {
       GraduationCap,
       Star,
       BookOpen,
-      ChevronDown
+      ChevronDown,
+      Terminal,
+      Github,
+      ExternalLink,
+      Maximize2,
+      Circle,
+      AlertCircle,
+      Lightbulb,
+      Minus,
+      ChevronRight,
+      Award,
+      CheckCircle2
     })
   ],
   providers: [],

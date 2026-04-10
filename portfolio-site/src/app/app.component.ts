@@ -13,18 +13,33 @@ type BadgeVariant =
   | 'red';
 
 type Tag = { label: string; v: BadgeVariant };
-
-type Project = {
-  number: string;
+type ProjectMetric = { value: string; label: string; color: string };
+type Cert = {
+  org: string;
   title: string;
-  subtitle: string;
+  level: string;
+  year: string;
   description: string;
   tags: Tag[];
-  impacts: string[];
-  topGradient: string;
-  iconGradient: string;
-  shadow: string;
-  borderAccent: string;
+  accentColor: string;
+  verified: boolean;
+  verifyText: string;
+  iconName: 'code-2' | 'globe' | 'award';
+};
+
+type Project = {
+  id: number;
+  number: string;
+  file: string;
+  title: string;
+  category: string;
+  problem: string;
+  solution: string;
+  metrics: ProjectMetric[];
+  tags: Tag[];
+  github: string;
+  accentColor: string;
+  mockup: 'invoice' | 'erp' | 'web';
   iconName: 'file-text' | 'shopping-cart' | 'globe';
 };
 
@@ -65,6 +80,8 @@ type Skill = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  activeProjectId = 0;
+
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
@@ -178,11 +195,20 @@ export class AppComponent {
 
   readonly projects: Project[] = [
     {
+      id: 0,
       number: '01',
-      title: 'Sistema de Facturación Electrónica',
-      subtitle: 'SII Chile · DTE · Normativa Tributaria',
-      description:
-        'Plataforma para emisión, validación y gestión de Documentos Tributarios Electrónicos (DTE) bajo normativa del SII. Firma digital, envío automatizado y trazabilidad completa de documentos.',
+      file: 'facturacion-sii.ts',
+      title: 'Sistema de Facturación Electrónica SII',
+      category: 'DTE · XML · Tributario',
+      problem:
+        'Las empresas generaban documentos tributarios manualmente, causando rechazos del SII, errores de validación y demoras críticas en el flujo de ventas.',
+      solution:
+        'Plataforma para emisión, firma digital y envío automatizado de DTE. Integra ciclo completo con el SII vía APIs XML y normativa tributaria chilena vigente.',
+      metrics: [
+        { value: '-40%', label: 'Tiempo de procesamiento', color: '#06B6D4' },
+        { value: '0%', label: 'Tasa de rechazo SII', color: '#10B981' },
+        { value: '+95%', label: 'Documentos automatizados', color: '#F8FAFC' }
+      ],
       tags: [
         { label: 'PHP', v: 'violet' },
         { label: 'XML / DTE', v: 'red' },
@@ -190,23 +216,26 @@ export class AppComponent {
         { label: 'APIs REST', v: 'green' },
         { label: 'SII', v: 'teal' }
       ],
-      impacts: [
-        'Cumplimiento 100% normativa SII',
-        'Automatización completa de emisión de DTE',
-        'Reducción de errores operativos en facturación'
-      ],
-      topGradient: 'from-violet-600 via-indigo-500 to-blue-500',
-      iconGradient: 'from-violet-600 to-indigo-500',
-      shadow: 'hover:shadow-violet-500/10',
-      borderAccent: 'group-hover:border-violet-500/25',
+      github: 'https://github.com',
+      accentColor: '#06B6D4',
+      mockup: 'invoice',
       iconName: 'file-text'
     },
     {
+      id: 1,
       number: '02',
-      title: 'Sistema ERP Empresarial',
-      subtitle: 'Gestión Integral · Módulos de Negocio',
-      description:
-        'Desarrollo de módulos para gestión interna: ventas, inventario, compras y administración bajo una arquitectura escalable con enfoque en eficiencia operativa y reportería.',
+      file: 'erp-modular.ts',
+      title: 'ERP Empresarial Modular',
+      category: 'Gestión · Módulos · Multi-área',
+      problem:
+        'La empresa operaba con sistemas aislados para ventas, inventario y administración, generando duplicidad de datos, inconsistencias y pérdida de tiempo en reportería.',
+      solution:
+        'Módulos ERP integrados bajo arquitectura Laravel/MySQL con dashboard unificado, control de inventario en tiempo real y reportería ejecutiva automatizada.',
+      metrics: [
+        { value: '-35%', label: 'Tiempo en reportería', color: '#06B6D4' },
+        { value: '+28%', label: 'Precisión de inventario', color: '#10B981' },
+        { value: '6', label: 'Módulos en producción', color: '#F8FAFC' }
+      ],
       tags: [
         { label: 'Laravel', v: 'violet' },
         { label: 'JavaScript', v: 'yellow' },
@@ -214,23 +243,26 @@ export class AppComponent {
         { label: 'ERP', v: 'indigo' },
         { label: 'Agile', v: 'cyan' }
       ],
-      impacts: [
-        'Optimización de procesos internos críticos',
-        'Mejor rendimiento y tiempo de respuesta',
-        'Soporte a operaciones de alto volumen'
-      ],
-      topGradient: 'from-cyan-500 via-blue-500 to-indigo-500',
-      iconGradient: 'from-cyan-500 to-blue-500',
-      shadow: 'hover:shadow-cyan-500/10',
-      borderAccent: 'group-hover:border-cyan-500/25',
+      github: 'https://github.com',
+      accentColor: '#10B981',
+      mockup: 'erp',
       iconName: 'shopping-cart'
     },
     {
+      id: 2,
       number: '03',
-      title: 'Aplicaciones Web a Medida',
-      subtitle: 'Full Stack · Soluciones Personalizadas',
-      description:
-        'Implementación de plataformas web según requerimientos específicos del cliente, desde el levantamiento funcional hasta el despliegue. Enfoque en UX, rendimiento y escalabilidad.',
+      file: 'web-platforms.ts',
+      title: 'Plataformas Web a Medida',
+      category: 'Full Stack · B2B · Personalizado',
+      problem:
+        'Clientes con procesos críticos manuales: alta dependencia de hojas de cálculo y comunicación por email para tareas operativas.',
+      solution:
+        'Aplicaciones web full stack con Angular/React y PHP/PostgreSQL, desde el levantamiento de requerimientos hasta el despliegue en producción.',
+      metrics: [
+        { value: '8+', label: 'Procesos digitalizados', color: '#06B6D4' },
+        { value: '-50%', label: 'Tiempo operativo reducido', color: '#10B981' },
+        { value: '100%', label: 'Satisfacción del cliente', color: '#F8FAFC' }
+      ],
       tags: [
         { label: 'React', v: 'cyan' },
         { label: 'Angular', v: 'red' },
@@ -238,18 +270,28 @@ export class AppComponent {
         { label: 'PHP', v: 'violet' },
         { label: 'REST', v: 'green' }
       ],
-      impacts: [
-        'Digitalización de procesos clave de negocio',
-        'Mejora en experiencia y conversión de usuarios',
-        'Integración con servicios y APIs externas'
-      ],
-      topGradient: 'from-emerald-500 via-teal-500 to-cyan-500',
-      iconGradient: 'from-emerald-500 to-teal-500',
-      shadow: 'hover:shadow-emerald-500/10',
-      borderAccent: 'group-hover:border-emerald-500/25',
+      github: 'https://github.com',
+      accentColor: '#8B5CF6',
+      mockup: 'web',
       iconName: 'globe'
     }
   ];
+
+  get activeProject(): Project {
+    return this.projects[this.activeProjectId] ?? this.projects[0];
+  }
+
+  setActiveProject(projectId: number): void {
+    this.activeProjectId = projectId;
+  }
+
+  prevProject(): void {
+    this.activeProjectId = Math.max(0, this.activeProjectId - 1);
+  }
+
+  nextProject(): void {
+    this.activeProjectId = Math.min(this.projects.length - 1, this.activeProjectId + 1);
+  }
 
   readonly experienceResponsibilities: Responsibility[] = [
     {
@@ -332,6 +374,15 @@ export class AppComponent {
     }
   ];
 
+  readonly whatIOffer = [
+    'Análisis de requerimientos y propuesta técnica',
+    'Desarrollo backend PHP/Laravel robusto',
+    'Frontends Angular/React modernos',
+    'Integración SII, DTE y documentos electrónicos',
+    'Implementación de módulos ERP a medida',
+    'Mantenimiento y optimización de sistemas'
+  ];
+
   readonly highlights = [
     'Análisis de requerimientos con stakeholders',
     'Implementación backend Laravel + frontend Angular/React',
@@ -370,5 +421,59 @@ export class AppComponent {
     'Aprendizaje Continuo',
     'Gestión del Tiempo',
     'Resolución de Problemas'
+  ];
+
+  readonly certifications: Cert[] = [
+    {
+      org: 'Cisco Networking Academy',
+      title: 'JavaScript Essentials',
+      level: 'Certificación oficial',
+      year: '2024',
+      description:
+        'Fundamentos de JavaScript: variables, funciones, DOM, programación orientada a objetos y manejo de errores en entornos reales.',
+      tags: [
+        { label: 'JavaScript', v: 'yellow' },
+        { label: 'DOM', v: 'cyan' },
+        { label: 'OOP', v: 'violet' }
+      ],
+      accentColor: '#06B6D4',
+      verified: true,
+      verifyText: 'Cisco Verified',
+      iconName: 'code-2'
+    },
+    {
+      org: 'ETS TOEIC',
+      title: 'TOEIC - Test of English for International Communication',
+      level: 'Nivel B1+ - Comunicación profesional',
+      year: 'Vigente',
+      description:
+        'Certificación internacional de inglés para contextos profesionales, enfocada en comunicación con equipos globales y entornos TI.',
+      tags: [
+        { label: 'English B1+', v: 'green' },
+        { label: 'Business', v: 'teal' },
+        { label: 'Tech Comm.', v: 'ghost' }
+      ],
+      accentColor: '#10B981',
+      verified: true,
+      verifyText: 'ETS Verified',
+      iconName: 'globe'
+    },
+    {
+      org: 'Formación Continua',
+      title: 'Laravel Avanzado · React · DevOps',
+      level: 'Actualización técnica constante',
+      year: 'En progreso',
+      description:
+        'Microservicios, patrones de diseño, testing automatizado, CI/CD y buenas prácticas DevOps aplicadas al desarrollo web moderno.',
+      tags: [
+        { label: 'Laravel', v: 'violet' },
+        { label: 'Testing', v: 'orange' },
+        { label: 'CI/CD', v: 'indigo' }
+      ],
+      accentColor: '#8B5CF6',
+      verified: false,
+      verifyText: '',
+      iconName: 'award'
+    }
   ];
 }

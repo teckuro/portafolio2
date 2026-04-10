@@ -15,6 +15,7 @@ export class FooterComponent {
     { id: 'habilidades', label: 'Habilidades' },
     { id: 'proyectos', label: 'Proyectos' },
     { id: 'experiencia', label: 'Experiencia' },
+    { id: 'certificaciones', label: 'Certificaciones' },
     { id: 'formacion', label: 'Formación' },
     { id: 'contacto', label: 'Contacto' }
   ] as const;

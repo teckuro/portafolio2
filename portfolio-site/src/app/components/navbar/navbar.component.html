@@ -1,7 +1,7 @@
 <nav
   class="fixed top-0 w-full z-50 transition-all duration-500"
   [class]="scrolled
-    ? 'bg-[#080B12]/90 backdrop-blur-2xl border-b border-white/[0.06] shadow-2xl shadow-black/40'
+    ? 'bg-[#0B1120]/95 backdrop-blur-2xl border-b border-white/[0.05] shadow-2xl shadow-black/60'
     : 'bg-transparent'"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,13 +12,16 @@
         type="button"
       >
         <div
-          class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-shadow"
+          class="w-8 h-8 rounded-lg bg-[#131C2E] border border-cyan-500/25 flex items-center justify-center group-hover:border-cyan-500/50 transition-colors"
         >
-          <lucide-icon name="code-2" class="w-4 h-4 text-white" [strokeWidth]="2"></lucide-icon>
+          <lucide-icon name="terminal" class="w-3.5 h-3.5 text-cyan-400" [strokeWidth]="2"></lucide-icon>
         </div>
-        <span class="text-slate-200 tracking-tight" style="font-weight: 600;">
-          JP<span class="text-violet-400">.</span>Huerta
-        </span>
+        <div class="flex items-baseline gap-0">
+          <span class="text-[#F8FAFC] tracking-tight" style="font-weight: 600; font-family: monospace, 'Sora', sans-serif;">
+            jphuerta
+          </span>
+          <span class="text-cyan-400 animate-pulse">_</span>
+        </div>
       </button>
 
       <div class="hidden lg:flex items-center gap-1">
@@ -28,13 +31,13 @@
           (click)="scrollTo(link.id)"
           class="relative px-4 py-2 rounded-lg text-sm transition-all duration-200"
           [class]="activeSection === link.id
-            ? 'text-white'
+            ? 'text-cyan-400 bg-cyan-500/6'
             : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]'"
         >
           {{ link.label }}
           <span
             *ngIf="activeSection === link.id"
-            class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-violet-400"
+            class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400"
           ></span>
         </button>
       </div>
@@ -49,8 +52,8 @@
         </button>
         <button
           type="button"
-          class="px-5 py-2.5 text-sm rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:opacity-90 transition-all"
-          style="font-weight: 500;"
+          class="px-5 py-2 text-sm rounded-lg bg-cyan-500 hover:bg-cyan-400 text-[#0B1120] shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all"
+          style="font-weight: 600;"
           (click)="scrollTo('contacto')"
         >
           Contratar
@@ -72,7 +75,7 @@
 
 <div
   *ngIf="menuOpen"
-  class="fixed top-16 left-0 right-0 z-40 bg-[#080B12]/95 backdrop-blur-2xl border-b border-white/[0.07] shadow-2xl lg:hidden"
+  class="fixed top-16 left-0 right-0 z-40 bg-[#0B1120]/95 backdrop-blur-2xl border-b border-white/[0.07] shadow-2xl lg:hidden"
 >
   <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
     <button
@@ -81,7 +84,7 @@
       (click)="scrollTo(link.id)"
       class="w-full text-left px-4 py-3 rounded-xl text-sm transition-all"
       [class]="activeSection === link.id
-        ? 'bg-violet-500/10 text-violet-300 border border-violet-500/20'
+        ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
         : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'"
     >
       {{ link.label }}
@@ -98,8 +101,8 @@
       <button
         type="button"
         (click)="scrollTo('contacto')"
-        class="flex-1 py-2.5 text-sm rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 text-white"
-        style="font-weight: 500;"
+        class="flex-1 py-2.5 text-sm rounded-xl bg-cyan-500 hover:bg-cyan-400 text-[#0B1120]"
+        style="font-weight: 600;"
       >
         Contratar
       </button>
