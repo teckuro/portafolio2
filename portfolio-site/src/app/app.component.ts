@@ -93,6 +93,7 @@ type Skill = {
 })
 export class AppComponent {
   activeProjectId = 0;
+  readonly featuredProjectId = 3;
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -104,13 +105,14 @@ export class AppComponent {
     email: 'teckuro6@gmail.com',
     phone: '+56 9 8218 5216',
     location: 'Viña del Mar, Chile',
+    // Nota: deja el PDF en `src/assets/JuanPabloHuerta-CV.pdf` para que el botón funcione.
     cvPdf: 'assets/JuanPabloHuerta-CV.pdf',
     githubUrl: 'https://github.com/teckuro',
-    linkedinUrl: 'https://www.linkedin.com/in/jphuertal/',
-    portfolioUrl: 'https://angular-portafolio-phi.vercel.app/',
+    linkedinUrl: 'https://www.linkedin.com/in/jphuerta1/',
+    portfolioUrl: 'https://portafolio2-beige.vercel.app/',
     whatsappUrl: 'https://wa.me/56982185216',
     tagline:
-      'Desarrollador Full Stack con 4 años en soluciones escalables (PHP, Laravel, JavaScript, Angular). Integraciones críticas: SII, Transbank y ERP (contabilidad, remuneraciones, inventario). Liderazgo técnico 8 meses, QA y documentación.'
+      'Desarrollo y mantengo sistemas productivos (PHP 7/vanilla, Laravel, Angular) para empresas: facturación electrónica SII, módulos ERP y pagos con Transbank/Webpay. Me muevo cómodo entre soporte real, mejoras evolutivas, integraciones (SOAP/REST/XML/YAML/GraphQL) y SQL en PostgreSQL/MySQL.'
   };
   readonly roleTags = [
     'Analista Programador Computacional',
@@ -121,7 +123,7 @@ export class AppComponent {
 
   readonly metrics = [
     { value: '4+', label: 'Años experiencia' },
-    { value: '10+', label: 'Proyectos' },
+    { value: '1', label: 'Proyecto principal (ERP)' },
     { value: 'ERP', label: 'Contab. · RRHH · Inventario' },
     { value: 'SII', label: 'Transbank · Pagos' }
   ];
@@ -295,7 +297,47 @@ export class AppComponent {
       iconName: 'globe',
       previewDomain: 'app.empresa.cl'
     }
+    ,
+    {
+      id: 3,
+      number: '04',
+      file: 'remuneraciones-erp.ts',
+      title: 'Sistema de Remuneraciones (ERP) · Chile',
+      category: 'Angular · TypeScript · Supabase · PostgreSQL',
+      problem:
+        'Centralizar trabajadores, contratos, previsión y salud con reglas locales, evitando errores en liquidaciones y asegurando flujos escalables.',
+      solution:
+        'Diseño de arquitectura frontend en Angular/TypeScript y modelo relacional en Supabase/PostgreSQL: entidades (trabajadores, contratos, previsión, salud, banca, parámetros mensuales), flujos de creación (básico/avanzado), estados y validaciones.',
+      metrics: [
+        { value: 'ERP', label: 'Flujos mantenibles', color: '#06B6D4' },
+        { value: 'SQL', label: 'Modelo relacional', color: '#10B981' },
+        { value: 'TS', label: 'Tipado y escalabilidad', color: '#F8FAFC' }
+      ],
+      tags: [
+        { label: 'Angular', v: 'red' },
+        { label: 'TypeScript', v: 'cyan' },
+        { label: 'Supabase', v: 'teal' },
+        { label: 'PostgreSQL', v: 'indigo' },
+        { label: 'Tailwind', v: 'teal' }
+      ],
+      github: 'https://github.com/teckuro',
+      accentColor: '#06B6D4',
+      mockup: 'erp',
+      iconName: 'shopping-cart',
+      previewDomain: 'remuneraciones.app'
+    }
   ];
+
+  get featuredProject(): Project {
+    return (
+      this.projects.find((p) => p.id === this.featuredProjectId) ??
+      this.projects[0]
+    );
+  }
+
+  get participationProjects(): Project[] {
+    return this.projects.filter((p) => p.id !== this.featuredProjectId);
+  }
 
   get activeProject(): Project {
     return this.projects[this.activeProjectId] ?? this.projects[0];
@@ -364,26 +406,26 @@ export class AppComponent {
       period: 'ene. 2021 – ago. 2021',
       location: 'Chile',
       intro:
-        'Automatización, GraphQL y portal de autoatención en un entorno de integración de APIs.',
+        'Desarrollo web con Angular y JavaScript, soporte evolutivo y UI con Angular Material; backend con Laravel/PHP.',
       responsibilities: [
         {
-          title: 'Automatización con Laravel',
-          desc: 'Procesos automatizados que incrementaron la eficiencia operativa y redujeron tareas manuales.'
+          title: 'Frontend Angular',
+          desc: 'Desarrollo de funcionalidades web con Angular, TypeScript y JavaScript.'
         },
         {
-          title: 'Gestión con GraphQL',
-          desc: 'Optimización del rendimiento mediante GraphQL para consultas de datos más eficientes.'
+          title: 'Angular Material',
+          desc: 'Implementación de componentes e interfaces utilizando Angular Material.'
         },
         {
-          title: 'Integración de APIs',
-          desc: 'Integración de APIs internas para mejorar comunicación entre sistemas y el portal de autoatención.'
+          title: 'Backend Laravel / PHP',
+          desc: 'Desarrollo y mantención de funcionalidades en Laravel y PHP.'
         },
         {
-          title: 'Mejora de UX',
-          desc: 'Participación en el desarrollo y mejora continua del portal para una interacción más fluida con los clientes.'
+          title: 'Soporte y mejoras',
+          desc: 'Ajustes funcionales, mejoras internas y soporte técnico a proyectos web.'
         }
       ],
-      tech: ['Laravel', 'PHP', 'GraphQL', 'JavaScript', 'Git']
+      tech: ['Angular', 'Angular Material', 'Laravel', 'PHP', 'JavaScript', 'HTML', 'CSS']
     }
   ];
 
