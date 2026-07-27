@@ -1,7 +1,7 @@
 <nav
-  class="fixed top-0 w-full z-50 transition-all duration-400"
+  class="fixed top-0 w-full z-50 transition-all duration-300"
   [class]="scrolled
-    ? 'bg-[#d5dbe4]/88 backdrop-blur-xl border-b border-[rgba(18,24,32,0.1)]'
+    ? 'bg-[#d5dbe4]/92 backdrop-blur-xl border-b border-[rgba(18,24,32,0.12)] shadow-[0_8px_24px_rgba(18,24,32,0.06)]'
     : 'bg-transparent'"
 >
   <div class="max-w-content mx-auto px-5 sm:px-8">
@@ -42,13 +42,13 @@
           *ngIf="cvHref"
           [href]="cvHref"
           download
-          class="text-[13px] text-[var(--muted)] hover:text-[var(--ink)] transition-colors"
+          class="text-[13px] text-[var(--muted)] hover:text-[var(--ink)] link-underline"
         >
           CV
         </a>
         <button
           type="button"
-          class="px-4 py-2 text-[13px] rounded-md bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] transition-colors"
+          class="px-4 py-2 text-[13px] rounded-md bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] active:translate-y-px transition-all"
           style="font-weight: 500"
           (click)="scrollTo('contacto')"
         >
@@ -71,7 +71,7 @@
 
 <div
   *ngIf="menuOpen"
-  class="fixed top-16 left-0 right-0 z-40 bg-[#d5dbe4]/95 backdrop-blur-xl border-b border-[rgba(18,24,32,0.1)] lg:hidden"
+  class="fixed top-16 left-0 right-0 z-40 bg-[#d5dbe4]/96 backdrop-blur-xl border-b border-[rgba(18,24,32,0.12)] shadow-lg lg:hidden"
 >
   <div class="max-w-content mx-auto px-5 py-4 space-y-1">
     <button
