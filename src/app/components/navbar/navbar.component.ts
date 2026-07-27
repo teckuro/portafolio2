@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onScroll(): void {
     this.scrolled = window.scrollY > 30;
 
-    // Active section detection (best-effort)
     for (let i = this.navLinks.length - 1; i >= 0; i--) {
       const el = document.getElementById(this.navLinks[i].id);
       if (el && el.getBoundingClientRect().top <= 120) {
@@ -42,6 +41,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
         return;
       }
     }
+
+    this.activeSection = '';
   }
 
   scrollTo(id: string): void {

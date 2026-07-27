@@ -113,6 +113,43 @@ body {
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* Hero monogram as dominant visual plane */
+.hero-monogram {
+  font-size: clamp(14rem, 34vw, 28rem);
+  font-weight: 800;
+  line-height: 0.75;
+  letter-spacing: -0.08em;
+  color: rgba(18, 24, 32, 0.1);
+  transform: rotate(-6deg);
+}
+
+/* Contact rows — open list, not a boxed card */
+.contact-list {
+  border-top: 1px solid var(--line);
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left var(--duration) var(--ease);
+}
+
+.contact-row:hover {
+  padding-left: 0.35rem;
+}
+
+.cert-row {
+  transition: padding-left var(--duration) var(--ease);
+}
+
+.cert-row:hover {
+  padding-left: 0.25rem;
+}
+
 /* Buttons */
 .btn-primary {
   display: inline-flex;
@@ -256,25 +293,20 @@ body {
   content: "";
   position: absolute;
   left: 0.35rem;
-  top: 0.5rem;
-  bottom: 0.5rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
   width: 1px;
   background: linear-gradient(180deg, var(--accent) 0%, var(--line) 100%);
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: var(--space-3);
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
 }
 
 .timeline-dot {
   position: absolute;
   left: -1.28rem;
-  top: 1.65rem;
+  top: 0.55rem;
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
@@ -426,15 +458,6 @@ body {
   color: var(--accent);
 }
 
-/* Cert hover */
-.cert-card {
-  transition: transform var(--duration) var(--ease), border-color var(--duration) var(--ease);
-}
-
-.cert-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
 
 /* WhatsApp */
 .wa-fab {
@@ -579,7 +602,8 @@ body {
   .btn-primary:hover .btn-arrow,
   .skill-tile:hover,
   .participation-item:hover,
-  .cert-card:hover,
+  .contact-row:hover,
+  .cert-row:hover,
   .wa-fab:hover {
     transform: none;
     padding-left: inherit;

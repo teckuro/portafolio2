@@ -1,27 +1,32 @@
-# PortfolioSite
+# Juan Pablo Huerta — Portafolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+Sitio personal (Angular 15 + Tailwind) desplegado en Vercel.
 
-## Development server
+## URL de producción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Objetivo: **https://jphuerta.vercel.app/**
 
-## Code scaffolding
+La URL automática `portafolio2-iota-one.vercel.app` es el slug por defecto del repo.
+Para dejar la URL acorde al portafolio, renombra el proyecto en Vercel:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Abre el proyecto en [vercel.com/dashboard](https://vercel.com/dashboard)
+2. **Settings → General → Project Name**
+3. Cambia el nombre a `jphuerta`
+4. Guarda — la app quedará en `https://jphuerta.vercel.app/`
+
+Alternativas válidas si `jphuerta` estuviera tomado: `juan-pablo-huerta`, `juanpablohuerta`, `teckuro`.
+
+## Desarrollo local
+
+```bash
+npm ci
+npm start
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Salida: `dist/portfolio-site` (configurado en `vercel.json`).

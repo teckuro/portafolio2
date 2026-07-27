@@ -1,3 +1,90 @@
 :host {
   display: contents;
 }
+
+.nav-bar {
+  color: #121820;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Opaque paper bar — stays readable over light bands and dark contact */
+.nav-bar.nav--solid {
+  background: #f4f7fa;
+  border-bottom-color: rgba(18, 24, 32, 0.16);
+  box-shadow: 0 8px 28px rgba(18, 24, 32, 0.14);
+}
+
+.nav-brand {
+  color: inherit;
+}
+
+.nav-link {
+  color: rgba(18, 24, 32, 0.55);
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: #121820;
+}
+
+.nav-link-underline {
+  background: var(--accent);
+}
+
+.nav-cv {
+  color: rgba(18, 24, 32, 0.55);
+}
+
+.nav-cv:hover {
+  color: #121820;
+}
+
+.nav-cta {
+  background: #121820;
+  color: #eef2f6;
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+}
+
+.nav-menu-btn {
+  color: inherit;
+}
+
+.nav-drawer {
+  background: #f4f7fa;
+  border-bottom: 1px solid rgba(18, 24, 32, 0.16);
+  box-shadow: 0 12px 28px rgba(18, 24, 32, 0.14);
+  color: #121820;
+}
+
+.nav-drawer-link {
+  color: rgba(18, 24, 32, 0.6);
+  border-color: rgba(18, 24, 32, 0.1);
+}
+
+.nav-drawer-link.is-active {
+  color: #121820;
+}
+
+.nav-drawer-cv {
+  border: 1px solid rgba(18, 24, 32, 0.18);
+  color: #121820;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-drawer-cta {
+  background: #121820;
+  color: #eef2f6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-bar {
+    transition: none;
+  }
+}
