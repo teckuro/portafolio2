@@ -5,16 +5,21 @@
 @tailwind utilities;
 
 :root {
-  --bg: #f4f5f7;
-  --bg-elevated: #ffffff;
-  --ink: #12141a;
-  --muted: #5c6470;
-  --faint: #8b93a0;
-  --line: rgba(18, 20, 26, 0.1);
-  --line-strong: rgba(18, 20, 26, 0.16);
-  --accent: #1f5b4d;
-  --accent-soft: rgba(31, 91, 77, 0.1);
-  --accent-hover: #17483d;
+  --bg: #d5dbe4;
+  --bg-elevated: #e4e9f0;
+  --bg-soft: #c7d0dc;
+  --bg-sage: #c4d0c8;
+  --paper: #eef2f6;
+  --ink: #121820;
+  --muted: #4a5563;
+  --faint: #6b7785;
+  --line: rgba(18, 24, 32, 0.12);
+  --line-strong: rgba(18, 24, 32, 0.2);
+  --accent: #245c4e;
+  --accent-soft: rgba(36, 92, 78, 0.14);
+  --accent-hover: #1a463b;
+  --accent-bright: #3d8f78;
+  --ink-deep: #121a22;
   --font-display: "Syne", sans-serif;
   --font-body: "IBM Plex Sans", sans-serif;
 }
@@ -39,6 +44,59 @@ body {
 
 .font-display {
   font-family: var(--font-display);
+}
+
+/* Section atmosphere bands */
+.band-base {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.band-elevated {
+  background:
+    linear-gradient(165deg, #e2e7ee 0%, #d8dee8 48%, #cfd8e2 100%);
+  color: var(--ink);
+}
+
+.band-soft {
+  background:
+    radial-gradient(ellipse 70% 60% at 100% 0%, rgba(36, 92, 78, 0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #c9d2de 0%, #c0cad8 100%);
+  color: var(--ink);
+}
+
+.band-sage {
+  background:
+    radial-gradient(ellipse 80% 50% at 0% 100%, rgba(36, 92, 78, 0.18) 0%, transparent 50%),
+    linear-gradient(160deg, #c8d4cc 0%, #b9c8c0 55%, #c3cfd0 100%);
+  color: var(--ink);
+}
+
+.band-ink {
+  --ink: #e8eef3;
+  --muted: #a7b4c0;
+  --faint: #7f8f9d;
+  --line: rgba(232, 238, 243, 0.12);
+  --line-strong: rgba(232, 238, 243, 0.2);
+  --accent: #6eb89a;
+  --accent-soft: rgba(110, 184, 154, 0.16);
+  --accent-hover: #8fd0b4;
+  --paper: #e8eef3;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 0%, rgba(110, 184, 154, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 10% 100%, rgba(80, 120, 160, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #152028 0%, #101820 100%);
+  color: var(--ink);
+}
+
+.surface-panel {
+  background: rgba(238, 242, 246, 0.55);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+.band-ink .surface-panel {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 @keyframes fade-up {
@@ -70,6 +128,16 @@ body {
   }
 }
 
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -1.5%, 0) scale(1.04);
+  }
+}
+
 .animate-fade-up {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -81,6 +149,10 @@ body {
 .animate-draw-line {
   transform-origin: left center;
   animation: draw-line 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-drift {
+  animation: drift 18s ease-in-out infinite;
 }
 
 .delay-1 {

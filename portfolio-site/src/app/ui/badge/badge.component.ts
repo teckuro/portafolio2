@@ -25,18 +25,18 @@ export class BadgeComponent {
   @Input() className = '';
 
   get variantClass(): string {
-    // Minimalist: monochrome tags; accent only for status-like badges
+    // Soft tonal tags that sit well on mist / sage / ink bands
     const variants: Record<BadgeVariant, string> = {
-      violet: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      cyan: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      indigo: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
+      violet: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      cyan: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      indigo: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
       green: 'bg-[var(--accent-soft)] border-transparent text-[var(--accent)]',
-      ghost: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      orange: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      pink: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      yellow: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      teal: 'bg-transparent border-[var(--line)] text-[var(--muted)]',
-      red: 'bg-transparent border-[var(--line)] text-[var(--muted)]'
+      ghost: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      orange: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      pink: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      yellow: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      teal: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      red: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]'
     };
     return variants[this.variant] ?? variants.ghost;
   }

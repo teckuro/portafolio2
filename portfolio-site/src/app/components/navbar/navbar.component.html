@@ -1,7 +1,7 @@
 <nav
   class="fixed top-0 w-full z-50 transition-all duration-400"
   [class]="scrolled
-    ? 'bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--line)]'
+    ? 'bg-[#d5dbe4]/88 backdrop-blur-xl border-b border-[rgba(18,24,32,0.1)]'
     : 'bg-transparent'"
 >
   <div class="max-w-content mx-auto px-5 sm:px-8">
@@ -48,7 +48,7 @@
         </a>
         <button
           type="button"
-          class="px-4 py-2 text-[13px] rounded-md bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] transition-colors"
+          class="px-4 py-2 text-[13px] rounded-md bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] transition-colors"
           style="font-weight: 500"
           (click)="scrollTo('contacto')"
         >
@@ -71,14 +71,14 @@
 
 <div
   *ngIf="menuOpen"
-  class="fixed top-16 left-0 right-0 z-40 bg-[var(--bg)] border-b border-[var(--line)] lg:hidden"
+  class="fixed top-16 left-0 right-0 z-40 bg-[#d5dbe4]/95 backdrop-blur-xl border-b border-[rgba(18,24,32,0.1)] lg:hidden"
 >
   <div class="max-w-content mx-auto px-5 py-4 space-y-1">
     <button
       *ngFor="let link of navLinks"
       type="button"
       (click)="scrollTo(link.id)"
-      class="w-full text-left px-2 py-3 text-sm transition-colors border-b border-[var(--line)] last:border-0"
+      class="w-full text-left px-2 py-3 text-sm transition-colors border-b border-[rgba(18,24,32,0.1)] last:border-0"
       [class]="activeSection === link.id
         ? 'text-[var(--ink)]'
         : 'text-[var(--muted)]'"
@@ -91,14 +91,14 @@
         *ngIf="cvHref"
         [href]="cvHref"
         download
-        class="flex-1 py-2.5 text-sm text-center border border-[var(--line-strong)] rounded-md text-[var(--ink)]"
+        class="flex-1 py-2.5 text-sm text-center border border-[rgba(18,24,32,0.18)] rounded-md text-[var(--ink)] bg-[var(--paper)]/40"
       >
         Descargar CV
       </a>
       <button
         type="button"
         (click)="scrollTo('contacto')"
-        class="flex-1 py-2.5 text-sm rounded-md bg-[var(--ink)] text-[var(--bg)]"
+        class="flex-1 py-2.5 text-sm rounded-md bg-[var(--ink)] text-[var(--paper)]"
         style="font-weight: 500"
       >
         Contacto

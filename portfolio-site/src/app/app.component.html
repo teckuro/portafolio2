@@ -9,22 +9,38 @@
           class="absolute inset-0"
           style="
             background:
-              radial-gradient(ellipse 80% 55% at 85% 15%, rgba(31, 91, 77, 0.09) 0%, transparent 55%),
-              radial-gradient(ellipse 60% 45% at 10% 90%, rgba(18, 20, 26, 0.05) 0%, transparent 50%),
-              linear-gradient(180deg, #eef0f3 0%, #f4f5f7 45%, #f7f7f5 100%);
+              linear-gradient(125deg, #9aafb8 0%, #b7c4c0 28%, #c5cfd9 58%, #aebcc8 100%);
           "
         ></div>
         <div
-          class="absolute inset-0 opacity-[0.4]"
+          class="absolute -top-24 -right-[12%] w-[70vw] max-w-[780px] aspect-square rounded-full animate-drift"
           style="
-            background-image: radial-gradient(circle, rgba(18, 20, 26, 0.07) 1px, transparent 1px);
-            background-size: 28px 28px;
+            background: radial-gradient(circle at 40% 40%, rgba(36, 92, 78, 0.45) 0%, rgba(36, 92, 78, 0.12) 42%, transparent 70%);
+            filter: blur(8px);
           "
+        ></div>
+        <div
+          class="absolute -bottom-32 -left-[18%] w-[75vw] max-w-[820px] aspect-square rounded-full"
+          style="
+            background: radial-gradient(circle at 55% 45%, rgba(18, 40, 58, 0.35) 0%, rgba(18, 40, 58, 0.1) 45%, transparent 70%);
+            filter: blur(10px);
+          "
+        ></div>
+        <div
+          class="absolute inset-0 opacity-[0.28]"
+          style="
+            background-image: radial-gradient(circle, rgba(18, 24, 32, 0.18) 1px, transparent 1px);
+            background-size: 26px 26px;
+          "
+        ></div>
+        <div
+          class="absolute inset-0"
+          style="background: linear-gradient(180deg, transparent 55%, rgba(213, 219, 228, 0.55) 100%);"
         ></div>
       </div>
 
       <div class="relative z-10 max-w-content mx-auto w-full">
-        <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--faint)] mb-6 animate-fade-up">
+        <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/55 mb-6 animate-fade-up">
           {{ profile.location }} · Disponible
         </p>
 
@@ -44,7 +60,7 @@
           Analista Programador · Full Stack
         </p>
 
-        <p class="mt-4 text-[var(--muted)] max-w-lg leading-relaxed text-[1.05rem] animate-fade-up delay-3">
+        <p class="mt-4 text-[var(--ink)]/70 max-w-lg leading-relaxed text-[1.05rem] animate-fade-up delay-3">
           Sistemas que se usan de verdad: facturación electrónica, módulos ERP y pagos.
           Requerimientos confusos, aterrizados y en producción.
         </p>
@@ -53,7 +69,7 @@
           <button
             type="button"
             (click)="scrollTo('proyectos')"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] transition-colors text-sm"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] transition-colors text-sm"
             style="font-weight: 500"
           >
             Ver proyectos
@@ -62,13 +78,13 @@
           <a
             [href]="profile.cvPdf"
             download
-            class="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-[var(--line-strong)] text-[var(--ink)] hover:border-[var(--ink)] transition-colors text-sm"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-[var(--ink)]/25 bg-[var(--paper)]/35 backdrop-blur-sm text-[var(--ink)] hover:bg-[var(--paper)]/55 transition-colors text-sm"
           >
             Descargar CV
           </a>
         </div>
 
-        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--faint)] animate-fade-up delay-5">
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink)]/55 animate-fade-up delay-5">
           <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors">GitHub</a>
           <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors">LinkedIn</a>
           <a [href]="'mailto:' + profile.email" class="hover:text-[var(--ink)] transition-colors">{{ profile.email }}</a>
@@ -77,7 +93,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="sobre-mi" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)]">
+    <section id="sobre-mi" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <app-section-header
           align="left"
@@ -87,30 +103,32 @@
         ></app-section-header>
 
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          <div class="lg:col-span-4 space-y-8">
-            <div>
-              <p class="font-display text-xl text-[var(--ink)]" style="font-weight: 700">{{ profile.name }}</p>
-              <p class="text-[var(--muted)] text-sm mt-1">Analista Programador Computacional</p>
-              <div class="mt-4">
-                <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
+          <aside class="lg:col-span-4">
+            <div class="surface-panel rounded-2xl p-6 sm:p-7 space-y-7">
+              <div>
+                <p class="font-display text-xl text-[var(--ink)]" style="font-weight: 700">{{ profile.name }}</p>
+                <p class="text-[var(--muted)] text-sm mt-1">Analista Programador Computacional</p>
+                <div class="mt-4">
+                  <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
+                </div>
+              </div>
+
+              <div class="space-y-3 text-sm text-[var(--muted)]">
+                <a class="block hover:text-[var(--ink)] transition-colors" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+                <a class="block hover:text-[var(--ink)] transition-colors" href="tel:+56982185216">{{ profile.phone }}</a>
+                <p>{{ profile.location }}</p>
+              </div>
+
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Modalidad</p>
+                <ul class="space-y-1.5 text-sm text-[var(--muted)]">
+                  <li>Remoto</li>
+                  <li>Híbrido</li>
+                  <li>Presencial (Viña del Mar / Santiago)</li>
+                </ul>
               </div>
             </div>
-
-            <div class="space-y-3 text-sm text-[var(--muted)]">
-              <a class="block hover:text-[var(--ink)] transition-colors" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
-              <a class="block hover:text-[var(--ink)] transition-colors" href="tel:+56982185216">{{ profile.phone }}</a>
-              <p>{{ profile.location }}</p>
-            </div>
-
-            <div>
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Modalidad</p>
-              <ul class="space-y-1.5 text-sm text-[var(--muted)]">
-                <li>Remoto</li>
-                <li>Híbrido</li>
-                <li>Presencial (Viña del Mar / Santiago)</li>
-              </ul>
-            </div>
-          </div>
+          </aside>
 
           <div class="lg:col-span-8 space-y-8">
             <div class="space-y-5 text-[var(--muted)] leading-relaxed text-[1.05rem]">
@@ -145,7 +163,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="habilidades" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)]">
+    <section id="habilidades" class="relative band-sage py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <app-section-header
           align="left"
@@ -155,16 +173,19 @@
           subtitle="Tecnologías con las que construyo soluciones empresariales."
         ></app-section-header>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
-          <div *ngFor="let skill of skills" class="border-t border-[var(--line)] pt-5">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div
+            *ngFor="let skill of skills"
+            class="surface-panel rounded-xl px-5 py-5"
+          >
             <p class="font-display text-[var(--ink)] text-[1.05rem]" style="font-weight: 600">{{ skill.label }}</p>
             <p class="text-[var(--faint)] text-sm mt-1">{{ skill.sublabel }}</p>
           </div>
         </div>
 
-        <div class="mt-14 pt-8 border-t border-[var(--line)]">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">Herramientas</p>
-          <p class="text-[var(--muted)] text-sm leading-relaxed max-w-3xl">
+        <div class="mt-12 surface-panel rounded-xl px-5 py-5 sm:px-6">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Herramientas</p>
+          <p class="text-[var(--muted)] text-sm leading-relaxed">
             <span *ngFor="let tool of tools; let last = last">{{ tool }}<span *ngIf="!last"> · </span></span>
           </p>
         </div>
@@ -172,7 +193,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="proyectos" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)]">
+    <section id="proyectos" class="relative band-soft py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <app-section-header
           align="left"
@@ -182,22 +203,25 @@
           subtitle="Remuneraciones tipo ERP: arquitectura Angular/TypeScript y modelo relacional en Supabase/PostgreSQL."
         ></app-section-header>
 
-        <article class="grid lg:grid-cols-12 gap-10 lg:gap-14">
-          <div class="lg:col-span-7">
+        <article class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+          <div class="lg:col-span-7 surface-panel rounded-2xl p-6 sm:p-8">
             <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">{{ featuredProject.number }}</p>
             <h3 class="font-display text-2xl sm:text-3xl text-[var(--ink)] leading-snug" style="font-weight: 700">
               {{ featuredProject.title }}
             </h3>
             <p class="text-[var(--muted)] text-sm mt-2">{{ featuredProject.category }}</p>
 
-            <div class="mt-8 grid sm:grid-cols-3 gap-4">
-              <div *ngFor="let metric of featuredProject.metrics" class="border-t border-[var(--line)] pt-4">
-                <p class="font-display text-2xl text-[var(--ink)]" style="font-weight: 700">{{ metric.value }}</p>
+            <div class="mt-8 grid sm:grid-cols-3 gap-3">
+              <div
+                *ngFor="let metric of featuredProject.metrics"
+                class="rounded-xl bg-[rgba(18,24,32,0.05)] px-4 py-4"
+              >
+                <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
                 <p class="text-[var(--faint)] text-xs mt-1 leading-snug">{{ metric.label }}</p>
               </div>
             </div>
 
-            <div class="mt-10 space-y-6">
+            <div class="mt-8 space-y-5">
               <div>
                 <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">Problema</p>
                 <p class="text-[var(--muted)] leading-relaxed">{{ featuredProject.problem }}</p>
@@ -224,12 +248,12 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-6">También participé en</p>
+          <div class="lg:col-span-5 surface-panel rounded-2xl p-6 sm:p-7">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">También participé en</p>
             <div class="space-y-0">
               <div
                 *ngFor="let p of participationProjects"
-                class="py-5 border-t border-[var(--line)] last:border-b"
+                class="py-4 border-t border-[var(--line)] first:border-0 first:pt-0"
               >
                 <div class="flex items-start justify-between gap-4">
                   <div>
@@ -246,7 +270,7 @@
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experiencia" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)]">
+    <section id="experiencia" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <app-section-header
           align="left"
@@ -255,10 +279,13 @@
           highlight="profesional"
         ></app-section-header>
 
-        <div class="space-y-14">
-          <article *ngFor="let job of experienceJobs" class="grid lg:grid-cols-12 gap-6 lg:gap-10">
+        <div class="space-y-6">
+          <article
+            *ngFor="let job of experienceJobs"
+            class="surface-panel rounded-2xl p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10"
+          >
             <div class="lg:col-span-4">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">{{ job.period }}</p>
+              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] mb-2">{{ job.period }}</p>
               <h3 class="font-display text-xl text-[var(--ink)] leading-snug" style="font-weight: 700">{{ job.role }}</h3>
               <p class="text-[var(--muted)] text-sm mt-1" style="font-weight: 500">{{ job.company }}</p>
               <p class="text-[var(--faint)] text-xs mt-2">{{ job.location }}</p>
@@ -284,7 +311,7 @@
     </section>
 
     <!-- CERTIFICATIONS -->
-    <section id="certificaciones" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)]">
+    <section id="certificaciones" class="relative band-sage py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <app-section-header
           align="left"
@@ -293,24 +320,21 @@
           highlight="& reconocimientos"
         ></app-section-header>
 
-        <div class="divide-y divide-[var(--line)] border-y border-[var(--line)]">
-          <div *ngFor="let cert of certifications" class="py-7 grid sm:grid-cols-12 gap-4 sm:gap-6">
-            <div class="sm:col-span-3">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)]">{{ cert.org }}</p>
-              <p class="text-xs text-[var(--faint)] mt-2">{{ cert.year }}</p>
-            </div>
-            <div class="sm:col-span-9">
-              <div class="flex flex-wrap items-center gap-3 mb-2">
-                <h3 class="font-display text-lg text-[var(--ink)]" style="font-weight: 600">{{ cert.title }}</h3>
-                <span *ngIf="cert.verified" class="text-[11px] text-[var(--accent)]">{{ cert.verifyText }}</span>
-              </div>
-              <p class="text-sm text-[var(--muted)] mb-1">{{ cert.level }}</p>
-              <p class="text-sm text-[var(--muted)] leading-relaxed max-w-2xl">{{ cert.description }}</p>
-            </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div
+            *ngFor="let cert of certifications"
+            class="surface-panel rounded-2xl p-6 flex flex-col"
+          >
+            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)]">{{ cert.org }}</p>
+            <h3 class="font-display text-lg text-[var(--ink)] mt-3 leading-snug" style="font-weight: 600">{{ cert.title }}</h3>
+            <p class="text-sm text-[var(--accent)] mt-1" style="font-weight: 500">{{ cert.level }}</p>
+            <p class="text-xs text-[var(--faint)] mt-1">{{ cert.year }}</p>
+            <p class="text-sm text-[var(--muted)] leading-relaxed mt-4 flex-1">{{ cert.description }}</p>
+            <p *ngIf="cert.verified" class="text-[11px] text-[var(--accent)] mt-5">{{ cert.verifyText }}</p>
           </div>
         </div>
 
-        <div class="mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="mt-8 surface-panel rounded-xl px-5 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <p class="text-sm text-[var(--muted)]">Código disponible en GitHub — arquitectura y buenas prácticas.</p>
           <a
             [href]="profile.githubUrl"
@@ -327,7 +351,7 @@
     </section>
 
     <!-- EDUCATION -->
-    <section id="formacion" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)]">
+    <section id="formacion" class="relative band-soft py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <app-section-header
           align="left"
@@ -336,8 +360,8 @@
           highlight="académica"
         ></app-section-header>
 
-        <div class="grid md:grid-cols-2 gap-10 md:gap-14 mb-14">
-          <div class="border-t border-[var(--line)] pt-6">
+        <div class="grid md:grid-cols-2 gap-4 md:gap-5 mb-6">
+          <div class="surface-panel rounded-2xl p-6 sm:p-7">
             <app-badge variant="green" [dot]="true" size="sm">Titulado</app-badge>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Analista Programador Computacional
@@ -349,7 +373,7 @@
             </p>
           </div>
 
-          <div class="border-t border-[var(--line)] pt-6">
+          <div class="surface-panel rounded-2xl p-6 sm:p-7">
             <app-badge variant="ghost" size="sm">En progreso</app-badge>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Formación continua en tecnologías web
@@ -362,9 +386,9 @@
           </div>
         </div>
 
-        <div class="border-t border-[var(--line)] pt-8">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">Competencias transversales</p>
-          <p class="text-[var(--muted)] text-sm leading-relaxed max-w-3xl">
+        <div class="surface-panel rounded-xl px-5 py-5 sm:px-6">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Competencias transversales</p>
+          <p class="text-[var(--muted)] text-sm leading-relaxed">
             <span *ngFor="let competency of competencies; let last = last">{{ competency }}<span *ngIf="!last"> · </span></span>
           </p>
         </div>
@@ -372,13 +396,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contacto" class="relative py-24 sm:py-28 px-5 sm:px-8 border-t border-[var(--line)] overflow-hidden">
-      <div
-        class="absolute inset-0 pointer-events-none"
-        style="background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(31, 91, 77, 0.08) 0%, transparent 65%);"
-        aria-hidden="true"
-      ></div>
-
+    <section id="contacto" class="relative band-ink py-24 sm:py-28 px-5 sm:px-8 overflow-hidden">
       <div class="max-w-content mx-auto relative z-10">
         <app-section-header
           align="left"
@@ -388,11 +406,11 @@
           subtitle="Disponible para posiciones laborales, freelance y consultorías."
         ></app-section-header>
 
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
           <div class="lg:col-span-5 space-y-8">
             <ul class="space-y-3">
               <li *ngFor="let item of whatIOffer" class="flex items-start gap-3 text-sm text-[var(--muted)]">
-                <span class="mt-2 w-1 h-1 rounded-full bg-[var(--accent)] shrink-0"></span>
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0"></span>
                 <span>{{ item }}</span>
               </li>
             </ul>
@@ -403,27 +421,29 @@
             </div>
           </div>
 
-          <div class="lg:col-span-7 space-y-0">
-            <a
-              *ngFor="let item of contactItems"
-              [href]="item.href"
-              class="flex items-center justify-between gap-4 py-5 border-t border-[var(--line)] last:border-b group"
-            >
-              <div>
-                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-1">{{ item.label }}</p>
-                <p class="text-[var(--ink)] text-lg" style="font-weight: 600">{{ item.value }}</p>
-                <p class="text-[var(--faint)] text-xs mt-1">{{ item.sub }}</p>
-              </div>
-              <lucide-icon
-                name="arrow-right"
-                class="w-4 h-4 text-[var(--faint)] group-hover:text-[var(--accent)] group-hover:translate-x-1 transition-all shrink-0"
-              ></lucide-icon>
-            </a>
+          <div class="lg:col-span-7">
+            <div class="surface-panel rounded-2xl overflow-hidden">
+              <a
+                *ngFor="let item of contactItems"
+                [href]="item.href"
+                class="flex items-center justify-between gap-4 px-5 sm:px-6 py-5 border-b border-[var(--line)] last:border-0 group"
+              >
+                <div>
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-1">{{ item.label }}</p>
+                  <p class="text-[var(--ink)] text-lg" style="font-weight: 600">{{ item.value }}</p>
+                  <p class="text-[var(--faint)] text-xs mt-1">{{ item.sub }}</p>
+                </div>
+                <lucide-icon
+                  name="arrow-right"
+                  class="w-4 h-4 text-[var(--faint)] group-hover:text-[var(--accent)] group-hover:translate-x-1 transition-all shrink-0"
+                ></lucide-icon>
+              </a>
+            </div>
 
             <a
               href="mailto:teckuro6@gmail.com"
-              class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] transition-colors text-sm"
-              style="font-weight: 500"
+              class="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--accent)] text-[var(--ink-deep)] hover:bg-[var(--accent-hover)] transition-colors text-sm"
+              style="font-weight: 600"
             >
               Envíame un mensaje
               <lucide-icon name="arrow-right" class="w-4 h-4"></lucide-icon>
@@ -437,7 +457,7 @@
       [href]="profile.whatsappUrl"
       target="_blank"
       rel="noopener noreferrer"
-      class="fixed bottom-5 right-5 z-[60] w-12 h-12 rounded-full bg-[var(--ink)] text-[var(--bg)] flex items-center justify-center shadow-lg hover:bg-[var(--accent)] transition-colors"
+      class="fixed bottom-5 right-5 z-[60] w-12 h-12 rounded-full bg-[var(--ink-deep)] text-[var(--paper)] flex items-center justify-center shadow-lg shadow-black/25 hover:bg-[var(--accent)] hover:text-[var(--paper)] transition-colors"
       aria-label="Contactar por WhatsApp"
     >
       <svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true">

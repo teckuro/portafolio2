@@ -1,4 +1,4 @@
-<footer class="border-t border-[var(--line)] bg-[var(--bg)]">
+<footer class="band-ink border-t border-[rgba(232,238,243,0.1)]">
   <div class="max-w-content mx-auto px-5 sm:px-8 py-14">
     <div class="grid sm:grid-cols-3 gap-10 mb-12">
       <div>
@@ -21,7 +21,7 @@
           <button
             *ngFor="let link of navLinks"
             type="button"
-            class="text-left text-sm text-[var(--muted)] hover:text-[var(--ink)] transition-colors"
+            class="text-left text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             (click)="scrollTo(link.id)"
           >
             {{ link.label }}
@@ -37,12 +37,12 @@
           <a
             *ngIf="email"
             [href]="'mailto:' + email"
-            class="block hover:text-[var(--ink)] transition-colors"
+            class="block hover:text-[var(--accent)] transition-colors"
           >{{ email }}</a>
           <a
             *ngIf="phone"
             [href]="'tel:' + phone"
-            class="block hover:text-[var(--ink)] transition-colors"
+            class="block hover:text-[var(--accent)] transition-colors"
           >{{ phone }}</a>
           <p *ngIf="location">{{ location }}</p>
         </div>
@@ -52,14 +52,14 @@
             [href]="githubUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-[var(--muted)] hover:text-[var(--ink)] transition-colors"
+            class="text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
           >GitHub</a>
           <a
             *ngIf="linkedinUrl"
             [href]="linkedinUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-[var(--muted)] hover:text-[var(--ink)] transition-colors"
+            class="text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
           >LinkedIn</a>
         </div>
       </div>
