@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
 type BadgeVariant =
   | 'violet'
@@ -91,12 +91,53 @@ type Skill = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit, OnDestroy {
   activeProjectId = 0;
   readonly featuredProjectId = 3;
+  private revealObserver?: IntersectionObserver;
+
+  ngAfterViewInit(): void {
+    this.initRevealObserver();
+  }
+
+  ngOnDestroy(): void {
+    this.revealObserver?.disconnect();
+  }
+
+  private initRevealObserver(): void {
+    if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
+
+    if (reducedMotion) {
+      nodes.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    this.revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            this.revealObserver?.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    nodes.forEach((el) => this.revealObserver?.observe(el));
+  }
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  skillIndex(i: number): string {
+    return String(i + 1).padStart(2, '0');
   }
 
   readonly profile = {
