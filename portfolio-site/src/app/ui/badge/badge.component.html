@@ -1,12 +1,11 @@
 <span
-  class="inline-flex items-center gap-1.5 rounded-full border font-medium tracking-wide"
+  class="inline-flex items-center gap-1.5 border font-medium tracking-wide"
   [ngClass]="[variantClass, sizeClass, className]"
 >
   <span
     *ngIf="dot"
-    class="w-1.5 h-1.5 rounded-full animate-pulse"
+    class="w-1.5 h-1.5 rounded-full"
     [ngClass]="dotClass"
   ></span>
   <ng-content></ng-content>
 </span>
-

@@ -1,31 +1,31 @@
-<div class="flex flex-col gap-3 mb-14" [ngClass]="alignClass">
-  <!-- <div
-    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 w-fit"
-  > -->
-  <!-- <span class="w-5 h-5 rounded-md bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-      <span class="text-violet-400 text-[11px]" style="font-weight: 900;">⚡</span>
-    </span>
-    <span class="text-[11px] text-violet-400 uppercase tracking-[0.12em]" style="font-weight: 700;">
-      {{ eyebrow }}
-    </span> -->
-  <!-- </div> -->
+<div class="flex flex-col gap-4 mb-12 sm:mb-16" [ngClass]="alignClass">
+  <p
+    *ngIf="eyebrow"
+    class="text-[11px] uppercase tracking-[0.22em] text-[var(--faint)]"
+  >
+    {{ eyebrow }}
+  </p>
 
   <h2
-    class="text-3xl sm:text-4xl md:text-5xl tracking-tight"
+    class="font-display text-3xl sm:text-4xl md:text-[2.75rem] tracking-tight text-[var(--ink)] leading-[1.1]"
     style="font-weight: 700"
   >
-    <span class="text-slate-100">{{ title }}</span>
+    <span>{{ title }}</span>
     <ng-container *ngIf="highlight">
-      <span class="text-slate-100"> </span>
-      <span
-        class="bg-gradient-to-r from-cyan-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent"
-      >
-        {{ highlight }}
-      </span>
+      <span> </span>
+      <span class="text-[var(--accent)]">{{ highlight }}</span>
     </ng-container>
   </h2>
 
-  <p *ngIf="subtitle" class="text-slate-400 max-w-xl leading-relaxed">
+  <div
+    class="h-px w-12 bg-[var(--accent)]"
+    [ngClass]="align === 'center' ? 'mx-auto' : ''"
+  ></div>
+
+  <p
+    *ngIf="subtitle"
+    class="text-[var(--muted)] max-w-xl leading-relaxed text-[0.975rem]"
+  >
     {{ subtitle }}
   </p>
 </div>

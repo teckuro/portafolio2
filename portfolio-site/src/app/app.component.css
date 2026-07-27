@@ -2,4 +2,7 @@
   display: block;
 }
 
-
+/* Soft page rhythm for minimalist layout */
+section {
+  scroll-margin-top: 5rem;
+}
