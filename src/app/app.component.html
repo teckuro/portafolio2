@@ -3,122 +3,88 @@
 <div class="min-h-screen bg-[var(--bg)] text-[var(--ink)] overflow-x-hidden antialiased" id="inicio">
   <main>
     <!-- HERO -->
-    <section class="relative min-h-screen flex items-end sm:items-center overflow-hidden px-5 sm:px-8 pt-20 pb-20">
+    <section class="relative min-h-[100svh] flex items-end overflow-hidden px-5 sm:px-8 pt-24 pb-16 sm:pb-20">
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           class="absolute inset-0"
           style="
             background:
-              linear-gradient(125deg, #8fa4ae 0%, #a9bbb4 26%, #bec8d4 55%, #9aafbc 100%);
-          "
-        ></div>
-        <div
-          class="absolute top-0 right-0 h-full w-[42%] hidden lg:block"
-          style="
-            background:
-              linear-gradient(200deg, rgba(36, 92, 78, 0.42) 0%, rgba(18, 40, 58, 0.28) 55%, rgba(18, 40, 58, 0.08) 100%);
-          "
-        ></div>
-        <div
-          class="absolute -top-24 -right-[12%] w-[70vw] max-w-[780px] aspect-square rounded-full animate-drift"
-          style="
-            background: radial-gradient(circle at 40% 40%, rgba(36, 92, 78, 0.5) 0%, rgba(36, 92, 78, 0.12) 42%, transparent 70%);
-            filter: blur(8px);
-          "
-        ></div>
-        <div
-          class="absolute -bottom-32 -left-[18%] w-[75vw] max-w-[820px] aspect-square rounded-full"
-          style="
-            background: radial-gradient(circle at 55% 45%, rgba(18, 40, 58, 0.38) 0%, rgba(18, 40, 58, 0.1) 45%, transparent 70%);
-            filter: blur(10px);
-          "
-        ></div>
-        <div
-          class="absolute inset-0 opacity-[0.25]"
-          style="
-            background-image: radial-gradient(circle, rgba(18, 24, 32, 0.18) 1px, transparent 1px);
-            background-size: 26px 26px;
+              linear-gradient(145deg, #c8d4dc 0%, #b7c7c2 32%, #a8b9c6 68%, #97acb8 100%);
           "
         ></div>
         <div
           class="absolute inset-0"
-          style="background: linear-gradient(180deg, transparent 50%, rgba(213, 219, 228, 0.65) 100%);"
+          style="
+            background:
+              radial-gradient(ellipse 55% 70% at 88% 18%, rgba(28, 72, 62, 0.55) 0%, transparent 62%),
+              radial-gradient(ellipse 45% 55% at 8% 88%, rgba(18, 36, 52, 0.35) 0%, transparent 58%);
+          "
+        ></div>
+        <div
+          class="absolute inset-0 opacity-[0.22]"
+          style="
+            background-image:
+              linear-gradient(rgba(18, 24, 32, 0.12) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(18, 24, 32, 0.12) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 78%);
+          "
         ></div>
         <p
-          class="absolute right-[-2%] top-[18%] hidden lg:block font-display select-none pointer-events-none animate-fade-in delay-2"
-          style="
-            font-size: clamp(10rem, 22vw, 18rem);
-            font-weight: 800;
-            line-height: 0.8;
-            letter-spacing: -0.06em;
-            color: rgba(18, 24, 32, 0.07);
-          "
+          class="hero-monogram absolute right-[-4%] bottom-[-8%] hidden md:block font-display select-none animate-fade-in delay-2"
         >
           JH
         </p>
+        <div
+          class="absolute inset-x-0 bottom-0 h-40"
+          style="background: linear-gradient(180deg, transparent 0%, rgba(213, 219, 228, 0.9) 100%);"
+        ></div>
       </div>
 
       <div class="relative z-10 max-w-content mx-auto w-full">
-        <div class="grid lg:grid-cols-12 gap-10 items-end">
-          <div class="lg:col-span-8">
-            <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/60 mb-6 animate-fade-up">
-              {{ profile.location }} · Disponible
-            </p>
+        <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/55 mb-7 animate-fade-up">
+          {{ profile.location }} · Disponible
+        </p>
 
-            <h1
-              class="font-display tracking-tight leading-[0.95] text-[var(--ink)] animate-fade-up delay-1"
-              style="font-weight: 800; font-size: clamp(2.75rem, 9vw, 5.75rem);"
-            >
-              Juan Pablo<br />Huerta
-            </h1>
+        <h1
+          class="font-display tracking-tight leading-[0.92] text-[var(--ink)] animate-fade-up delay-1"
+          style="font-weight: 800; font-size: clamp(3.1rem, 11vw, 6.5rem);"
+        >
+          Juan Pablo<br />Huerta
+        </h1>
 
-            <div class="mt-5 h-px w-16 bg-[var(--accent)] animate-draw-line delay-2"></div>
+        <div class="mt-6 h-px w-14 bg-[var(--accent)] animate-draw-line delay-2"></div>
 
-            <p
-              class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
-              style="font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.55rem);"
-            >
-              Analista Programador · Full Stack
-            </p>
+        <p
+          class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
+          style="font-weight: 600; font-size: clamp(1.2rem, 2.6vw, 1.65rem);"
+        >
+          Analista Programador · Full Stack
+        </p>
 
-            <p class="mt-4 text-[var(--ink)]/75 max-w-lg leading-relaxed text-[1.05rem] animate-fade-up delay-3">
-              Sistemas que se usan de verdad: facturación electrónica, módulos ERP y pagos.
-              Requerimientos confusos, aterrizados y en producción.
-            </p>
+        <p class="mt-4 text-[var(--ink)]/72 max-w-md leading-relaxed text-[1.05rem] animate-fade-up delay-3">
+          Sistemas que se usan de verdad: facturación electrónica, módulos ERP y pagos.
+          Requerimientos confusos, aterrizados y en producción.
+        </p>
 
-            <div class="mt-9 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
-              <button type="button" (click)="scrollTo('proyectos')" class="btn-primary">
-                Ver proyectos
-                <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
-              </button>
-              <a [href]="profile.cvPdf" download class="btn-secondary">Descargar CV</a>
-            </div>
-
-            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink)]/60 animate-fade-up delay-5">
-              <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">GitHub</a>
-              <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">LinkedIn</a>
-              <a [href]="'mailto:' + profile.email" class="link-underline hover:text-[var(--ink)]">{{ profile.email }}</a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-4 hidden lg:flex justify-end animate-fade-up delay-4">
-            <div class="surface-panel rounded-2xl p-5 w-full max-w-[260px] bg-[rgba(238,242,246,0.45)]">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Foco</p>
-              <ul class="space-y-2 text-sm text-[var(--ink)]/80">
-                <li>SII · DTE</li>
-                <li>Transbank / Webpay</li>
-                <li>ERP remuneraciones</li>
-                <li>Laravel · Angular</li>
-              </ul>
-            </div>
-          </div>
+        <div class="mt-10 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
+          <button type="button" (click)="scrollTo('proyectos')" class="btn-primary">
+            Ver proyectos
+            <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
+          </button>
+          <a [href]="profile.cvPdf" download class="btn-secondary">Descargar CV</a>
         </div>
 
-        <div class="mt-14 sm:mt-16 animate-fade-up delay-5">
+        <div class="mt-14 flex items-end justify-between gap-6 animate-fade-up delay-5">
           <button type="button" class="scroll-cue" (click)="scrollTo('sobre-mi')" aria-label="Bajar a Sobre mí">
             <span>scroll</span>
             <span class="scroll-cue__line"></span>
           </button>
+          <div class="hidden sm:flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[var(--ink)]/55">
+            <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">GitHub</a>
+            <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">LinkedIn</a>
+            <a [href]="'mailto:' + profile.email" class="link-underline hover:text-[var(--ink)]">{{ profile.email }}</a>
+          </div>
         </div>
       </div>
     </section>
@@ -131,29 +97,27 @@
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
-          <aside class="lg:col-span-4 reveal reveal-delay-1">
-            <div class="surface-panel p-6 sm:p-7 space-y-7">
-              <div>
-                <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
-                <p class="text-[var(--muted)] text-sm mt-4 leading-relaxed">
-                  Analista Programador Computacional · Full Stack
-                </p>
-              </div>
+          <aside class="lg:col-span-4 reveal reveal-delay-1 space-y-8">
+            <div>
+              <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
+              <p class="text-[var(--muted)] text-sm mt-4 leading-relaxed">
+                Analista Programador Computacional · Full Stack
+              </p>
+            </div>
 
-              <div class="space-y-3 text-sm text-[var(--muted)]">
-                <a class="block link-underline hover:text-[var(--ink)]" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
-                <a class="block link-underline hover:text-[var(--ink)]" href="tel:+56982185216">{{ profile.phone }}</a>
-                <p>{{ profile.location }}</p>
-              </div>
+            <div class="space-y-3 text-sm text-[var(--muted)]">
+              <a class="block link-underline hover:text-[var(--ink)]" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+              <a class="block link-underline hover:text-[var(--ink)]" href="tel:+56982185216">{{ profile.phone }}</a>
+              <p>{{ profile.location }}</p>
+            </div>
 
-              <div>
-                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Modalidad</p>
-                <ul class="space-y-1.5 text-sm text-[var(--muted)]">
-                  <li>Remoto</li>
-                  <li>Híbrido</li>
-                  <li>Presencial (Viña del Mar / Santiago)</li>
-                </ul>
-              </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Modalidad</p>
+              <ul class="space-y-1.5 text-sm text-[var(--muted)]">
+                <li>Remoto</li>
+                <li>Híbrido</li>
+                <li>Presencial (Viña del Mar / Santiago)</li>
+              </ul>
             </div>
           </aside>
 
@@ -202,7 +166,7 @@
           ></app-section-header>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1">
           <div
             *ngFor="let skill of skills; let i = index"
             class="skill-tile reveal"
@@ -216,7 +180,7 @@
           </div>
         </div>
 
-        <div class="mt-12 surface-panel px-5 py-5 sm:px-6 reveal">
+        <div class="mt-12 pt-6 border-t border-[var(--line)] reveal">
           <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Herramientas</p>
           <p class="text-[var(--muted)] text-sm leading-relaxed">
             <span *ngFor="let tool of tools; let last = last">{{ tool }}<span *ngIf="!last"> · </span></span>
@@ -238,8 +202,8 @@
           ></app-section-header>
         </div>
 
-        <article class="grid lg:grid-cols-12 gap-8 lg:gap-10">
-          <div class="lg:col-span-7 space-y-6 reveal reveal-delay-1">
+        <article class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+          <div class="lg:col-span-7 space-y-7 reveal reveal-delay-1">
             <div class="project-mock" aria-hidden="true">
               <div class="project-mock__chrome">
                 <span class="project-mock__dot"></span>
@@ -278,13 +242,10 @@
               <p class="text-[var(--muted)] text-sm mt-2">{{ featuredProject.category }}</p>
             </div>
 
-            <div class="grid sm:grid-cols-3 gap-3">
-              <div
-                *ngFor="let metric of featuredProject.metrics"
-                class="rounded-xl bg-[rgba(18,24,32,0.05)] px-4 py-4 border border-[var(--line)]"
-              >
-                <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
-                <p class="text-[var(--faint)] text-xs mt-1 leading-snug">{{ metric.label }}</p>
+            <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+              <div *ngFor="let metric of featuredProject.metrics">
+                <p class="font-display text-xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
+                <p class="text-[var(--faint)] text-xs mt-0.5">{{ metric.label }}</p>
               </div>
             </div>
 
@@ -316,20 +277,18 @@
           </div>
 
           <div class="lg:col-span-5 reveal reveal-delay-2">
-            <div class="surface-panel p-6 sm:p-7 h-full">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">También participé en</p>
-              <div class="space-y-0">
-                <div
-                  *ngFor="let p of participationProjects"
-                  class="participation-item py-4 border-t border-[var(--line)] first:border-0 first:pt-0"
-                >
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
-                      <p class="participation-title text-[var(--ink)] text-sm transition-colors" style="font-weight: 600">{{ p.title }}</p>
-                      <p class="text-[var(--faint)] text-xs mt-1">{{ p.category }}</p>
-                    </div>
-                    <span class="text-[11px] text-[var(--faint)] font-mono shrink-0">{{ p.number }}</span>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-5">También participé en</p>
+            <div class="space-y-0">
+              <div
+                *ngFor="let p of participationProjects"
+                class="participation-item py-5 border-t border-[var(--line)] first:border-t-0 first:pt-0"
+              >
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="participation-title text-[var(--ink)] text-sm transition-colors" style="font-weight: 600">{{ p.title }}</p>
+                    <p class="text-[var(--faint)] text-xs mt-1.5">{{ p.category }}</p>
                   </div>
+                  <span class="text-[11px] text-[var(--faint)] font-mono shrink-0">{{ p.number }}</span>
                 </div>
               </div>
             </div>
@@ -348,7 +307,7 @@
         <div class="timeline">
           <article
             *ngFor="let job of experienceJobs; let i = index"
-            class="timeline-item surface-panel p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10 reveal"
+            class="timeline-item py-8 sm:py-10 border-t border-[var(--line)] first:border-t-0 first:pt-0 grid lg:grid-cols-12 gap-6 lg:gap-10 reveal"
             [ngClass]="'reveal-delay-' + (i + 1)"
           >
             <span class="timeline-dot" aria-hidden="true"></span>
@@ -390,24 +349,26 @@
           ></app-section-header>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="divide-y divide-[var(--line)]">
           <div
             *ngFor="let cert of certifications; let i = index"
-            class="cert-card surface-panel p-6 flex flex-col reveal"
+            class="cert-row py-7 first:pt-0 last:pb-0 grid sm:grid-cols-12 gap-3 sm:gap-6 reveal"
             [ngClass]="'reveal-delay-' + (i + 1)"
           >
-            <div class="flex items-start justify-between gap-3">
+            <div class="sm:col-span-3">
               <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)]">{{ cert.org }}</p>
-              <p class="text-xs text-[var(--faint)] shrink-0">{{ cert.year }}</p>
+              <p class="text-xs text-[var(--faint)] mt-2">{{ cert.year }}</p>
             </div>
-            <h3 class="font-display text-lg text-[var(--ink)] mt-3 leading-snug" style="font-weight: 600">{{ cert.title }}</h3>
-            <p class="text-sm text-[var(--accent)] mt-1" style="font-weight: 500">{{ cert.level }}</p>
-            <p class="text-sm text-[var(--muted)] leading-relaxed mt-4 flex-1">{{ cert.description }}</p>
-            <p *ngIf="cert.verified" class="text-[11px] text-[var(--accent)] mt-5">{{ cert.verifyText }}</p>
+            <div class="sm:col-span-9">
+              <h3 class="font-display text-lg text-[var(--ink)] leading-snug" style="font-weight: 600">{{ cert.title }}</h3>
+              <p class="text-sm text-[var(--accent)] mt-1" style="font-weight: 500">{{ cert.level }}</p>
+              <p class="text-sm text-[var(--muted)] leading-relaxed mt-3 max-w-2xl">{{ cert.description }}</p>
+              <p *ngIf="cert.verified" class="text-[11px] text-[var(--accent)] mt-3">{{ cert.verifyText }}</p>
+            </div>
           </div>
         </div>
 
-        <div class="mt-8 surface-panel px-5 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal">
+        <div class="mt-10 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal">
           <p class="text-sm text-[var(--muted)]">Código disponible en GitHub — arquitectura y buenas prácticas.</p>
           <a
             [href]="profile.githubUrl"
@@ -430,8 +391,8 @@
           <app-section-header align="left" eyebrow="06" title="Formación" highlight="académica"></app-section-header>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-4 md:gap-5 mb-6">
-          <div class="surface-panel p-6 sm:p-7 reveal reveal-delay-1">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-14 mb-10">
+          <div class="reveal reveal-delay-1">
             <app-badge variant="green" [dot]="true" size="sm">Titulado</app-badge>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Analista Programador Computacional
@@ -443,7 +404,7 @@
             </p>
           </div>
 
-          <div class="surface-panel p-6 sm:p-7 reveal reveal-delay-2">
+          <div class="reveal reveal-delay-2">
             <app-badge variant="ghost" size="sm">En progreso</app-badge>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Formación continua en tecnologías web
@@ -456,7 +417,7 @@
           </div>
         </div>
 
-        <div class="surface-panel px-5 py-5 sm:px-6 reveal">
+        <div class="pt-6 border-t border-[var(--line)] reveal">
           <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Competencias transversales</p>
           <p class="text-[var(--muted)] text-sm leading-relaxed">
             <span *ngFor="let competency of competencies; let last = last">{{ competency }}<span *ngIf="!last"> · </span></span>
@@ -467,6 +428,13 @@
 
     <!-- CONTACT -->
     <section id="contacto" class="relative band-ink py-24 sm:py-28 px-5 sm:px-8 overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          class="absolute -right-[10%] top-[10%] w-[50vw] max-w-[520px] aspect-square rounded-full animate-drift"
+          style="background: radial-gradient(circle, rgba(110, 184, 154, 0.18) 0%, transparent 68%);"
+        ></div>
+      </div>
+
       <div class="max-w-content mx-auto relative z-10">
         <div class="reveal">
           <app-section-header
@@ -494,11 +462,11 @@
           </div>
 
           <div class="lg:col-span-7 reveal reveal-delay-2">
-            <div class="surface-panel overflow-hidden !rounded-2xl">
+            <div class="contact-list">
               <a
                 *ngFor="let item of contactItems"
                 [href]="item.href"
-                class="flex items-center justify-between gap-4 px-5 sm:px-6 py-5 border-b border-[var(--line)] last:border-0 group"
+                class="contact-row group"
               >
                 <div>
                   <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-1">{{ item.label }}</p>
@@ -514,7 +482,7 @@
 
             <a
               href="mailto:teckuro6@gmail.com"
-              class="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--accent)] text-[var(--ink-deep)] hover:bg-[var(--accent-hover)] transition-colors text-sm group"
+              class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--accent)] text-[var(--ink-deep)] hover:bg-[var(--accent-hover)] transition-colors text-sm group"
               style="font-weight: 600"
             >
               Envíame un mensaje

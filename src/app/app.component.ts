@@ -150,7 +150,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     cvPdf: 'assets/JuanPabloHuerta-CV.pdf',
     githubUrl: 'https://github.com/teckuro',
     linkedinUrl: 'https://www.linkedin.com/in/jphuerta1/',
-    portfolioUrl: 'https://portafolio2-beige.vercel.app/',
+    portfolioUrl: 'https://portafolio2-iota-one.vercel.app/',
     whatsappUrl: 'https://wa.me/56982185216',
     tagline:
       'Desarrollo y mantengo sistemas productivos (PHP 7/vanilla, Laravel, Angular) para empresas: facturación electrónica SII, módulos ERP y pagos con Transbank/Webpay. Me muevo cómodo entre soporte real, mejoras evolutivas, integraciones (SOAP/REST/XML/YAML/GraphQL) y SQL en PostgreSQL/MySQL.'
