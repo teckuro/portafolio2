@@ -27,7 +27,7 @@
           "
         ></div>
         <div
-          class="absolute -bottom-32 -left-[18%] w-[75vw] max-w-[820px] aspect-square rounded-full"
+          class="absolute -bottom-32 -left-[18%] w-[75vw] max-w-[820px] aspect-square rounded-full animate-drift-alt"
           style="
             background: radial-gradient(circle at 55% 45%, rgba(18, 40, 58, 0.38) 0%, rgba(18, 40, 58, 0.1) 45%, transparent 70%);
             filter: blur(10px);
@@ -59,58 +59,44 @@
       </div>
 
       <div class="relative z-10 max-w-content mx-auto w-full">
-        <div class="grid lg:grid-cols-12 gap-10 items-end">
-          <div class="lg:col-span-8">
-            <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/60 mb-6 animate-fade-up">
-              {{ profile.location }} · Disponible
-            </p>
+        <div class="max-w-2xl">
+          <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/60 mb-6 animate-fade-up">
+            {{ profile.location }} · Disponible
+          </p>
 
-            <h1
-              class="font-display tracking-tight leading-[0.95] text-[var(--ink)] animate-fade-up delay-1"
-              style="font-weight: 800; font-size: clamp(2.75rem, 9vw, 5.75rem);"
-            >
-              Juan Pablo<br />Huerta
-            </h1>
+          <h1
+            class="font-display tracking-tight leading-[0.95] text-[var(--ink)] animate-fade-up delay-1"
+            style="font-weight: 800; font-size: clamp(2.75rem, 9vw, 5.75rem);"
+          >
+            Juan Pablo<br />Huerta
+          </h1>
 
-            <div class="mt-5 h-px w-16 bg-[var(--accent)] animate-draw-line delay-2"></div>
+          <div class="mt-5 h-px w-16 bg-[var(--accent)] animate-draw-line delay-2"></div>
 
-            <p
-              class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
-              style="font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.55rem);"
-            >
-              Analista Programador · Full Stack
-            </p>
+          <p
+            class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
+            style="font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.55rem);"
+          >
+            Analista Programador · Full Stack
+          </p>
 
-            <p class="mt-4 text-[var(--ink)]/75 max-w-lg leading-relaxed text-[1.05rem] animate-fade-up delay-3">
-              Sistemas que se usan de verdad: facturación electrónica, módulos ERP y pagos.
-              Requerimientos confusos, aterrizados y en producción.
-            </p>
+          <p class="mt-4 text-[var(--ink)]/75 max-w-lg leading-relaxed text-[1.05rem] animate-fade-up delay-3">
+            Sistemas que se usan de verdad: facturación electrónica, módulos ERP y pagos.
+            Requerimientos confusos, aterrizados y en producción.
+          </p>
 
-            <div class="mt-9 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
-              <button type="button" (click)="scrollTo('proyectos')" class="btn-primary">
-                Ver proyectos
-                <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
-              </button>
-              <a [href]="profile.cvPdf" download class="btn-secondary">Descargar CV</a>
-            </div>
-
-            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink)]/60 animate-fade-up delay-5">
-              <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">GitHub</a>
-              <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">LinkedIn</a>
-              <a [href]="'mailto:' + profile.email" class="link-underline hover:text-[var(--ink)]">{{ profile.email }}</a>
-            </div>
+          <div class="mt-9 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
+            <button type="button" (click)="scrollTo('proyectos')" class="btn-primary">
+              Ver proyectos
+              <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
+            </button>
+            <a [href]="profile.cvPdf" download class="btn-secondary">Descargar CV</a>
           </div>
 
-          <div class="lg:col-span-4 hidden lg:flex justify-end animate-fade-up delay-4">
-            <div class="surface-panel rounded-2xl p-5 w-full max-w-[260px] bg-[rgba(238,242,246,0.45)]">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Foco</p>
-              <ul class="space-y-2 text-sm text-[var(--ink)]/80">
-                <li>SII · DTE</li>
-                <li>Transbank / Webpay</li>
-                <li>ERP remuneraciones</li>
-                <li>Laravel · Angular</li>
-              </ul>
-            </div>
+          <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink)]/60 animate-fade-up delay-5">
+            <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">GitHub</a>
+            <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">LinkedIn</a>
+            <a [href]="'mailto:' + profile.email" class="link-underline hover:text-[var(--ink)]">{{ profile.email }}</a>
           </div>
         </div>
 
@@ -131,8 +117,8 @@
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
-          <aside class="lg:col-span-4 reveal reveal-delay-1">
-            <div class="surface-panel p-6 sm:p-7 space-y-7">
+          <aside class="lg:col-span-4 reveal reveal-left reveal-delay-1">
+            <div class="surface-panel surface-panel--lift p-6 sm:p-7 space-y-7">
               <div>
                 <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
                 <p class="text-[var(--muted)] text-sm mt-4 leading-relaxed">
@@ -144,6 +130,13 @@
                 <a class="block link-underline hover:text-[var(--ink)]" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
                 <a class="block link-underline hover:text-[var(--ink)]" href="tel:+56982185216">{{ profile.phone }}</a>
                 <p>{{ profile.location }}</p>
+              </div>
+
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Foco</p>
+                <ul class="space-y-1.5 text-sm text-[var(--muted)]">
+                  <li *ngFor="let focus of focusAreas">{{ focus }}</li>
+                </ul>
               </div>
 
               <div>
@@ -260,7 +253,7 @@
                     <span class="project-mock__chip">ERP</span>
                   </div>
                   <div class="project-mock__table">
-                    <div class="project-mock__row" *ngFor="let row of [1,2,3,4,5]">
+                    <div class="project-mock__row" *ngFor="let row of [1,2,3,4,5]" [attr.data-row]="row">
                       <span class="project-mock__cell" [class.is-accent]="row === 1"></span>
                       <span class="project-mock__cell is-short"></span>
                       <span class="project-mock__cell" [class.is-accent]="row === 3"></span>
@@ -278,11 +271,8 @@
               <p class="text-[var(--muted)] text-sm mt-2">{{ featuredProject.category }}</p>
             </div>
 
-            <div class="grid sm:grid-cols-3 gap-3">
-              <div
-                *ngFor="let metric of featuredProject.metrics"
-                class="rounded-xl bg-[rgba(18,24,32,0.05)] px-4 py-4 border border-[var(--line)]"
-              >
+            <div class="project-metrics">
+              <div *ngFor="let metric of featuredProject.metrics" class="project-metric">
                 <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
                 <p class="text-[var(--faint)] text-xs mt-1 leading-snug">{{ metric.label }}</p>
               </div>
@@ -315,20 +305,23 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 reveal reveal-delay-2">
-            <div class="surface-panel p-6 sm:p-7 h-full">
+          <div class="lg:col-span-5 reveal reveal-left reveal-delay-2">
+            <div class="surface-panel surface-panel--lift p-6 sm:p-7 h-full">
               <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">También participé en</p>
               <div class="space-y-0">
                 <div
                   *ngFor="let p of participationProjects"
-                  class="participation-item py-4 border-t border-[var(--line)] first:border-0 first:pt-0"
+                  class="participation-item"
                 >
                   <div class="flex items-start justify-between gap-4">
-                    <div>
+                    <div class="min-w-0">
                       <p class="participation-title text-[var(--ink)] text-sm transition-colors" style="font-weight: 600">{{ p.title }}</p>
                       <p class="text-[var(--faint)] text-xs mt-1">{{ p.category }}</p>
                     </div>
-                    <span class="text-[11px] text-[var(--faint)] font-mono shrink-0">{{ p.number }}</span>
+                    <div class="flex items-center gap-2 shrink-0">
+                      <span class="text-[11px] text-[var(--faint)] font-mono">{{ p.number }}</span>
+                      <span class="participation-arrow" aria-hidden="true"></span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -348,7 +341,7 @@
         <div class="timeline">
           <article
             *ngFor="let job of experienceJobs; let i = index"
-            class="timeline-item surface-panel p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10 reveal"
+            class="timeline-item surface-panel surface-panel--lift p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10 reveal"
             [ngClass]="'reveal-delay-' + (i + 1)"
           >
             <span class="timeline-dot" aria-hidden="true"></span>
@@ -393,7 +386,7 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div
             *ngFor="let cert of certifications; let i = index"
-            class="cert-card surface-panel p-6 flex flex-col reveal"
+            class="cert-card surface-panel surface-panel--lift p-6 flex flex-col reveal"
             [ngClass]="'reveal-delay-' + (i + 1)"
           >
             <div class="flex items-start justify-between gap-3">
@@ -431,7 +424,7 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-4 md:gap-5 mb-6">
-          <div class="surface-panel p-6 sm:p-7 reveal reveal-delay-1">
+          <div class="surface-panel surface-panel--lift p-6 sm:p-7 reveal reveal-delay-1">
             <app-badge variant="green" [dot]="true" size="sm">Titulado</app-badge>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Analista Programador Computacional
@@ -443,8 +436,8 @@
             </p>
           </div>
 
-          <div class="surface-panel p-6 sm:p-7 reveal reveal-delay-2">
-            <app-badge variant="ghost" size="sm">En progreso</app-badge>
+          <div class="surface-panel surface-panel--lift p-6 sm:p-7 reveal reveal-delay-2">
+            <app-badge variant="soft" size="sm">En progreso</app-badge>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Formación continua en tecnologías web
             </h3>
@@ -479,7 +472,7 @@
         </div>
 
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
-          <div class="lg:col-span-5 space-y-8 reveal reveal-delay-1">
+          <div class="lg:col-span-5 space-y-8 reveal reveal-left reveal-delay-1">
             <ul class="space-y-3">
               <li *ngFor="let item of whatIOffer" class="flex items-start gap-3 text-sm text-[var(--muted)]">
                 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0"></span>
@@ -494,11 +487,11 @@
           </div>
 
           <div class="lg:col-span-7 reveal reveal-delay-2">
-            <div class="surface-panel overflow-hidden !rounded-2xl">
+            <div class="surface-panel surface-panel--lift overflow-hidden !rounded-2xl">
               <a
                 *ngFor="let item of contactItems"
                 [href]="item.href"
-                class="flex items-center justify-between gap-4 px-5 sm:px-6 py-5 border-b border-[var(--line)] last:border-0 group"
+                class="contact-row flex items-center justify-between gap-4 px-5 sm:px-6 py-5 border-b border-[var(--line)] last:border-0 group"
               >
                 <div>
                   <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-1">{{ item.label }}</p>
@@ -514,7 +507,7 @@
 
             <a
               href="mailto:teckuro6@gmail.com"
-              class="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--accent)] text-[var(--ink-deep)] hover:bg-[var(--accent-hover)] transition-colors text-sm group"
+              class="contact-cta mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--accent)] text-[var(--ink-deep)] text-sm group"
               style="font-weight: 600"
             >
               Envíame un mensaje

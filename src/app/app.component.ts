@@ -1,36 +1,22 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
-type BadgeVariant =
-  | 'violet'
-  | 'cyan'
-  | 'indigo'
-  | 'green'
-  | 'ghost'
-  | 'orange'
-  | 'pink'
-  | 'yellow'
-  | 'teal'
-  | 'red';
+type BadgeVariant = 'default' | 'green' | 'soft' | 'ghost';
 
 type Tag = { label: string; v: BadgeVariant };
-type ProjectMetric = { value: string; label: string; color: string };
+type ProjectMetric = { value: string; label: string };
 type Cert = {
   org: string;
   title: string;
   level: string;
   year: string;
   description: string;
-  tags: Tag[];
-  accentColor: string;
   verified: boolean;
   verifyText: string;
-  iconName: 'code-2' | 'globe' | 'award';
 };
 
 type Project = {
   id: number;
   number: string;
-  file: string;
   title: string;
   category: string;
   problem: string;
@@ -38,10 +24,6 @@ type Project = {
   metrics: ProjectMetric[];
   tags: Tag[];
   github: string;
-  accentColor: string;
-  mockup: 'invoice' | 'erp' | 'web';
-  iconName: 'file-text' | 'shopping-cart' | 'globe';
-  /** Dominio mostrado en la barra del mockup del navegador */
   previewDomain: string;
 };
 
@@ -50,10 +32,6 @@ type ContactItem = {
   value: string;
   href: string;
   sub: string;
-  gradient: string;
-  glow: string;
-  border: string;
-  iconName: 'mail' | 'phone' | 'map-pin';
 };
 
 type Responsibility = { title: string; desc: string };
@@ -69,21 +47,8 @@ type ExperienceJob = {
 };
 
 type Skill = {
-  iconName:
-    | 'file-code'
-    | 'code-2'
-    | 'layout-grid'
-    | 'database'
-    | 'server'
-    | 'file-text'
-    | 'git-branch'
-    | 'layers';
   label: string;
   sublabel: string;
-  level: number;
-  iconBg: string;
-  bar: string;
-  glowColor: 'violet' | 'cyan' | 'indigo' | 'emerald';
 };
 
 @Component({
@@ -92,7 +57,6 @@ type Skill = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
-  activeProjectId = 0;
   readonly featuredProjectId = 3;
   private revealObserver?: IntersectionObserver;
 
@@ -146,7 +110,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     email: 'teckuro6@gmail.com',
     phone: '+56 9 8218 5216',
     location: 'Viña del Mar, Chile',
-    // Nota: deja el PDF en `src/assets/JuanPabloHuerta-CV.pdf` para que el botón funcione.
     cvPdf: 'assets/JuanPabloHuerta-CV.pdf',
     githubUrl: 'https://github.com/teckuro',
     linkedinUrl: 'https://www.linkedin.com/in/jphuerta1/',
@@ -155,109 +118,30 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     tagline:
       'Desarrollo y mantengo sistemas productivos (PHP 7/vanilla, Laravel, Angular) para empresas: facturación electrónica SII, módulos ERP y pagos con Transbank/Webpay. Me muevo cómodo entre soporte real, mejoras evolutivas, integraciones (SOAP/REST/XML/YAML/GraphQL) y SQL en PostgreSQL/MySQL.'
   };
-  readonly roleTags = [
-    'Analista Programador Computacional',
-    'PHP · Laravel · Angular',
-    'SII · Transbank · ERP',
-    'PostgreSQL · GraphQL'
-  ];
 
-  readonly metrics = [
-    { value: '4+', label: 'Años experiencia' },
-    { value: '1', label: 'Proyecto principal (ERP)' },
-    { value: 'ERP', label: 'Contab. · RRHH · Inventario' },
-    { value: 'SII', label: 'Transbank · Pagos' }
+  readonly focusAreas = [
+    'SII · DTE',
+    'Transbank / Webpay',
+    'ERP remuneraciones',
+    'Laravel · Angular'
   ];
 
   readonly skills: Skill[] = [
-    {
-      iconName: 'file-code',
-      label: 'PHP / Laravel',
-      sublabel: 'Backend · MVC · Eloquent',
-      level: 88,
-      iconBg: 'bg-violet-500/10 border-violet-500/20 text-violet-400',
-      bar: 'bg-gradient-to-r from-violet-500 to-purple-400',
-      glowColor: 'violet'
-    },
-    {
-      iconName: 'code-2',
-      label: 'JavaScript / TypeScript',
-      sublabel: 'ES6+ · DOM · Async',
-      level: 82,
-      iconBg: 'bg-yellow-400/10 border-yellow-400/20 text-yellow-400',
-      bar: 'bg-gradient-to-r from-yellow-400 to-amber-400',
-      glowColor: 'indigo'
-    },
-    {
-      iconName: 'layout-grid',
-      label: 'Angular / React',
-      sublabel: 'SPA · Components · Hooks',
-      level: 78,
-      iconBg: 'bg-cyan-400/10 border-cyan-400/20 text-cyan-400',
-      bar: 'bg-gradient-to-r from-cyan-400 to-blue-400',
-      glowColor: 'cyan'
-    },
-    {
-      iconName: 'server',
-      label: 'Node.js / Django',
-      sublabel: 'APIs · Backend complementario',
-      level: 72,
-      iconBg: 'bg-orange-400/10 border-orange-400/20 text-orange-400',
-      bar: 'bg-gradient-to-r from-orange-400 to-red-400',
-      glowColor: 'indigo'
-    },
-    {
-      iconName: 'database',
-      label: 'PostgreSQL',
-      sublabel: 'JSONB · PL/pgSQL · CTE',
-      level: 75,
-      iconBg: 'bg-blue-400/10 border-blue-400/20 text-blue-400',
-      bar: 'bg-gradient-to-r from-blue-400 to-indigo-400',
-      glowColor: 'indigo'
-    },
-    {
-      iconName: 'server',
-      label: 'APIs REST',
-      sublabel: 'HTTP · JSON · Auth · Postman',
-      level: 87,
-      iconBg: 'bg-emerald-400/10 border-emerald-400/20 text-emerald-400',
-      bar: 'bg-gradient-to-r from-emerald-400 to-teal-400',
-      glowColor: 'emerald'
-    },
-    {
-      iconName: 'file-text',
-      label: 'SII / DTE / Transbank',
-      sublabel: 'Tributario · Pagos · Integraciones',
-      level: 83,
-      iconBg: 'bg-red-400/10 border-red-400/20 text-red-400',
-      bar: 'bg-gradient-to-r from-red-400 to-rose-400',
-      glowColor: 'indigo'
-    },
-    {
-      iconName: 'git-branch',
-      label: 'Git / Control de Versiones',
-      sublabel: 'GitHub · Branching · PR',
-      level: 80,
-      iconBg: 'bg-pink-400/10 border-pink-400/20 text-pink-400',
-      bar: 'bg-gradient-to-r from-pink-400 to-fuchsia-400',
-      glowColor: 'violet'
-    },
-    {
-      iconName: 'layers',
-      label: 'GraphQL · APIs',
-      sublabel: 'Consultas eficientes · Integración de datos',
-      level: 78,
-      iconBg: 'bg-fuchsia-400/10 border-fuchsia-400/20 text-fuchsia-400',
-      bar: 'bg-gradient-to-r from-fuchsia-500 to-pink-400',
-      glowColor: 'violet'
-    }
+    { label: 'PHP / Laravel', sublabel: 'Backend · MVC · Eloquent' },
+    { label: 'JavaScript / TypeScript', sublabel: 'ES6+ · DOM · Async' },
+    { label: 'Angular / React', sublabel: 'SPA · Components · Hooks' },
+    { label: 'Node.js / Django', sublabel: 'APIs · Backend complementario' },
+    { label: 'PostgreSQL', sublabel: 'JSONB · PL/pgSQL · CTE' },
+    { label: 'APIs REST', sublabel: 'HTTP · JSON · Auth · Postman' },
+    { label: 'SII / DTE / Transbank', sublabel: 'Tributario · Pagos · Integraciones' },
+    { label: 'Git / Control de Versiones', sublabel: 'GitHub · Branching · PR' },
+    { label: 'GraphQL · APIs', sublabel: 'Consultas eficientes · Integración de datos' }
   ];
 
   readonly projects: Project[] = [
     {
       id: 0,
       number: '01',
-      file: 'facturacion-cl.ts',
       title: 'Plataforma facturacion.cl · Facturación electrónica',
       category: 'PHP · JavaScript · PostgreSQL · SII · Transbank',
       problem:
@@ -265,27 +149,23 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       solution:
         'Evolución de la plataforma con PHP y JavaScript; integración SII para documentos electrónicos; pasarelas como Transbank para pagos. PostgreSQL con vistas y funciones para reglas de negocio y reportería auditable.',
       metrics: [
-        { value: 'SII', label: 'Integración tributaria', color: '#06B6D4' },
-        { value: 'TBK', label: 'Transbank / pagos', color: '#10B981' },
-        { value: 'Prod', label: 'Alta disponibilidad', color: '#F8FAFC' }
+        { value: 'SII', label: 'Integración tributaria' },
+        { value: 'TBK', label: 'Transbank / pagos' },
+        { value: 'Prod', label: 'Alta disponibilidad' }
       ],
       tags: [
-        { label: 'PHP', v: 'violet' },
-        { label: 'JavaScript', v: 'yellow' },
-        { label: 'PostgreSQL', v: 'indigo' },
-        { label: 'SII', v: 'teal' },
+        { label: 'PHP', v: 'default' },
+        { label: 'JavaScript', v: 'default' },
+        { label: 'PostgreSQL', v: 'default' },
+        { label: 'SII', v: 'soft' },
         { label: 'Transbank', v: 'green' }
       ],
       github: 'https://github.com/teckuro',
-      accentColor: '#06B6D4',
-      mockup: 'invoice',
-      iconName: 'file-text',
       previewDomain: 'facturacion.cl'
     },
     {
       id: 1,
       number: '02',
-      file: 'erp-modulos.ts',
       title: 'ERP institucional · Contabilidad, remuneraciones e inventario',
       category: 'PHP · JavaScript · Módulos integrados',
       problem:
@@ -293,27 +173,23 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       solution:
         'Desarrollo y optimización de módulos integrados en el ERP institucional con PHP y JavaScript, flujos consistentes entre áreas y datos centralizados en PostgreSQL.',
       metrics: [
-        { value: '3', label: 'Módulos críticos', color: '#06B6D4' },
-        { value: 'ERP', label: 'Arquitectura unificada', color: '#10B981' },
-        { value: 'QA', label: 'Calidad de entregas', color: '#F8FAFC' }
+        { value: '3', label: 'Módulos críticos' },
+        { value: 'ERP', label: 'Arquitectura unificada' },
+        { value: 'QA', label: 'Calidad de entregas' }
       ],
       tags: [
-        { label: 'PHP', v: 'violet' },
-        { label: 'JavaScript', v: 'yellow' },
-        { label: 'ERP', v: 'indigo' },
-        { label: 'PostgreSQL', v: 'orange' },
-        { label: 'QA', v: 'cyan' }
+        { label: 'PHP', v: 'default' },
+        { label: 'JavaScript', v: 'default' },
+        { label: 'ERP', v: 'soft' },
+        { label: 'PostgreSQL', v: 'default' },
+        { label: 'QA', v: 'default' }
       ],
       github: 'https://github.com/teckuro',
-      accentColor: '#10B981',
-      mockup: 'erp',
-      iconName: 'shopping-cart',
       previewDomain: 'portal.autoatencion.cl'
     },
     {
       id: 2,
       number: '03',
-      file: 'portal-graphql.ts',
       title: 'Portal de autoatención · APIs y GraphQL',
       category: 'Laravel · GraphQL · UX',
       problem:
@@ -321,28 +197,23 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       solution:
         'Automatización con Laravel, integración de APIs internas y capa GraphQL para optimizar consultas; mejora continua de UX en el portal, con despliegue y prácticas en Docker y AWS.',
       metrics: [
-        { value: 'GraphQL', label: 'Consultas eficientes', color: '#06B6D4' },
-        { value: 'Portal', label: 'Autoatención', color: '#10B981' },
-        { value: 'UX', label: 'Canal optimizado', color: '#F8FAFC' }
+        { value: 'GraphQL', label: 'Consultas eficientes' },
+        { value: 'Portal', label: 'Autoatención' },
+        { value: 'UX', label: 'Canal optimizado' }
       ],
       tags: [
-        { label: 'Laravel', v: 'violet' },
-        { label: 'GraphQL', v: 'pink' },
+        { label: 'Laravel', v: 'default' },
+        { label: 'GraphQL', v: 'soft' },
         { label: 'APIs', v: 'green' },
-        { label: 'Docker', v: 'cyan' },
-        { label: 'AWS', v: 'orange' }
+        { label: 'Docker', v: 'ghost' },
+        { label: 'AWS', v: 'default' }
       ],
       github: 'https://github.com/teckuro',
-      accentColor: '#8B5CF6',
-      mockup: 'web',
-      iconName: 'globe',
       previewDomain: 'app.empresa.cl'
-    }
-    ,
+    },
     {
       id: 3,
       number: '04',
-      file: 'remuneraciones-erp.ts',
       title: 'Sistema de Remuneraciones (ERP) · Chile',
       category: 'Angular · TypeScript · Supabase · PostgreSQL',
       problem:
@@ -350,50 +221,28 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       solution:
         'Diseño de arquitectura frontend en Angular/TypeScript y modelo relacional en Supabase/PostgreSQL: entidades (trabajadores, contratos, previsión, salud, banca, parámetros mensuales), flujos de creación (básico/avanzado), estados y validaciones.',
       metrics: [
-        { value: 'ERP', label: 'Flujos mantenibles', color: '#06B6D4' },
-        { value: 'SQL', label: 'Modelo relacional', color: '#10B981' },
-        { value: 'TS', label: 'Tipado y escalabilidad', color: '#F8FAFC' }
+        { value: 'ERP', label: 'Flujos mantenibles' },
+        { value: 'SQL', label: 'Modelo relacional' },
+        { value: 'TS', label: 'Tipado y escalabilidad' }
       ],
       tags: [
-        { label: 'Angular', v: 'red' },
-        { label: 'TypeScript', v: 'cyan' },
-        { label: 'Supabase', v: 'teal' },
-        { label: 'PostgreSQL', v: 'indigo' },
-        { label: 'Tailwind', v: 'teal' }
+        { label: 'Angular', v: 'default' },
+        { label: 'TypeScript', v: 'default' },
+        { label: 'Supabase', v: 'soft' },
+        { label: 'PostgreSQL', v: 'default' },
+        { label: 'Tailwind', v: 'soft' }
       ],
       github: 'https://github.com/teckuro',
-      accentColor: '#06B6D4',
-      mockup: 'erp',
-      iconName: 'shopping-cart',
       previewDomain: 'remuneraciones.app'
     }
   ];
 
   get featuredProject(): Project {
-    return (
-      this.projects.find((p) => p.id === this.featuredProjectId) ??
-      this.projects[0]
-    );
+    return this.projects.find((p) => p.id === this.featuredProjectId) ?? this.projects[0];
   }
 
   get participationProjects(): Project[] {
     return this.projects.filter((p) => p.id !== this.featuredProjectId);
-  }
-
-  get activeProject(): Project {
-    return this.projects[this.activeProjectId] ?? this.projects[0];
-  }
-
-  setActiveProject(projectId: number): void {
-    this.activeProjectId = projectId;
-  }
-
-  prevProject(): void {
-    this.activeProjectId = Math.max(0, this.activeProjectId - 1);
-  }
-
-  nextProject(): void {
-    this.activeProjectId = Math.min(this.projects.length - 1, this.activeProjectId + 1);
   }
 
   readonly experienceJobs: ExperienceJob[] = [
@@ -475,31 +324,19 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       label: 'Email',
       value: 'teckuro6@gmail.com',
       href: 'mailto:teckuro6@gmail.com',
-      sub: 'Respondo en menos de 24h',
-      gradient: 'from-violet-600 to-indigo-500',
-      glow: 'shadow-violet-500/20 hover:shadow-violet-500/35',
-      border: 'hover:border-violet-500/25',
-      iconName: 'mail'
+      sub: 'Respondo en menos de 24h'
     },
     {
       label: 'Teléfono',
       value: '+56 9 8218 5216',
       href: 'tel:+56982185216',
-      sub: 'Disponible en horario laboral',
-      gradient: 'from-cyan-500 to-blue-500',
-      glow: 'shadow-cyan-500/20 hover:shadow-cyan-500/35',
-      border: 'hover:border-cyan-500/25',
-      iconName: 'phone'
+      sub: 'Disponible en horario laboral'
     },
     {
       label: 'Ubicación',
       value: 'Viña del Mar, Chile',
       href: '#inicio',
-      sub: 'Remoto · Híbrido · Presencial',
-      gradient: 'from-emerald-500 to-teal-500',
-      glow: 'shadow-emerald-500/20 hover:shadow-emerald-500/35',
-      border: 'hover:border-emerald-500/25',
-      iconName: 'map-pin'
+      sub: 'Remoto · Híbrido · Presencial'
     }
   ];
 
@@ -512,39 +349,40 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     'Docker, AWS y buenas prácticas de despliegue'
   ];
 
-  readonly highlights = [
-    '8 meses de liderazgo técnico y calidad de entregas',
-    'ERP: contabilidad, remuneraciones e inventario (PHP/JS)',
-    'SII y Transbank para automatización de procesos',
-    'PostgreSQL: vistas, funciones y tipos complejos',
-    'QA, documentación técnica y análisis de requisitos',
-    'Portal de autoatención, Laravel y GraphQL (Anida)'
-  ];
-
   readonly keywordTags: { label: string; v: BadgeVariant }[] = [
-    { label: 'PHP', v: 'violet' },
-    { label: 'Laravel', v: 'violet' },
-    { label: 'JavaScript', v: 'yellow' },
-    { label: 'TypeScript', v: 'cyan' },
-    { label: 'Angular', v: 'red' },
-    { label: 'React', v: 'cyan' },
+    { label: 'PHP', v: 'default' },
+    { label: 'Laravel', v: 'default' },
+    { label: 'JavaScript', v: 'default' },
+    { label: 'TypeScript', v: 'default' },
+    { label: 'Angular', v: 'soft' },
+    { label: 'React', v: 'default' },
     { label: 'Node.js', v: 'green' },
-    { label: 'Django', v: 'green' },
-    { label: 'Tailwind', v: 'teal' },
-    { label: 'Bootstrap', v: 'indigo' },
-    { label: 'PostgreSQL', v: 'indigo' },
-    { label: 'GraphQL', v: 'pink' },
-    { label: 'SII', v: 'teal' },
-    { label: 'Transbank', v: 'orange' },
-    { label: 'ERP', v: 'ghost' },
-    { label: 'QA', v: 'yellow' },
+    { label: 'Django', v: 'default' },
+    { label: 'Tailwind', v: 'soft' },
+    { label: 'Bootstrap', v: 'ghost' },
+    { label: 'PostgreSQL', v: 'default' },
+    { label: 'GraphQL', v: 'soft' },
+    { label: 'SII', v: 'green' },
+    { label: 'Transbank', v: 'green' },
+    { label: 'ERP', v: 'soft' },
+    { label: 'QA', v: 'default' },
     { label: 'Docker', v: 'ghost' },
-    { label: 'AWS', v: 'orange' }
+    { label: 'AWS', v: 'default' }
   ];
 
   readonly tools = [
-    'VS Code', 'Cursor', 'Postman', 'Git', 'GitHub', 'Docker', 'AWS', 'pgAdmin', 'Composer', 'NPM/Yarn',
-    'Jira', 'Linux'
+    'VS Code',
+    'Cursor',
+    'Postman',
+    'Git',
+    'GitHub',
+    'Docker',
+    'AWS',
+    'pgAdmin',
+    'Composer',
+    'NPM/Yarn',
+    'Jira',
+    'Linux'
   ];
 
   readonly competencies = [
@@ -566,15 +404,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       year: '2024',
       description:
         'Fundamentos de JavaScript: variables, funciones, DOM, programación orientada a objetos y manejo de errores en entornos reales.',
-      tags: [
-        { label: 'JavaScript', v: 'yellow' },
-        { label: 'DOM', v: 'cyan' },
-        { label: 'OOP', v: 'violet' }
-      ],
-      accentColor: '#06B6D4',
       verified: true,
-      verifyText: 'Cisco Verified',
-      iconName: 'code-2'
+      verifyText: 'Cisco Verified'
     },
     {
       org: 'ETS · TOEIC',
@@ -583,15 +414,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       year: 'Vigente',
       description:
         'Inglés intermedio certificado; español nativo. Lectura de documentación técnica y comunicación en equipos.',
-      tags: [
-        { label: 'Inglés intermedio', v: 'green' },
-        { label: 'Español nativo', v: 'teal' },
-        { label: 'TOEIC', v: 'ghost' }
-      ],
-      accentColor: '#10B981',
       verified: true,
-      verifyText: 'Certificación',
-      iconName: 'globe'
+      verifyText: 'Certificación'
     },
     {
       org: 'Práctica profesional',
@@ -600,15 +424,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       year: 'Desis Limitada',
       description:
         'Liderazgo técnico durante 8 meses, procesos de QA, documentación técnica detallada y análisis de requisitos con el negocio.',
-      tags: [
-        { label: 'Liderazgo', v: 'violet' },
-        { label: 'QA', v: 'orange' },
-        { label: 'Docs', v: 'indigo' }
-      ],
-      accentColor: '#8B5CF6',
       verified: false,
-      verifyText: '',
-      iconName: 'award'
+      verifyText: ''
     }
   ];
 }
