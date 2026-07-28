@@ -854,15 +854,15 @@ body {
 }
 
 .hero-grid-squares {
-  opacity: 0.4;
-  filter: blur(0.55px);
+  opacity: 0.48;
+  filter: blur(0.4px);
 }
 
 @media (max-width: 1023px) {
   .hero-grid-squares {
-    opacity: 0.25;
-    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 38% 42%, rgba(0, 0, 0, 0.35) 0%, transparent 68%) !important;
-    mask-image: radial-gradient(ellipse 75% 65% at 38% 42%, rgba(0, 0, 0, 0.35) 0%, transparent 68%) !important;
+    opacity: 0.3;
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 38% 42%, rgba(0, 0, 0, 0.4) 0%, transparent 68%) !important;
+    mask-image: radial-gradient(ellipse 75% 65% at 38% 42%, rgba(0, 0, 0, 0.4) 0%, transparent 68%) !important;
   }
 }
 
