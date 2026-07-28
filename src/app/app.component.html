@@ -157,8 +157,8 @@
         </div>
 
         <article class="building-card mt-8 surface-panel p-6 sm:p-8 reveal reveal-delay-1">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
-            <div class="max-w-xl">
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-10">
+            <div>
               <h3 class="font-display text-xl sm:text-2xl text-[var(--ink)] leading-snug" style="font-weight: 700">
                 {{ buildingNow.title }}
               </h3>
@@ -168,11 +168,57 @@
               <div class="mt-5 flex flex-wrap gap-2">
                 <span *ngFor="let chip of buildingNow.chips" class="hero-chip">{{ chip }}</span>
               </div>
+              <button type="button" class="btn-primary mt-7" (click)="openBuildingProject()">
+                Ver en proyectos
+                <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
+              </button>
             </div>
-            <button type="button" class="btn-primary shrink-0 self-start" (click)="openBuildingProject()">
-              Ver en proyectos
-              <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
-            </button>
+
+            <div class="demo-calc" aria-label="Demo del motor de cálculo de remuneraciones">
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)]" style="font-weight: 600">
+                  Demo en vivo · motor de cálculo
+                </p>
+                <span class="demo-calc__pulse" aria-hidden="true"></span>
+              </div>
+
+              <label class="block text-xs text-[var(--faint)] mb-1.5" for="demo-gross">Sueldo bruto (CLP)</label>
+              <input
+                id="demo-gross"
+                type="text"
+                inputmode="numeric"
+                class="demo-calc__input"
+                [value]="demoGross"
+                (input)="onDemoGrossChange($any($event.target).value)"
+              />
+
+              <dl class="mt-4 space-y-2 text-sm">
+                <div class="demo-calc__row">
+                  <dt>Imponible (tope 87,8 UF)</dt>
+                  <dd>{{ formatCLP(demoBreakdown.imponible) }}</dd>
+                </div>
+                <div class="demo-calc__row">
+                  <dt>AFP (10% + comisión ref.)</dt>
+                  <dd>−{{ formatCLP(demoBreakdown.afp) }}</dd>
+                </div>
+                <div class="demo-calc__row">
+                  <dt>Salud (7%)</dt>
+                  <dd>−{{ formatCLP(demoBreakdown.salud) }}</dd>
+                </div>
+                <div class="demo-calc__row">
+                  <dt>Seguro cesantía (0,6%)</dt>
+                  <dd>−{{ formatCLP(demoBreakdown.cesantia) }}</dd>
+                </div>
+                <div class="demo-calc__row demo-calc__row--total">
+                  <dt>Líquido estimado</dt>
+                  <dd>{{ formatCLP(demoBreakdown.liquido) }}</dd>
+                </div>
+              </dl>
+
+              <p class="mt-3 text-[11px] text-[var(--faint)] leading-relaxed">
+                Extracto simplificado del motor del ERP. Valores referenciales (UF fija, sin impuesto único).
+              </p>
+            </div>
           </div>
         </article>
 
