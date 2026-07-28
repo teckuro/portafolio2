@@ -99,7 +99,10 @@
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <aside class="lg:col-span-4 reveal reveal-delay-1 space-y-8">
             <div>
-              <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
+              <p class="inline-flex items-center gap-2 text-sm text-[var(--accent)]" style="font-weight: 500">
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true"></span>
+                Disponible para contratar
+              </p>
               <p class="text-[var(--muted)] text-sm mt-4 leading-relaxed">
                 Analista Programador Computacional · Full Stack
               </p>
@@ -144,9 +147,9 @@
 
             <div class="pt-2">
               <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">Stack</p>
-              <div class="flex flex-wrap gap-2">
-                <app-badge *ngFor="let kw of keywordTags" [variant]="kw.v" size="md">{{ kw.label }}</app-badge>
-              </div>
+              <p class="text-[var(--muted)] text-sm leading-relaxed">
+                <span *ngFor="let kw of keywordTags; let last = last">{{ kw.label }}<span *ngIf="!last"> · </span></span>
+              </p>
             </div>
           </div>
         </div>
@@ -260,10 +263,10 @@
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-4">
-              <div class="flex flex-wrap gap-2">
-                <app-badge *ngFor="let tag of featuredProject.tags" [variant]="tag.v" size="sm">{{ tag.label }}</app-badge>
-              </div>
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+              <p class="text-sm text-[var(--muted)] leading-relaxed">
+                <span *ngFor="let tag of featuredProject.tags; let last = last">{{ tag.label }}<span *ngIf="!last"> · </span></span>
+              </p>
               <a
                 [href]="featuredProject.github"
                 target="_blank"
@@ -393,7 +396,10 @@
 
         <div class="grid md:grid-cols-2 gap-10 md:gap-14 mb-10">
           <div class="reveal reveal-delay-1">
-            <app-badge variant="green" [dot]="true" size="sm">Titulado</app-badge>
+            <p class="inline-flex items-center gap-2 text-sm text-[var(--accent)]" style="font-weight: 500">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true"></span>
+              Titulado
+            </p>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Analista Programador Computacional
             </h3>
@@ -405,7 +411,7 @@
           </div>
 
           <div class="reveal reveal-delay-2">
-            <app-badge variant="ghost" size="sm">En progreso</app-badge>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)]">En progreso</p>
             <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
               Formación continua en tecnologías web
             </h3>

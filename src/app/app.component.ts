@@ -341,7 +341,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     ,
     {
       id: 3,
-      number: '04',
+      number: '01',
       file: 'remuneraciones-erp.ts',
       title: 'Sistema de Remuneraciones (ERP) · Chile',
       category: 'Angular · TypeScript · Supabase · PostgreSQL',
