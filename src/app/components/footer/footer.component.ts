@@ -13,12 +13,9 @@ export class FooterComponent {
   @Input() linkedinUrl = '';
 
   readonly navLinks = [
-    { id: 'sobre-mi', label: 'Sobre mí' },
-    { id: 'habilidades', label: 'Skills' },
+    { id: 'sobre', label: 'Sobre' },
     { id: 'proyectos', label: 'Proyectos' },
     { id: 'experiencia', label: 'Experiencia' },
-    { id: 'certificaciones', label: 'Certificaciones' },
-    { id: 'formacion', label: 'Formación' },
     { id: 'contacto', label: 'Contacto' }
   ] as const;
 

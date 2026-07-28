@@ -11,8 +11,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Input() cvHref = '';
 
   readonly navLinks = [
-    { id: 'sobre-mi', label: 'Sobre mí' },
-    { id: 'habilidades', label: 'Skills' },
+    { id: 'sobre', label: 'Sobre' },
     { id: 'proyectos', label: 'Proyectos' },
     { id: 'experiencia', label: 'Experiencia' },
     { id: 'contacto', label: 'Contacto' }

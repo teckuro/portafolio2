@@ -1,3 +1,14 @@
+<div
+  class="scroll-progress"
+  role="progressbar"
+  aria-label="Progreso de lectura"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  [attr.aria-valuenow]="scrollProgress"
+>
+  <span class="scroll-progress__bar" [style.width.%]="scrollProgress"></span>
+</div>
+
 <app-navbar [name]="profile.name" [cvHref]="profile.cvPdf"></app-navbar>
 
 <div class="min-h-screen bg-[var(--bg)] text-[var(--ink)] overflow-x-hidden antialiased" id="inicio">
@@ -59,468 +70,346 @@
       </div>
 
       <div class="relative z-10 max-w-content mx-auto w-full">
-        <div class="grid lg:grid-cols-12 gap-10 items-end">
-          <div class="lg:col-span-8">
-            <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/60 mb-6 animate-fade-up">
-              {{ profile.location }} · Disponible
-            </p>
+        <div class="max-w-3xl">
+          <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/60 mb-6 animate-fade-up">
+            {{ profile.location }} · Disponible
+          </p>
 
-            <h1
-              class="font-display tracking-tight leading-[0.95] text-[var(--ink)] animate-fade-up delay-1"
-              style="font-weight: 800; font-size: clamp(2.75rem, 9vw, 5.75rem);"
-            >
-              Juan Pablo<br />Huerta
-            </h1>
+          <h1
+            class="font-display tracking-tight leading-[0.95] text-[var(--ink)] animate-fade-up delay-1"
+            style="font-weight: 800; font-size: clamp(2.75rem, 9vw, 5.75rem);"
+          >
+            Juan Pablo<br />Huerta
+          </h1>
 
-            <div class="mt-5 h-px w-16 bg-[var(--accent)] animate-draw-line delay-2"></div>
+          <div class="mt-5 h-px w-16 bg-[var(--accent)] animate-draw-line delay-2"></div>
 
-            <p
-              class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
-              style="font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.55rem);"
-            >
-              Analista Programador · Full Stack
-            </p>
+          <p
+            class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
+            style="font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.55rem);"
+          >
+            {{ profile.role }}
+          </p>
 
-            <p class="mt-4 text-[var(--ink)]/75 max-w-lg leading-relaxed text-[1.05rem] animate-fade-up delay-3">
-              Sistemas que se usan de verdad: facturación electrónica, módulos ERP y pagos.
-              Requerimientos confusos, aterrizados y en producción.
-            </p>
+          <p class="mt-3 text-[var(--ink)]/75 text-[1.05rem] animate-fade-up delay-3">
+            {{ profile.experienceLine }}
+          </p>
 
-            <div class="mt-9 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
-              <button type="button" (click)="scrollTo('proyectos')" class="btn-primary">
-                Ver proyectos
-                <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
-              </button>
-              <a [href]="profile.cvPdf" download class="btn-secondary">Descargar CV</a>
-            </div>
-
-            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink)]/60 animate-fade-up delay-5">
-              <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">GitHub</a>
-              <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-[var(--ink)]">LinkedIn</a>
-              <a [href]="'mailto:' + profile.email" class="link-underline hover:text-[var(--ink)]">{{ profile.email }}</a>
-            </div>
+          <div class="mt-6 flex flex-wrap gap-2 animate-fade-up delay-3">
+            <span *ngFor="let tech of heroStack" class="hero-chip">{{ tech }}</span>
           </div>
 
-          <div class="lg:col-span-4 hidden lg:flex justify-end animate-fade-up delay-4">
-            <div class="surface-panel rounded-2xl p-5 w-full max-w-[260px] bg-[rgba(238,242,246,0.45)]">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Foco</p>
-              <ul class="space-y-2 text-sm text-[var(--ink)]/80">
-                <li>SII · DTE</li>
-                <li>Transbank / Webpay</li>
-                <li>ERP remuneraciones</li>
-                <li>Laravel · Angular</li>
-              </ul>
-            </div>
+          <div class="mt-9 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
+            <button type="button" (click)="scrollTo('proyectos')" class="btn-primary">
+              Ver proyectos
+              <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
+            </button>
+            <a [href]="profile.cvPdf" download class="btn-secondary">Descargar CV</a>
+            <button type="button" (click)="scrollTo('contacto')" class="btn-secondary">
+              Contactar
+            </button>
           </div>
         </div>
 
         <div class="mt-14 sm:mt-16 animate-fade-up delay-5">
-          <button type="button" class="scroll-cue" (click)="scrollTo('sobre-mi')" aria-label="Bajar a Sobre mí">
-            <span>scroll</span>
+          <button type="button" class="scroll-cue" (click)="scrollTo('sobre')" aria-label="Bajar a Sobre">
+            <span>Explorar</span>
             <span class="scroll-cue__line"></span>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="sobre-mi" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
+    <!-- SOBRE -->
+    <section id="sobre" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <div class="reveal">
-          <app-section-header align="left" eyebrow="01" title="Sobre" highlight="mí"></app-section-header>
+          <app-section-header align="left" eyebrow="01" title="Sobre" highlight="el perfil"></app-section-header>
         </div>
 
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
-          <aside class="lg:col-span-4 reveal reveal-delay-1">
-            <div class="surface-panel p-6 sm:p-7 space-y-7">
-              <div>
-                <app-badge variant="green" [dot]="true" size="md">Disponible para contratar</app-badge>
-                <p class="text-[var(--muted)] text-sm mt-4 leading-relaxed">
-                  Analista Programador Computacional · Full Stack
-                </p>
-              </div>
-
-              <div class="space-y-3 text-sm text-[var(--muted)]">
-                <a class="block link-underline hover:text-[var(--ink)]" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
-                <a class="block link-underline hover:text-[var(--ink)]" href="tel:+56988292018">{{ profile.phone }}</a>
-                <p>{{ profile.location }}</p>
-              </div>
-
-              <div>
-                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Modalidad</p>
-                <ul class="space-y-1.5 text-sm text-[var(--muted)]">
-                  <li>Remoto</li>
-                  <li>Híbrido</li>
-                  <li>Presencial (Viña del Mar / Santiago)</li>
-                </ul>
-              </div>
-            </div>
-          </aside>
-
-          <div class="lg:col-span-8 space-y-8 reveal reveal-delay-2">
-            <div class="space-y-5 text-[var(--muted)] leading-relaxed text-[1.05rem]">
-              <p>
-                Soy Analista Programador y desarrollador web PHP. Mi fuerte es el
-                <strong class="text-[var(--ink)]" style="font-weight: 600">desarrollo y soporte de plataformas productivas</strong>:
-                mantención, incidencias, mejoras evolutivas y entregas con foco en estabilidad.
-              </p>
-              <p>
-                En <strong class="text-[var(--ink)]" style="font-weight: 600">Desis Limitada (2021–2025)</strong> trabajé en facturación electrónica
-                con módulos ERP: ventas, compras, clientes, inventario, remuneraciones y contabilidad.
-                Implementé integraciones con <strong class="text-[var(--ink)]" style="font-weight: 600">SII</strong> y
-                <strong class="text-[var(--ink)]" style="font-weight: 600">Transbank/Webpay</strong>,
-                y asumí liderazgo técnico apoyando a otros developers.
-              </p>
-              <p>
-                Me muevo entre backend y frontend:
-                <strong class="text-[var(--ink)]" style="font-weight: 600">PHP, Laravel, Angular</strong> y SQL.
-                Para integraciones uso SOAP/REST/XML/YAML/GraphQL. Cuando toca producción, priorizo diagnósticos rápidos y fixes seguros.
-              </p>
-            </div>
-
-            <div class="pt-2">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">Stack</p>
-              <div class="flex flex-wrap gap-2">
-                <app-badge *ngFor="let kw of keywordTags" [variant]="kw.v" size="md">{{ kw.label }}</app-badge>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="habilidades" class="relative band-sage py-24 sm:py-28 px-5 sm:px-8">
-      <div class="max-w-content mx-auto">
-        <div class="reveal">
-          <app-section-header
-            align="left"
-            eyebrow="02"
-            title="Habilidades"
-            highlight="técnicas"
-            subtitle="Tecnologías con las que construyo soluciones empresariales."
-          ></app-section-header>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
-          <div
-            *ngFor="let skill of skills; let i = index"
-            class="skill-tile reveal"
-            [ngClass]="'reveal-delay-' + ((i % 5) + 1)"
-          >
-            <span class="skill-index">{{ skillIndex(i) }}</span>
-            <div>
-              <p class="font-display text-[var(--ink)] text-[1.05rem]" style="font-weight: 600">{{ skill.label }}</p>
-              <p class="text-[var(--faint)] text-sm mt-1">{{ skill.sublabel }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-12 surface-panel px-5 py-5 sm:px-6 reveal">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Herramientas</p>
-          <p class="text-[var(--muted)] text-sm leading-relaxed">
-            <span *ngFor="let tool of tools; let last = last">{{ tool }}<span *ngIf="!last"> · </span></span>
+        <div class="max-w-2xl reveal reveal-delay-1">
+          <p class="text-[var(--muted)] leading-relaxed text-[1.1rem]">
+            {{ profile.about }}
           </p>
+
+          <div class="mt-8 flex flex-wrap gap-2">
+            <app-badge *ngFor="let chip of aboutChips" [variant]="chip.v" size="md">{{ chip.label }}</app-badge>
+          </div>
+        </div>
+
+        <div class="mt-14 reveal reveal-delay-2">
+          <button type="button" class="section-teaser" (click)="scrollTo('construyendo')">
+            <span>↓</span>
+            <span>Actualmente construyendo</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- ACTUALMENTE CONSTRUYENDO -->
+    <section id="construyendo" class="relative band-sage py-16 sm:py-20 px-5 sm:px-8">
+      <div class="max-w-content mx-auto">
+        <div class="reveal">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">En curso</p>
+          <h2 class="font-display text-2xl sm:text-3xl text-[var(--ink)]" style="font-weight: 700">
+            Actualmente construyendo
+          </h2>
+        </div>
+
+        <article class="building-card mt-8 surface-panel p-6 sm:p-8 reveal reveal-delay-1">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+            <div class="max-w-xl">
+              <h3 class="font-display text-xl sm:text-2xl text-[var(--ink)] leading-snug" style="font-weight: 700">
+                {{ buildingNow.title }}
+              </h3>
+              <p class="mt-3 text-[var(--muted)] leading-relaxed">
+                {{ buildingNow.description }}
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span *ngFor="let chip of buildingNow.chips" class="hero-chip">{{ chip }}</span>
+              </div>
+            </div>
+            <button type="button" class="btn-primary shrink-0 self-start" (click)="openBuildingProject()">
+              Ver en proyectos
+              <lucide-icon name="arrow-right" class="w-4 h-4 btn-arrow"></lucide-icon>
+            </button>
+          </div>
+        </article>
+
+        <div class="mt-12 reveal reveal-delay-2">
+          <button type="button" class="section-teaser" (click)="scrollTo('proyectos')">
+            <span>↓</span>
+            <span>Explorar proyectos</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
     <section id="proyectos" class="relative band-soft py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <div class="reveal">
           <app-section-header
             align="left"
-            eyebrow="03"
-            title="Proyecto"
-            highlight="principal"
-            subtitle="Remuneraciones tipo ERP: arquitectura Angular/TypeScript y modelo relacional en Supabase/PostgreSQL."
+            eyebrow="02"
+            title="Proyectos"
+            highlight="seleccionados"
+            subtitle="Seleccionar un proyecto actualiza el detalle. Un solo caso abierto a la vez."
           ></app-section-header>
         </div>
 
-        <article class="grid lg:grid-cols-12 gap-8 lg:gap-10">
-          <div class="lg:col-span-7 space-y-6 reveal reveal-delay-1">
-            <div class="project-mock" aria-hidden="true">
-              <div class="project-mock__chrome">
-                <span class="project-mock__dot"></span>
-                <span class="project-mock__dot"></span>
-                <span class="project-mock__dot"></span>
-                <span class="ml-2 text-[11px] text-white/40 font-mono">{{ featuredProject.previewDomain }}</span>
-              </div>
-              <div class="project-mock__body">
-                <div class="project-mock__side">
-                  <span class="project-mock__nav is-active"></span>
-                  <span class="project-mock__nav"></span>
-                  <span class="project-mock__nav"></span>
-                  <span class="project-mock__nav"></span>
-                </div>
-                <div class="project-mock__main">
-                  <div class="project-mock__toolbar">
-                    <span class="project-mock__title">Remuneraciones</span>
-                    <span class="project-mock__chip">ERP</span>
-                  </div>
-                  <div class="project-mock__table">
-                    <div class="project-mock__row" *ngFor="let row of [1,2,3,4,5]">
-                      <span class="project-mock__cell" [class.is-accent]="row === 1"></span>
-                      <span class="project-mock__cell is-short"></span>
-                      <span class="project-mock__cell" [class.is-accent]="row === 3"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">{{ featuredProject.number }}</p>
-              <h3 class="font-display text-2xl sm:text-3xl text-[var(--ink)] leading-snug" style="font-weight: 700">
-                {{ featuredProject.title }}
-              </h3>
-              <p class="text-[var(--muted)] text-sm mt-2">{{ featuredProject.category }}</p>
-            </div>
-
-            <div class="grid sm:grid-cols-3 gap-3">
-              <div
-                *ngFor="let metric of featuredProject.metrics"
-                class="rounded-xl bg-[rgba(18,24,32,0.05)] px-4 py-4 border border-[var(--line)]"
-              >
-                <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
-                <p class="text-[var(--faint)] text-xs mt-1 leading-snug">{{ metric.label }}</p>
-              </div>
-            </div>
-
-            <div class="space-y-5">
-              <div>
-                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">Problema</p>
-                <p class="text-[var(--muted)] leading-relaxed">{{ featuredProject.problem }}</p>
-              </div>
-              <div>
-                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">Solución</p>
-                <p class="text-[var(--muted)] leading-relaxed">{{ featuredProject.solution }}</p>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-4">
-              <div class="flex flex-wrap gap-2">
-                <app-badge *ngFor="let tag of featuredProject.tags" [variant]="tag.v" size="sm">{{ tag.label }}</app-badge>
-              </div>
-              <a
-                [href]="featuredProject.github"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors link-underline"
-              >
-                Ver código
-                <lucide-icon name="external-link" class="w-3.5 h-3.5"></lucide-icon>
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 reveal reveal-delay-2">
-            <div class="surface-panel p-6 sm:p-7 h-full">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">También participé en</p>
-              <div class="space-y-0">
-                <div
-                  *ngFor="let p of participationProjects"
-                  class="participation-item py-4 border-t border-[var(--line)] first:border-0 first:pt-0"
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+          <aside class="lg:col-span-4 reveal reveal-delay-1">
+            <ul class="project-list space-y-0">
+              <li *ngFor="let p of projects">
+                <button
+                  type="button"
+                  class="project-list__item"
+                  [class.is-active]="activeProject.id === p.id"
+                  (click)="setActiveProject(p.id)"
                 >
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
-                      <p class="participation-title text-[var(--ink)] text-sm transition-colors" style="font-weight: 600">{{ p.title }}</p>
-                      <p class="text-[var(--faint)] text-xs mt-1">{{ p.category }}</p>
+                  <span class="project-list__num">{{ p.number }}</span>
+                  <span class="min-w-0">
+                    <span class="project-list__title">{{ p.shortTitle }}</span>
+                    <span class="project-list__cat">{{ p.category }}</span>
+                  </span>
+                </button>
+              </li>
+            </ul>
+          </aside>
+
+          <div class="lg:col-span-8 reveal reveal-delay-2">
+            <article
+              *ngFor="let project of [activeProject]; trackBy: trackProject"
+              class="project-stage"
+            >
+              <div class="project-mock" aria-hidden="true">
+                <div class="project-mock__chrome">
+                  <span class="project-mock__dot"></span>
+                  <span class="project-mock__dot"></span>
+                  <span class="project-mock__dot"></span>
+                  <span class="ml-2 text-[11px] text-white/40 font-mono">{{ project.previewDomain }}</span>
+                </div>
+                <div class="project-mock__body">
+                  <div class="project-mock__side">
+                    <span class="project-mock__nav is-active"></span>
+                    <span class="project-mock__nav"></span>
+                    <span class="project-mock__nav"></span>
+                    <span class="project-mock__nav"></span>
+                  </div>
+                  <div class="project-mock__main">
+                    <div class="project-mock__toolbar">
+                      <span class="project-mock__title">{{ project.mockupLabel }}</span>
+                      <span class="project-mock__chip">Case</span>
                     </div>
-                    <span class="text-[11px] text-[var(--faint)] font-mono shrink-0">{{ p.number }}</span>
+                    <div class="project-mock__table">
+                      <div class="project-mock__row" *ngFor="let row of [1,2,3,4,5]">
+                        <span class="project-mock__cell" [class.is-accent]="row === 1 || row === 3"></span>
+                        <span class="project-mock__cell is-short"></span>
+                        <span class="project-mock__cell" [class.is-accent]="row === 2"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div class="mt-6 space-y-5">
+                <div>
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">{{ project.number }}</p>
+                  <h3 class="font-display text-2xl sm:text-3xl text-[var(--ink)] leading-snug" style="font-weight: 700">
+                    {{ project.title }}
+                  </h3>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-3">
+                  <div
+                    *ngFor="let metric of project.metrics"
+                    class="rounded-xl bg-[rgba(18,24,32,0.05)] px-4 py-4 border border-[var(--line)]"
+                  >
+                    <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
+                    <p class="text-[var(--faint)] text-xs mt-1 leading-snug">{{ metric.label }}</p>
+                  </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">Problema</p>
+                    <p class="text-[var(--muted)] leading-relaxed text-sm">{{ project.problem }}</p>
+                  </div>
+                  <div>
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">Solución</p>
+                    <p class="text-[var(--muted)] leading-relaxed text-sm">{{ project.solution }}</p>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4">
+                  <div class="flex flex-wrap gap-2">
+                    <app-badge *ngFor="let tag of project.tags" [variant]="tag.v" size="sm">{{ tag.label }}</app-badge>
+                  </div>
+                  <a
+                    [href]="project.github"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors link-underline"
+                  >
+                    Ver código
+                    <lucide-icon name="external-link" class="w-3.5 h-3.5"></lucide-icon>
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
-        </article>
+        </div>
+
+        <div class="mt-14 reveal">
+          <button type="button" class="section-teaser" (click)="scrollTo('experiencia')">
+            <span>↓</span>
+            <span>Experiencia profesional</span>
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- EXPERIENCIA -->
     <section id="experiencia" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
       <div class="max-w-content mx-auto">
         <div class="reveal">
-          <app-section-header align="left" eyebrow="04" title="Experiencia" highlight="profesional"></app-section-header>
+          <app-section-header align="left" eyebrow="03" title="Experiencia" highlight="profesional"></app-section-header>
         </div>
 
-        <div class="timeline">
+        <div class="space-y-3 reveal reveal-delay-1">
           <article
             *ngFor="let job of experienceJobs; let i = index"
-            class="timeline-item surface-panel p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10 reveal"
-            [ngClass]="'reveal-delay-' + (i + 1)"
+            class="accordion-item surface-panel overflow-hidden"
+            [class.is-open]="expandedJobIndex === i"
           >
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <div class="lg:col-span-4">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] mb-2">{{ job.period }}</p>
-              <h3 class="font-display text-xl text-[var(--ink)] leading-snug" style="font-weight: 700">{{ job.role }}</h3>
-              <p class="text-[var(--muted)] text-sm mt-1" style="font-weight: 500">{{ job.company }}</p>
-              <p class="text-[var(--faint)] text-xs mt-2">{{ job.location }}</p>
-            </div>
+            <button
+              type="button"
+              class="accordion-trigger"
+              [attr.aria-expanded]="expandedJobIndex === i"
+              (click)="toggleJob(i)"
+            >
+              <div class="min-w-0 text-left">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] mb-1">{{ job.period }}</p>
+                <h3 class="font-display text-lg sm:text-xl text-[var(--ink)] leading-snug" style="font-weight: 700">
+                  {{ job.role }}
+                </h3>
+                <p class="text-[var(--muted)] text-sm mt-1">{{ job.company }} · {{ job.location }}</p>
+              </div>
+              <lucide-icon
+                name="chevron-down"
+                class="accordion-chevron w-5 h-5 text-[var(--faint)] shrink-0"
+              ></lucide-icon>
+            </button>
 
-            <div class="lg:col-span-8">
-              <p *ngIf="job.intro" class="text-[var(--muted)] leading-relaxed mb-6">{{ job.intro }}</p>
-
+            <div class="accordion-panel" *ngIf="expandedJobIndex === i">
+              <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">{{ job.summary }}</p>
               <ul class="space-y-4">
                 <li *ngFor="let item of job.responsibilities" class="border-t border-[var(--line)] pt-4 first:border-0 first:pt-0">
                   <p class="text-[var(--ink)] text-sm" style="font-weight: 600">{{ item.title }}</p>
                   <p class="text-[var(--muted)] text-sm mt-1 leading-relaxed">{{ item.desc }}</p>
                 </li>
               </ul>
-
               <p class="mt-6 text-sm text-[var(--faint)] leading-relaxed">
                 <span *ngFor="let tech of job.tech; let last = last">{{ tech }}<span *ngIf="!last"> · </span></span>
               </p>
             </div>
           </article>
         </div>
-      </div>
-    </section>
 
-    <!-- CERTIFICATIONS -->
-    <section id="certificaciones" class="relative band-sage py-24 sm:py-28 px-5 sm:px-8">
-      <div class="max-w-content mx-auto">
-        <div class="reveal">
-          <app-section-header
-            align="left"
-            eyebrow="05"
-            title="Certificaciones"
-            highlight="& reconocimientos"
-          ></app-section-header>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div
-            *ngFor="let cert of certifications; let i = index"
-            class="cert-card surface-panel p-6 flex flex-col reveal"
-            [ngClass]="'reveal-delay-' + (i + 1)"
-          >
-            <div class="flex items-start justify-between gap-3">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)]">{{ cert.org }}</p>
-              <p class="text-xs text-[var(--faint)] shrink-0">{{ cert.year }}</p>
-            </div>
-            <h3 class="font-display text-lg text-[var(--ink)] mt-3 leading-snug" style="font-weight: 600">{{ cert.title }}</h3>
-            <p class="text-sm text-[var(--accent)] mt-1" style="font-weight: 500">{{ cert.level }}</p>
-            <p class="text-sm text-[var(--muted)] leading-relaxed mt-4 flex-1">{{ cert.description }}</p>
-            <p *ngIf="cert.verified" class="text-[11px] text-[var(--accent)] mt-5">{{ cert.verifyText }}</p>
-          </div>
-        </div>
-
-        <div class="mt-8 surface-panel px-5 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal">
-          <p class="text-sm text-[var(--muted)]">Código disponible en GitHub — arquitectura y buenas prácticas.</p>
-          <a
-            [href]="profile.githubUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-sm text-[var(--ink)] hover:text-[var(--accent)] transition-colors link-underline"
-            style="font-weight: 500"
-          >
-            Ver GitHub
-            <lucide-icon name="external-link" class="w-3.5 h-3.5"></lucide-icon>
-          </a>
+        <div class="mt-14 reveal reveal-delay-2">
+          <button type="button" class="section-teaser" (click)="scrollTo('contacto')">
+            <span>↓</span>
+            <span>Hablemos</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section id="formacion" class="relative band-soft py-24 sm:py-28 px-5 sm:px-8">
-      <div class="max-w-content mx-auto">
-        <div class="reveal">
-          <app-section-header align="left" eyebrow="06" title="Formación" highlight="académica"></app-section-header>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-4 md:gap-5 mb-6">
-          <div class="surface-panel p-6 sm:p-7 reveal reveal-delay-1">
-            <app-badge variant="green" [dot]="true" size="sm">Titulado</app-badge>
-            <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
-              Analista Programador Computacional
-            </h3>
-            <p class="text-[var(--muted)] text-sm mt-2">Duoc UC · Viña del Mar · Egreso 2021</p>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mt-4">
-              Formación técnica en desarrollo de software, estructuras de datos, bases de datos relacionales,
-              programación orientada a objetos y arquitectura de sistemas.
-            </p>
-          </div>
-
-          <div class="surface-panel p-6 sm:p-7 reveal reveal-delay-2">
-            <app-badge variant="ghost" size="sm">En progreso</app-badge>
-            <h3 class="font-display text-xl text-[var(--ink)] mt-4 leading-snug" style="font-weight: 700">
-              Formación continua en tecnologías web
-            </h3>
-            <p class="text-[var(--muted)] text-sm mt-2">Cursos · Certificaciones · Autodidacta</p>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mt-4">
-              Actualización en frameworks modernos, buenas prácticas, arquitecturas escalables
-              y herramientas del ecosistema web actual.
-            </p>
-          </div>
-        </div>
-
-        <div class="surface-panel px-5 py-5 sm:px-6 reveal">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">Competencias transversales</p>
-          <p class="text-[var(--muted)] text-sm leading-relaxed">
-            <span *ngFor="let competency of competencies; let last = last">{{ competency }}<span *ngIf="!last"> · </span></span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
+    <!-- CONTACTO -->
     <section id="contacto" class="relative band-ink py-24 sm:py-28 px-5 sm:px-8 overflow-hidden">
       <div class="max-w-content mx-auto relative z-10">
         <div class="reveal">
           <app-section-header
             align="left"
-            eyebrow="07"
+            eyebrow="04"
             title="Hablemos"
-            highlight="de tu proyecto"
+            highlight="ahora"
             subtitle="Disponible para posiciones laborales, freelance y consultorías."
           ></app-section-header>
         </div>
 
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
-          <div class="lg:col-span-5 space-y-8 reveal reveal-delay-1">
-            <ul class="space-y-3">
-              <li *ngFor="let item of whatIOffer" class="flex items-start gap-3 text-sm text-[var(--muted)]">
-                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0"></span>
-                <span>{{ item }}</span>
-              </li>
-            </ul>
+        <div class="max-w-xl reveal reveal-delay-1">
+          <p class="text-sm text-[var(--accent)] mb-8" style="font-weight: 500">
+            Actualmente disponible · respuesta en menos de 24 horas
+          </p>
 
-            <div>
-              <p class="text-sm text-[var(--accent)]" style="font-weight: 500">Actualmente disponible</p>
-              <p class="text-[var(--faint)] text-xs mt-1">Respuesta en menos de 24 horas</p>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 reveal reveal-delay-2">
-            <div class="surface-panel overflow-hidden !rounded-2xl">
-              <a
-                *ngFor="let item of contactItems"
-                [href]="item.href"
-                class="flex items-center justify-between gap-4 px-5 sm:px-6 py-5 border-b border-[var(--line)] last:border-0 group"
-              >
-                <div>
-                  <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-1">{{ item.label }}</p>
-                  <p class="text-[var(--ink)] text-lg" style="font-weight: 600">{{ item.value }}</p>
-                  <p class="text-[var(--faint)] text-xs mt-1">{{ item.sub }}</p>
-                </div>
-                <lucide-icon
-                  name="arrow-right"
-                  class="w-4 h-4 text-[var(--faint)] group-hover:text-[var(--accent)] group-hover:translate-x-1 transition-all shrink-0"
-                ></lucide-icon>
+          <ul class="contact-list surface-panel overflow-hidden !rounded-2xl">
+            <li>
+              <a [href]="'mailto:' + profile.email" class="contact-list__row">
+                <span class="contact-list__label">Email</span>
+                <span class="contact-list__value">{{ profile.email }}</span>
               </a>
-            </div>
-
-            <a
-              href="mailto:jphuerta.dev@gmail.com"
-              class="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--accent)] text-[var(--ink-deep)] hover:bg-[var(--accent-hover)] transition-colors text-sm group"
-              style="font-weight: 600"
-            >
-              Envíame un mensaje
-              <lucide-icon name="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></lucide-icon>
-            </a>
-          </div>
+            </li>
+            <li>
+              <a [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer" class="contact-list__row">
+                <span class="contact-list__label">LinkedIn</span>
+                <span class="contact-list__value">linkedin.com/in/jphuerta1</span>
+              </a>
+            </li>
+            <li>
+              <a [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer" class="contact-list__row">
+                <span class="contact-list__label">GitHub</span>
+                <span class="contact-list__value">github.com/teckuro</span>
+              </a>
+            </li>
+            <li>
+              <a [href]="profile.whatsappUrl" target="_blank" rel="noopener noreferrer" class="contact-list__row">
+                <span class="contact-list__label">WhatsApp</span>
+                <span class="contact-list__value">{{ profile.phone }}</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
