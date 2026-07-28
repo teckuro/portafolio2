@@ -375,9 +375,6 @@ body {
 .timeline-card {
   position: relative;
   min-width: 0;
-  border-left: 2px solid rgba(36, 92, 78, 0.22);
-  transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease),
-    box-shadow var(--duration) var(--ease), background-color var(--duration) var(--ease);
 }
 
 .timeline-dot {
@@ -393,10 +390,6 @@ body {
   box-shadow: 0 0 0 3px rgba(36, 92, 78, 0.1);
   transform: translate(-50%, -50%);
   transition: background-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
-}
-
-.timeline-item:hover .timeline-card {
-  border-left-color: var(--accent);
 }
 
 .timeline-item:hover .timeline-dot {
