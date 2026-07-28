@@ -11,10 +11,7 @@
     style="font-weight: 700"
   >
     <span>{{ title }}</span>
-    <ng-container *ngIf="highlight">
-      <span> </span>
-      <span class="text-[var(--accent)]">{{ highlight }}</span>
-    </ng-container>
+    <ng-container *ngIf="highlight">{{ ' ' }}<span class="text-[var(--accent)]">{{ highlight }}</span></ng-container>
   </h2>
 
   <div
