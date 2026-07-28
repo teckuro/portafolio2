@@ -602,6 +602,14 @@ body {
   min-height: 210px;
 }
 
+.project-mock__screenshot {
+  display: block;
+  width: 100%;
+  min-height: 210px;
+  object-fit: cover;
+  object-position: top;
+}
+
 .project-mock__side {
   padding: 0.85rem 0.65rem;
   background: #152028;

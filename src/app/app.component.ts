@@ -28,6 +28,10 @@ type Project = {
   github: string;
   mockupLabel: string;
   previewDomain: string;
+  /** URL de demo desplegada; muestra el botón "Ver demo" cuando existe. */
+  demoUrl?: string;
+  /** Ruta a captura real (ej. assets/projects/erp.png); reemplaza el mockup dibujado. */
+  screenshot?: string;
 };
 
 type Responsibility = { title: string; desc: string };

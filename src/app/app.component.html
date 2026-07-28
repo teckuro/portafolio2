@@ -276,7 +276,14 @@
                   <span class="project-mock__dot"></span>
                   <span class="ml-2 text-[11px] text-white/40 font-mono">{{ project.previewDomain }}</span>
                 </div>
-                <div class="project-mock__body">
+                <img
+                  *ngIf="project.screenshot"
+                  [src]="project.screenshot"
+                  [alt]="'Captura de ' + project.shortTitle"
+                  class="project-mock__screenshot"
+                  loading="lazy"
+                />
+                <div class="project-mock__body" *ngIf="!project.screenshot">
                   <div class="project-mock__side">
                     <span class="project-mock__nav is-active"></span>
                     <span class="project-mock__nav"></span>
@@ -332,6 +339,17 @@
                   <div class="flex flex-wrap gap-2">
                     <app-badge *ngFor="let tag of project.tags" [variant]="tag.v" size="sm">{{ tag.label }}</app-badge>
                   </div>
+                  <a
+                    *ngIf="project.demoUrl"
+                    [href]="project.demoUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors link-underline"
+                    style="font-weight: 600"
+                  >
+                    Ver demo
+                    <lucide-icon name="external-link" class="w-3.5 h-3.5"></lucide-icon>
+                  </a>
                   <a
                     [href]="project.github"
                     target="_blank"
