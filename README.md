@@ -1,27 +1,38 @@
-# PortfolioSite
+# JP·Workspace
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+Demostración interactiva de cómo un Senior Software Engineer piensa, diseña y construye sistemas empresariales. No es una colección de proyectos: cada componente demuestra una capacidad profesional en vez de describirla.
 
-## Development server
+**Live:** [jphuerta.vercel.app](https://jphuerta.vercel.app/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Qué contiene
 
-## Code scaffolding
+- **Workspace** — simulación navegable del ERP de Remuneraciones (Chile): resumen, empleados, parámetros, proceso de nómina y reportes. La vista **Motor** ejecuta código real de cálculo (topes en UF, AFP, salud, cesantía).
+- **Proyectos** — catálogo lista→detalle con problema, solución y diagrama de arquitectura por capas.
+- **Thinking** — registros de decisión (ADR): problema, opciones, decisión, trade-offs y resultado.
+- **Experiencia** — accordion con responsabilidades e impacto por cargo.
+- **ES/EN** — todo el contenido en español e inglés, sin librerías de i18n (diccionarios tipados + servicio con `localStorage`).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Stack
 
-## Build
+Angular 15 · TypeScript · Tailwind CSS. Sin librerías de UI ni de animación.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Desarrollo
 
-## Running unit tests
+```bash
+npm install
+npm start        # http://localhost:4200
+npm run build    # dist/jp-workspace
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Estructura
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+src/app/
+├── content/            # SiteContent tipado + diccionarios ES/EN
+├── services/           # LanguageService (idioma + meta del documento)
+├── components/
+│   ├── erp-workspace/  # Shell del producto: sidebar + 6 vistas
+│   ├── navbar/         # Nav + toggle ES/EN
+│   └── footer/
+└── app.component.*     # Hero, proyectos, thinking, experiencia, contacto
+```

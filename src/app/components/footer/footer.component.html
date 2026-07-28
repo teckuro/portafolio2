@@ -6,20 +6,20 @@
           class="font-display text-[var(--ink)] tracking-tight mb-3"
           style="font-weight: 700; font-size: 1.1rem"
         >
-          Juan Pablo Huerta
+          JP·Workspace
         </p>
         <p class="text-[var(--muted)] text-sm leading-relaxed max-w-xs">
-          Desarrollador Full Stack. Sistemas productivos, integraciones y ERP.
+          {{ content.footer.tagline }}
         </p>
       </div>
 
       <div>
         <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">
-          Navegación
+          {{ content.footer.navTitle }}
         </p>
         <div class="grid grid-cols-2 gap-y-2 gap-x-4">
           <button
-            *ngFor="let link of navLinks"
+            *ngFor="let link of content.nav.links"
             type="button"
             class="text-left text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             (click)="scrollTo(link.id)"
@@ -31,43 +31,23 @@
 
       <div>
         <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">
-          Contacto
+          {{ content.footer.contactTitle }}
         </p>
         <div class="space-y-2 text-sm text-[var(--muted)]">
           <a
-            *ngIf="email"
-            [href]="'mailto:' + email"
+            *ngFor="let link of content.contact.links"
+            [href]="link.href"
+            [attr.target]="link.external ? '_blank' : null"
+            [attr.rel]="link.external ? 'noopener noreferrer' : null"
             class="block hover:text-[var(--accent)] transition-colors"
-          >{{ email }}</a>
-          <a
-            *ngIf="phone"
-            [href]="'tel:' + phone"
-            class="block hover:text-[var(--accent)] transition-colors"
-          >{{ phone }}</a>
-          <p *ngIf="location">{{ location }}</p>
-        </div>
-        <div class="flex gap-4 mt-5">
-          <a
-            *ngIf="githubUrl"
-            [href]="githubUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >GitHub</a>
-          <a
-            *ngIf="linkedinUrl"
-            [href]="linkedinUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >LinkedIn</a>
+          >{{ link.value }}</a>
         </div>
       </div>
     </div>
 
     <div class="pt-8 border-t border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-      <p class="text-[var(--faint)] text-xs">© 2026 Juan Pablo Huerta</p>
-      <p class="text-[var(--faint)] text-xs">Disponibilidad inmediata</p>
+      <p class="text-[var(--faint)] text-xs">{{ content.footer.rights }}</p>
+      <p class="text-[var(--faint)] text-xs">{{ content.footer.availability }}</p>
     </div>
   </div>
 </footer>

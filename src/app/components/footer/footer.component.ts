@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { SiteContent } from '../../content/content.model';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,18 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  @Input() email = '';
-  @Input() phone = '';
-  @Input() location = '';
-  @Input() githubUrl = '';
-  @Input() linkedinUrl = '';
+  constructor(private readonly language: LanguageService) {}
 
-  readonly navLinks = [
-    { id: 'sobre', label: 'Sobre' },
-    { id: 'proyectos', label: 'Proyectos' },
-    { id: 'experiencia', label: 'Experiencia' },
-    { id: 'contacto', label: 'Contacto' }
-  ] as const;
+  get content(): SiteContent {
+    return this.language.content;
+  }
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });

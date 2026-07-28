@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ErpWorkspaceComponent } from './components/erp-workspace/erp-workspace.component';
 import { SkillCardComponent } from './components/skill-card/skill-card.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { BadgeComponent } from './ui/badge/badge.component';
@@ -57,6 +58,7 @@ import {
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    ErpWorkspaceComponent,
     SkillCardComponent,
     ProjectCardComponent,
     BadgeComponent,

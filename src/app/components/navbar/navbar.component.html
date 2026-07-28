@@ -21,7 +21,7 @@
 
       <div class="hidden lg:flex items-center gap-1">
         <button
-          *ngFor="let link of navLinks"
+          *ngFor="let link of content.nav.links"
           type="button"
           (click)="scrollTo(link.id)"
           class="relative px-3 py-2 text-[13px] transition-colors duration-200"
@@ -38,13 +38,18 @@
       </div>
 
       <div class="hidden lg:flex items-center gap-4">
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" [class.is-active]="lang === 'es'" (click)="setLang('es')">ES</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
+        </div>
         <a
           *ngIf="cvHref"
           [href]="cvHref"
           download
           class="text-[13px] text-[var(--muted)] hover:text-[var(--ink)] link-underline"
         >
-          CV
+          {{ content.nav.cv }}
         </a>
         <button
           type="button"
@@ -52,7 +57,7 @@
           style="font-weight: 500"
           (click)="scrollTo('contacto')"
         >
-          Contacto
+          {{ content.nav.contact }}
         </button>
       </div>
 
@@ -60,7 +65,7 @@
         type="button"
         (click)="menuOpen = !menuOpen"
         class="lg:hidden w-9 h-9 flex items-center justify-center text-[var(--ink)]"
-        aria-label="Abrir menú"
+        [attr.aria-label]="content.nav.menuAria"
       >
         <lucide-icon *ngIf="!menuOpen" name="menu" class="w-5 h-5"></lucide-icon>
         <lucide-icon *ngIf="menuOpen" name="x" class="w-5 h-5"></lucide-icon>
@@ -75,7 +80,7 @@
 >
   <div class="max-w-content mx-auto px-5 py-4 space-y-1">
     <button
-      *ngFor="let link of navLinks"
+      *ngFor="let link of content.nav.links"
       type="button"
       (click)="scrollTo(link.id)"
       class="w-full text-left px-2 py-3 text-sm transition-colors border-b border-[rgba(18,24,32,0.1)] last:border-0"
@@ -86,14 +91,22 @@
       {{ link.label }}
     </button>
 
-    <div class="pt-4 flex gap-3">
+    <div class="pt-3 flex items-center justify-between">
+      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+        <button type="button" [class.is-active]="lang === 'es'" (click)="setLang('es')">ES</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div class="pt-3 flex gap-3">
       <a
         *ngIf="cvHref"
         [href]="cvHref"
         download
         class="flex-1 py-2.5 text-sm text-center border border-[rgba(18,24,32,0.18)] rounded-md text-[var(--ink)] bg-[var(--paper)]/40"
       >
-        Descargar CV
+        {{ content.nav.cv }}
       </a>
       <button
         type="button"
@@ -101,7 +114,7 @@
         class="flex-1 py-2.5 text-sm rounded-md bg-[var(--ink)] text-[var(--paper)]"
         style="font-weight: 500"
       >
-        Contacto
+        {{ content.nav.contact }}
       </button>
     </div>
   </div>
