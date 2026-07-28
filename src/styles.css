@@ -982,37 +982,6 @@ body {
   animation: project-swap 0.3s var(--ease);
 }
 
-/* Contact list */
-.contact-list__row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 1.15rem 1.35rem;
-  border-bottom: 1px solid var(--line);
-  transition: background-color var(--duration) var(--ease);
-}
-
-.contact-list li:last-child .contact-list__row {
-  border-bottom: 0;
-}
-
-.contact-list__row:hover {
-  background: var(--accent-soft);
-}
-
-.contact-list__label {
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--faint);
-}
-
-.contact-list__value {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
 /* Scroll reveals */
 .reveal {
   opacity: 0;

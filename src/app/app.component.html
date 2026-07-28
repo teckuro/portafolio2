@@ -452,40 +452,6 @@
       </div>
     </section>
 
-    <!-- CONTACTO · ¿Cómo contratarlo? -->
-    <section id="contacto" class="relative band-ink py-24 sm:py-28 px-5 sm:px-8 overflow-hidden">
-      <div class="max-w-content mx-auto relative z-10">
-        <div class="reveal">
-          <app-section-header
-            align="left"
-            [eyebrow]="content.contact.eyebrow"
-            [title]="content.contact.title"
-            [subtitle]="content.contact.subtitle"
-          ></app-section-header>
-        </div>
-
-        <div class="max-w-xl reveal reveal-delay-1">
-          <p class="text-sm text-[var(--accent)] mb-8" style="font-weight: 500">
-            {{ content.contact.availability }}
-          </p>
-
-          <ul class="contact-list surface-panel overflow-hidden !rounded-2xl">
-            <li *ngFor="let link of content.contact.links">
-              <a
-                [href]="link.href"
-                [attr.target]="link.external ? '_blank' : null"
-                [attr.rel]="link.external ? 'noopener noreferrer' : null"
-                class="contact-list__row"
-              >
-                <span class="contact-list__label">{{ link.label }}</span>
-                <span class="contact-list__value">{{ link.value }}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
     <a
       [href]="whatsappUrl"
       target="_blank"

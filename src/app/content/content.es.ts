@@ -11,8 +11,7 @@ export const CONTENT_ES: SiteContent = {
       { id: 'workspace', label: 'Workspace' },
       { id: 'proyectos', label: 'Proyectos' },
       { id: 'thinking', label: 'Thinking' },
-      { id: 'experiencia', label: 'Experiencia' },
-      { id: 'contacto', label: 'Contacto' }
+      { id: 'experiencia', label: 'Experiencia' }
     ],
     cv: 'CV',
     contact: 'Contacto',
@@ -170,88 +169,33 @@ export const CONTENT_ES: SiteContent = {
         previewDomain: 'erp-beta-bay.vercel.app'
       },
       {
-        id: 0,
+        id: 4,
         number: '02',
-        title: 'Plataforma facturacion.cl · Facturación electrónica',
-        shortTitle: 'Facturación electrónica',
-        category: 'PHP · JavaScript · PostgreSQL · SII · Transbank',
+        title: 'HuntOS · Agente autónomo de búsqueda de empleo',
+        shortTitle: 'HuntOS',
+        category: 'IA · Automatización · Supabase · Vercel',
         problem:
-          'Automatizar emisión tributaria e integraciones confiables con SII y cobros en línea sin perder trazabilidad.',
+          'Buscar trabajo es repetitivo: revisar portales, filtrar vacantes, adaptar el CV, postular y hacer seguimiento, todos los días.',
         solution:
-          'Evolución de la plataforma con PHP/JavaScript, integración SII y Transbank, y lógica de negocio en PostgreSQL.',
+          'Agente autónomo que busca vacantes, las puntúa contra el perfil, optimiza el CV y postula sin detenerse hasta una oferta aceptada, con pipeline trazable.',
         architectureLayers: [
-          'Frontend JavaScript',
-          'Servicios PHP',
-          'Integraciones SII · Transbank',
-          'PostgreSQL · vistas y funciones'
+          'Panel de control · pipeline',
+          'API · health y aprobaciones',
+          'Agente IA · scoring y matching',
+          'Supabase · estado y trazabilidad'
         ],
         architectureNote:
-          'Reglas tributarias en la base de datos; integraciones desacopladas de la UI para desplegar por separado.',
+          'El agente corre tras un flag de seguridad (HUNTING_ENABLED) y expone health checks; cada postulación queda trazable en el pipeline.',
         metrics: [
-          { value: 'SII', label: 'Integración tributaria' },
-          { value: 'TBK', label: 'Pagos Transbank' },
-          { value: 'Prod', label: 'Alta disponibilidad' }
+          { value: 'IA', label: 'Scoring de vacantes' },
+          { value: '75–90', label: 'Umbral de score' },
+          { value: '24/7', label: 'Postulación autónoma' }
         ],
-        tags: ['PHP', 'JavaScript', 'PostgreSQL', 'SII', 'Transbank'],
+        tags: ['IA', 'Automatización', 'Supabase', 'Vercel'],
         github: 'https://github.com/teckuro',
-        mockupLabel: 'Facturación',
-        previewDomain: 'facturacion.cl'
-      },
-      {
-        id: 1,
-        number: '03',
-        title: 'ERP institucional · Contabilidad, remuneraciones e inventario',
-        shortTitle: 'ERP institucional',
-        category: 'PHP · JavaScript · Módulos integrados',
-        problem:
-          'Coordinar contabilidad, remuneraciones e inventario en un ERP único sin duplicar datos ni romper cierres.',
-        solution:
-          'Desarrollo y optimización de módulos integrados con PHP/JavaScript y datos centralizados en PostgreSQL.',
-        architectureLayers: [
-          'UI PHP · JavaScript',
-          'Módulos: contabilidad · RRHH · inventario',
-          'Capa de negocio compartida',
-          'PostgreSQL'
-        ],
-        architectureNote:
-          'Datos centralizados: cada módulo consume el mismo modelo, sin duplicación entre áreas.',
-        metrics: [
-          { value: '3', label: 'Módulos críticos' },
-          { value: 'ERP', label: 'Arquitectura unificada' },
-          { value: 'QA', label: 'Calidad de entregas' }
-        ],
-        tags: ['PHP', 'JavaScript', 'ERP', 'PostgreSQL'],
-        github: 'https://github.com/teckuro',
-        mockupLabel: 'ERP',
-        previewDomain: 'portal.autoatencion.cl'
-      },
-      {
-        id: 2,
-        number: '04',
-        title: 'Portal de autoatención · APIs y GraphQL',
-        shortTitle: 'Portal autoatención',
-        category: 'Laravel · GraphQL · UX',
-        problem:
-          'Ofrecer un portal ágil con menos fricción y consultas eficientes entre sistemas y el canal de autoatención.',
-        solution:
-          'Automatización con Laravel, APIs internas y capa GraphQL; despliegue con prácticas en Docker y AWS.',
-        architectureLayers: [
-          'UI Angular · Laravel',
-          'GraphQL gateway',
-          'APIs internas',
-          'Docker · AWS'
-        ],
-        architectureNote:
-          'GraphQL como capa de agregación: una consulta del portal resuelve datos de varios sistemas.',
-        metrics: [
-          { value: 'GQL', label: 'Consultas eficientes' },
-          { value: 'Portal', label: 'Autoatención' },
-          { value: 'UX', label: 'Canal optimizado' }
-        ],
-        tags: ['Laravel', 'GraphQL', 'APIs', 'Docker'],
-        github: 'https://github.com/teckuro',
-        mockupLabel: 'Portal',
-        previewDomain: 'app.empresa.cl'
+        demoUrl: 'https://huntos.vercel.app/',
+        mockupLabel: 'HuntOS',
+        previewDomain: 'huntos.vercel.app'
       }
     ],
     teaser: 'Cómo piensa y decide'
@@ -401,10 +345,6 @@ export const CONTENT_ES: SiteContent = {
     teaser: 'Hablemos'
   },
   contact: {
-    eyebrow: '05 · Cómo contratarlo',
-    title: 'Hablemos',
-    subtitle: 'Disponible para posiciones laborales, freelance y consultorías.',
-    availability: 'Disponibilidad inmediata · respuesta en menos de 24 horas',
     links: [
       { label: 'Email', value: 'jphuerta.dev@gmail.com', href: 'mailto:jphuerta.dev@gmail.com', external: false },
       { label: 'LinkedIn', value: 'linkedin.com/in/jphuerta1', href: 'https://www.linkedin.com/in/jphuerta1/', external: true },

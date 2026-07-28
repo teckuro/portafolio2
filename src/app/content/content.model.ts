@@ -200,10 +200,6 @@ export interface SiteContent {
     teaser: string;
   };
   contact: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    availability: string;
     links: ContactLink[];
     whatsappAria: string;
   };
