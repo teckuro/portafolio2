@@ -853,6 +853,18 @@ body {
   animation: drift-alt 22s ease-in-out infinite;
 }
 
+.hero-grid-squares {
+  opacity: 0.9;
+}
+
+@media (max-width: 1023px) {
+  .hero-grid-squares {
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.35) 70%, transparent 100%) !important;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.35) 70%, transparent 100%) !important;
+  }
+}
+
 .delay-1 {
   animation-delay: 0.1s;
 }
