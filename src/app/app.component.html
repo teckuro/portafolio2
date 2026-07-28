@@ -356,31 +356,35 @@
 
         <div class="timeline">
           <article
-            *ngFor="let job of experienceJobs; let i = index"
-            class="timeline-item surface-panel surface-panel--lift p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10 reveal"
+            *ngFor="let job of experienceJobs; let i = index; let last = last"
+            class="timeline-item reveal"
+            [class.is-last]="last"
             [ngClass]="'reveal-delay-' + (i + 1)"
           >
             <span class="timeline-dot" aria-hidden="true"></span>
-            <div class="lg:col-span-4">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] mb-2">{{ job.period }}</p>
-              <h3 class="font-display text-xl text-[var(--ink)] leading-snug" style="font-weight: 700">{{ job.role }}</h3>
-              <p class="text-[var(--muted)] text-sm mt-1" style="font-weight: 500">{{ job.company }}</p>
-              <p class="text-[var(--faint)] text-xs mt-2">{{ job.location }}</p>
-            </div>
 
-            <div class="lg:col-span-8">
-              <p *ngIf="job.intro" class="text-[var(--muted)] leading-relaxed mb-6">{{ job.intro }}</p>
+            <div class="timeline-card surface-panel surface-panel--lift p-6 sm:p-8 grid lg:grid-cols-12 gap-6 lg:gap-10">
+              <div class="lg:col-span-4">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] mb-2">{{ job.period }}</p>
+                <h3 class="font-display text-xl text-[var(--ink)] leading-snug" style="font-weight: 700">{{ job.role }}</h3>
+                <p class="text-[var(--muted)] text-sm mt-1" style="font-weight: 500">{{ job.company }}</p>
+                <p class="text-[var(--faint)] text-xs mt-2">{{ job.location }}</p>
+              </div>
 
-              <ul class="space-y-4">
-                <li *ngFor="let item of job.responsibilities" class="border-t border-[var(--line)] pt-4 first:border-0 first:pt-0">
-                  <p class="text-[var(--ink)] text-sm" style="font-weight: 600">{{ item.title }}</p>
-                  <p class="text-[var(--muted)] text-sm mt-1 leading-relaxed">{{ item.desc }}</p>
-                </li>
-              </ul>
+              <div class="lg:col-span-8">
+                <p *ngIf="job.intro" class="text-[var(--muted)] leading-relaxed mb-6">{{ job.intro }}</p>
 
-              <p class="mt-6 text-sm text-[var(--faint)] leading-relaxed">
-                <span *ngFor="let tech of job.tech; let last = last">{{ tech }}<span *ngIf="!last"> · </span></span>
-              </p>
+                <ul class="space-y-4">
+                  <li *ngFor="let item of job.responsibilities" class="border-t border-[var(--line)] pt-4 first:border-0 first:pt-0">
+                    <p class="text-[var(--ink)] text-sm" style="font-weight: 600">{{ item.title }}</p>
+                    <p class="text-[var(--muted)] text-sm mt-1 leading-relaxed">{{ item.desc }}</p>
+                  </li>
+                </ul>
+
+                <p class="mt-6 text-sm text-[var(--faint)] leading-relaxed">
+                  <span *ngFor="let tech of job.tech; let lastTech = last">{{ tech }}<span *ngIf="!lastTech"> · </span></span>
+                </p>
+              </div>
             </div>
           </article>
         </div>

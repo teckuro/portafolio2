@@ -345,41 +345,84 @@ body {
   padding-top: 0.2rem;
 }
 
-/* Timeline */
+/* Timeline — línea junto al borde de paneles; paneles alineados al header */
 .timeline {
   position: relative;
-  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 0.35rem;
-  top: 0.5rem;
-  bottom: 0.5rem;
+  left: -0.85rem;
+  top: 2.05rem;
+  bottom: 2.05rem;
   width: 1px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--line) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(36, 92, 78, 0.45) 0%,
+    rgba(18, 24, 32, 0.1) 55%,
+    rgba(18, 24, 32, 0.06) 100%
+  );
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: var(--space-3);
 }
 
-.timeline-item:last-child {
-  margin-bottom: 0;
+.timeline-card {
+  position: relative;
+  min-width: 0;
+  border-left: 2px solid rgba(36, 92, 78, 0.22);
+  transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease), background-color var(--duration) var(--ease);
 }
 
 .timeline-dot {
   position: absolute;
-  left: -1.28rem;
-  top: 1.65rem;
+  left: -0.85rem;
+  top: 2.05rem;
+  z-index: 1;
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 0 0 3px rgba(36, 92, 78, 0.1);
+  transform: translate(-50%, -50%);
+  transition: background-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.timeline-item:hover .timeline-card {
+  border-left-color: var(--accent);
+}
+
+.timeline-item:hover .timeline-dot {
   background: var(--accent);
-  border: 2px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--accent);
+  box-shadow: 0 0 0 4px rgba(36, 92, 78, 0.14);
+}
+
+@media (max-width: 640px) {
+  .timeline {
+    gap: 1rem;
+  }
+
+  .timeline::before,
+  .timeline-dot {
+    left: -0.7rem;
+  }
+
+  .timeline-dot {
+    top: 1.85rem;
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .timeline::before {
+    top: 1.85rem;
+  }
 }
 
 /* Project mock UI */
