@@ -30,6 +30,8 @@ type Project = {
   previewDomain: string;
   /** URL de demo desplegada; muestra el botón "Ver demo" cuando existe. */
   demoUrl?: string;
+  /** Credenciales u otra nota de acceso mostrada junto a las acciones. */
+  demoNote?: string;
   /** Ruta a captura real (ej. assets/projects/erp.png); reemplaza el mockup dibujado. */
   screenshot?: string;
 };
@@ -248,8 +250,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         { label: 'PostgreSQL', v: 'indigo' }
       ],
       github: 'https://github.com/teckuro',
+      demoUrl: 'https://erp-beta-bay.vercel.app/',
+      demoNote: 'Acceso demo: demo@demo.cl · DEMO1234',
       mockupLabel: 'Remuneraciones',
-      previewDomain: 'remuneraciones.app'
+      previewDomain: 'erp-beta-bay.vercel.app'
     },
     {
       id: 0,

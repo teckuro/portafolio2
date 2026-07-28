@@ -360,6 +360,10 @@
                     <lucide-icon name="external-link" class="w-3.5 h-3.5"></lucide-icon>
                   </a>
                 </div>
+
+                <p *ngIf="project.demoNote" class="text-xs text-[var(--faint)] font-mono">
+                  {{ project.demoNote }}
+                </p>
               </div>
             </article>
           </div>
@@ -438,7 +442,6 @@
             align="left"
             eyebrow="04"
             title="Hablemos"
-            highlight="ahora"
             subtitle="Disponible para posiciones laborales, freelance y consultorías."
           ></app-section-header>
         </div>
