@@ -252,6 +252,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       github: 'https://github.com/teckuro',
       demoUrl: 'https://erp-beta-bay.vercel.app/',
       demoNote: 'Acceso demo: demo@demo.cl · DEMO1234',
+      screenshot: 'assets/projects/erp-remuneraciones.png',
       mockupLabel: 'Remuneraciones',
       previewDomain: 'erp-beta-bay.vercel.app'
     },
