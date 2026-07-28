@@ -81,17 +81,22 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    this.revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            this.revealObserver?.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    );
+    // On narrow viewports, fire early (positive bottom margin) so content
+    // doesn't wait until it's deep into a short screen. Avoid negative
+    // rootMargin — it delays reveals as resolution shrinks.
+    const narrow = window.matchMedia('(max-width: 900px)').matches;
+    const options: IntersectionObserverInit = narrow
+      ? { threshold: 0, rootMargin: '40px 0px 28% 0px' }
+      : { threshold: 0.04, rootMargin: '0px 0px 12% 0px' };
+
+    this.revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          this.revealObserver?.unobserve(entry.target);
+        }
+      });
+    }, options);
 
     nodes.forEach((el) => this.revealObserver?.observe(el));
   }
