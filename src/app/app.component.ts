@@ -143,15 +143,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   readonly profile = {
     name: 'Juan Pablo Huerta',
     role: 'Full Stack Developer',
-    email: 'teckuro6@gmail.com',
-    phone: '+56 9 8218 5216',
+    email: 'jphuerta.dev@gmail.com',
+    phone: '+56 9 8829 2018',
     location: 'Viña del Mar, Chile',
     // Nota: deja el PDF en `src/assets/JuanPabloHuerta-CV.pdf` para que el botón funcione.
     cvPdf: 'assets/JuanPabloHuerta-CV.pdf',
     githubUrl: 'https://github.com/teckuro',
     linkedinUrl: 'https://www.linkedin.com/in/jphuerta1/',
     portfolioUrl: 'https://portafolio2-beige.vercel.app/',
-    whatsappUrl: 'https://wa.me/56982185216',
+    whatsappUrl: 'https://wa.me/56988292018',
     tagline:
       'Desarrollo y mantengo sistemas productivos (PHP 7/vanilla, Laravel, Angular) para empresas: facturación electrónica SII, módulos ERP y pagos con Transbank/Webpay. Me muevo cómodo entre soporte real, mejoras evolutivas, integraciones (SOAP/REST/XML/YAML/GraphQL) y SQL en PostgreSQL/MySQL.'
   };
@@ -473,8 +473,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   readonly contactItems: ContactItem[] = [
     {
       label: 'Email',
-      value: 'teckuro6@gmail.com',
-      href: 'mailto:teckuro6@gmail.com',
+      value: 'jphuerta.dev@gmail.com',
+      href: 'mailto:jphuerta.dev@gmail.com',
       sub: 'Respondo en menos de 24h',
       gradient: 'from-violet-600 to-indigo-500',
       glow: 'shadow-violet-500/20 hover:shadow-violet-500/35',
@@ -483,8 +483,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     },
     {
       label: 'Teléfono',
-      value: '+56 9 8218 5216',
-      href: 'tel:+56982185216',
+      value: '+56 9 8829 2018',
+      href: 'tel:+56988292018',
       sub: 'Disponible en horario laboral',
       gradient: 'from-cyan-500 to-blue-500',
       glow: 'shadow-cyan-500/20 hover:shadow-cyan-500/35',
