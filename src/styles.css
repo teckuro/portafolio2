@@ -313,60 +313,17 @@ body {
   color: #8fd0b4;
 }
 
-.jpws__body {
-  display: grid;
-  grid-template-columns: 175px 1fr;
-  min-height: 380px;
-}
-
-.jpws__side {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.85rem 0.6rem;
-  background: #152028;
-  border-right: 1px solid var(--line);
-}
-
-.jpws__nav {
-  text-align: left;
-  padding: 0.5rem 0.7rem;
-  border: 0;
-  border-radius: 0.45rem;
-  background: transparent;
-  color: var(--muted);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
-}
-
-.jpws__nav:hover {
-  color: var(--ink);
-  background: rgba(232, 238, 243, 0.05);
-}
-
-.jpws__nav.is-active {
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-weight: 600;
-}
-
 .jpws__creds {
-  margin-top: auto;
-  padding: 0.6rem 0.7rem 0;
+  margin-top: 1.5rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   line-height: 1.5;
   color: var(--faint);
 }
 
 .jpws__main {
-  padding: 1.25rem 1.35rem;
+  padding: 1.5rem 1.6rem;
   min-width: 0;
-}
-
-.jpws__view {
-  animation: project-swap 0.3s var(--ease);
 }
 
 .jpws__view-sub {
@@ -377,19 +334,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.jpws__kpis {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.6rem;
-}
-
-@media (min-width: 640px) {
-  .jpws__kpis {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.jpws__kpi,
 .jpws__param {
   border: 1px solid var(--line);
   border-radius: 0.6rem;
@@ -402,105 +346,6 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
-}
-
-.jpws__kpi-value {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-top: 0.25rem;
-}
-
-.jpws__kpi-sub {
-  font-size: 0.68rem;
-  color: var(--faint);
-  margin-top: 0.15rem;
-}
-
-.jpws__chart-wrap {
-  margin-top: 1.25rem;
-}
-
-.jpws__chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.85rem;
-  height: 110px;
-  padding: 0 0.25rem;
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.jpws__bar-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.4rem;
-  height: 100%;
-}
-
-.jpws__bar {
-  width: 100%;
-  max-width: 42px;
-  min-height: 3px;
-  border-radius: 3px 3px 0 0;
-  background: linear-gradient(180deg, var(--accent) 0%, rgba(110, 184, 154, 0.35) 100%);
-}
-
-.jpws__bar-label {
-  font-size: 0.6rem;
-  color: var(--faint);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-.jpws__table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.78rem;
-}
-
-.jpws__table th {
-  text-align: left;
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--faint);
-  font-weight: 500;
-  padding: 0.45rem 0.5rem;
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.jpws__table td {
-  padding: 0.55rem 0.5rem;
-  border-bottom: 1px solid var(--line);
-  color: var(--muted);
-}
-
-.jpws__table td:nth-child(2) {
-  color: var(--ink);
-  font-weight: 500;
-}
-
-.jpws__mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
-}
-
-.jpws__status {
-  display: inline-flex;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.jpws__status.is-warn {
-  background: rgba(210, 181, 106, 0.16);
-  color: #d2b56a;
 }
 
 .jpws__footnote {
@@ -534,120 +379,6 @@ body {
   font-size: 0.65rem;
   color: var(--accent);
   margin-top: 0.15rem;
-}
-
-.jpws__motor {
-  max-width: 26rem;
-}
-
-.jpws__steps {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.jpws__step {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.55rem 0.7rem;
-  border-radius: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--faint);
-  border: 1px solid transparent;
-}
-
-.jpws__step-index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.62rem;
-  flex-shrink: 0;
-}
-
-.jpws__step.is-done {
-  color: var(--muted);
-}
-
-.jpws__step.is-done .jpws__step-index {
-  background: var(--accent-soft);
-  border-color: transparent;
-  color: var(--accent);
-}
-
-.jpws__step.is-active {
-  color: var(--ink);
-  border-color: var(--line-strong);
-  background: rgba(232, 238, 243, 0.04);
-  font-weight: 600;
-}
-
-.jpws__step.is-active .jpws__step-index {
-  background: var(--accent);
-  border-color: transparent;
-  color: #121820;
-}
-
-.jpws__reports {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.jpws__report {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.7rem 0.2rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.jpws__report:last-child {
-  border-bottom: 0;
-}
-
-.jpws__report-name {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.jpws__tag {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.62rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.35rem;
-  background: var(--accent-soft);
-  color: var(--accent);
-  flex-shrink: 0;
-}
-
-@media (max-width: 640px) {
-  .jpws__body {
-    grid-template-columns: 1fr;
-  }
-
-  .jpws__side {
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .jpws__creds {
-    display: none;
-  }
 }
 
 /* Engineering philosophy strip */
@@ -1383,8 +1114,7 @@ body {
   .section-teaser:hover,
   .project-list__item.is-active,
   .project-stage,
-  .accordion-panel,
-  .jpws__view {
+  .accordion-panel {
     transform: none;
     padding-left: inherit;
     animation: none !important;

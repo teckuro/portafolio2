@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SiteContent, WorkspaceViewId } from '../../content/content.model';
+import { SiteContent } from '../../content/content.model';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { LanguageService } from '../../services/language.service';
   templateUrl: './erp-workspace.component.html'
 })
 export class ErpWorkspaceComponent {
-  activeView: WorkspaceViewId = 'resumen';
   demoGross = 1500000;
 
   /** Valores referenciales del motor (UF y topes imponibles). */
@@ -19,10 +18,6 @@ export class ErpWorkspaceComponent {
 
   get t(): SiteContent['workspace'] {
     return this.language.content.workspace;
-  }
-
-  setView(view: WorkspaceViewId): void {
-    this.activeView = view;
   }
 
   onDemoGrossChange(value: string): void {

@@ -34,7 +34,7 @@ export const CONTENT_EN: SiteContent = {
     title: 'JP·Workspace',
     titleHighlight: 'Payroll ERP',
     subtitle:
-      'A navigable simulation of the system under development. Everything mirrors the real product; the Engine runs actual calculation code.',
+      'The ERP calculation engine running on this page, fed by the period parameters. The full system lives in the live demo.',
     productLabel: 'jp.workspace — Payroll ERP · Chile',
     openDemo: 'Open live demo',
     demoNote: 'Demo access: demo@demo.cl · DEMO1234',
@@ -44,45 +44,8 @@ export const CONTENT_EN: SiteContent = {
       'Maintainability is a feature.',
       'Complex systems are designed. They do not happen by accident.'
     ],
-    views: [
-      { id: 'resumen', label: 'Overview' },
-      { id: 'empleados', label: 'Employees' },
-      { id: 'parametros', label: 'Parameters' },
-      { id: 'motor', label: 'Engine' },
-      { id: 'nomina', label: 'Payroll' },
-      { id: 'reportes', label: 'Reports' }
-    ],
-    resumen: {
-      greeting: 'Period July 2026 · Demo Company',
-      kpis: [
-        { label: 'Active employees', value: '13', sub: 'Period headcount' },
-        { label: 'Payroll-ready', value: '100%', sub: '13 of 13 employees' },
-        { label: 'Payroll in progress', value: 'Step 3/6', sub: 'Payslip calculation' },
-        { label: 'Pending medical leaves', value: '6', sub: 'Require review' }
-      ],
-      chartTitle: 'Employer cost over time',
-      chart: [
-        { month: 'Feb', pct: 6 },
-        { month: 'Mar', pct: 6 },
-        { month: 'Apr', pct: 42 },
-        { month: 'May', pct: 100 },
-        { month: 'Jun', pct: 14 },
-        { month: 'Jul', pct: 9 }
-      ]
-    },
-    empleados: {
-      headers: ['Tax ID', 'Employee', 'Role', 'Status'],
-      rows: [
-        { rut: '12.345.678-9', name: 'C. Fuentes', role: 'Shift Lead', status: 'Active' },
-        { rut: '13.456.789-0', name: 'M. Riquelme', role: 'Accountant', status: 'Active' },
-        { rut: '14.567.890-1', name: 'P. Salazar', role: 'Operations Analyst', status: 'Active' },
-        { rut: '15.678.901-2', name: 'V. Aravena', role: 'Warehouse Supervisor', status: 'On leave', warn: true },
-        { rut: '16.789.012-3', name: 'R. Castillo', role: 'Store Salesperson', status: 'Active' }
-      ],
-      footnote: 'Full record: contracts, pension, health insurance, banking, and per-period parameters.'
-    },
     parametros: {
-      title: 'Period indicators',
+      title: 'Period parameters',
       items: [
         { label: 'UF', value: '$40,820.31', delta: '+0.52%' },
         { label: 'UTM', value: '$71,506', delta: '+1.30%' },
@@ -100,28 +63,6 @@ export const CONTENT_EN: SiteContent = {
       unemploymentLabel: 'Unemployment insurance (0.6%)',
       totalLabel: 'Estimated net pay',
       note: 'Simplified excerpt of the real engine. Reference values (fixed UF, income tax excluded).'
-    },
-    nomina: {
-      title: 'Payroll process',
-      steps: [
-        'Open period',
-        'Monthly movements',
-        'Payslip calculation',
-        'Review and adjustments',
-        'Approval',
-        'Close · statutory files'
-      ],
-      activeStep: 2,
-      footnote: 'Each step validates the previous one; the period cannot close with open inconsistencies.'
-    },
-    reportes: {
-      title: 'System outputs',
-      items: [
-        { name: 'Electronic Payroll Book', desc: 'Chilean Labor Office format', tag: 'CSV' },
-        { name: 'Previred file', desc: 'Social security contributions for the period', tag: 'TXT' },
-        { name: 'Payslips', desc: 'Per employee, signable', tag: 'PDF' },
-        { name: 'Accounting centralization', desc: 'Journal entry per cost center', tag: 'SQL' }
-      ]
     },
     teaser: 'How he solves problems'
   },
@@ -341,8 +282,7 @@ export const CONTENT_EN: SiteContent = {
         impact: 'Features shipped in a self-service portal used by end customers.',
         tech: ['Angular', 'Laravel', 'PHP', 'JavaScript', 'TypeScript']
       }
-    ],
-    teaser: "Let's talk"
+    ]
   },
   contact: {
     links: [

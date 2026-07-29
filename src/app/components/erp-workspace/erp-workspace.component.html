@@ -15,68 +15,9 @@
     </a>
   </div>
 
-  <div class="jpws__body">
-    <nav class="jpws__side" aria-label="Workspace">
-      <button
-        *ngFor="let view of t.views"
-        type="button"
-        class="jpws__nav"
-        [class.is-active]="activeView === view.id"
-        (click)="setView(view.id)"
-      >
-        {{ view.label }}
-      </button>
-      <p class="jpws__creds">{{ t.demoNote }}</p>
-    </nav>
-
-    <div class="jpws__main">
-      <!-- RESUMEN -->
-      <div *ngIf="activeView === 'resumen'" class="jpws__view">
-        <p class="jpws__view-sub">{{ t.resumen.greeting }}</p>
-        <div class="jpws__kpis">
-          <div *ngFor="let kpi of t.resumen.kpis" class="jpws__kpi">
-            <p class="jpws__kpi-label">{{ kpi.label }}</p>
-            <p class="jpws__kpi-value">{{ kpi.value }}</p>
-            <p class="jpws__kpi-sub">{{ kpi.sub }}</p>
-          </div>
-        </div>
-        <div class="jpws__chart-wrap">
-          <p class="jpws__view-sub mb-3">{{ t.resumen.chartTitle }}</p>
-          <div class="jpws__chart">
-            <div *ngFor="let bar of t.resumen.chart" class="jpws__bar-col">
-              <span class="jpws__bar" [style.height.%]="bar.pct"></span>
-              <span class="jpws__bar-label">{{ bar.month }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EMPLEADOS -->
-      <div *ngIf="activeView === 'empleados'" class="jpws__view">
-        <table class="jpws__table">
-          <thead>
-            <tr>
-              <th *ngFor="let h of t.empleados.headers">{{ h }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let row of t.empleados.rows">
-              <td class="jpws__mono">{{ row.rut }}</td>
-              <td>{{ row.name }}</td>
-              <td>{{ row.role }}</td>
-              <td>
-                <span class="jpws__status" [class.is-warn]="row.warn">
-                  {{ row.status }}
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="jpws__footnote">{{ t.empleados.footnote }}</p>
-      </div>
-
-      <!-- PARÁMETROS -->
-      <div *ngIf="activeView === 'parametros'" class="jpws__view">
+  <div class="jpws__main">
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-10 items-start">
+      <div>
         <p class="jpws__view-sub">{{ t.parametros.title }}</p>
         <div class="jpws__params">
           <div *ngFor="let param of t.parametros.items" class="jpws__param">
@@ -88,78 +29,46 @@
         <p class="jpws__footnote">{{ t.parametros.footnote }}</p>
       </div>
 
-      <!-- MOTOR -->
-      <div *ngIf="activeView === 'motor'" class="jpws__view">
+      <div>
         <div class="flex items-center justify-between gap-3 mb-4">
           <p class="jpws__view-sub !mb-0">{{ t.motor.title }}</p>
           <span class="demo-calc__pulse" aria-hidden="true"></span>
         </div>
-        <div class="jpws__motor">
-          <label class="block text-xs mb-1.5 jpws__kpi-label" for="jpws-gross">{{ t.motor.grossLabel }}</label>
-          <input
-            id="jpws-gross"
-            type="text"
-            inputmode="numeric"
-            class="demo-calc__input"
-            [value]="demoGross"
-            (input)="onDemoGrossChange($any($event.target).value)"
-          />
-          <dl class="mt-4 space-y-2 text-sm">
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.taxableLabel }}</dt>
-              <dd>{{ formatCLP(demoBreakdown.imponible) }}</dd>
-            </div>
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.afpLabel }}</dt>
-              <dd>−{{ formatCLP(demoBreakdown.afp) }}</dd>
-            </div>
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.healthLabel }}</dt>
-              <dd>−{{ formatCLP(demoBreakdown.salud) }}</dd>
-            </div>
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.unemploymentLabel }}</dt>
-              <dd>−{{ formatCLP(demoBreakdown.cesantia) }}</dd>
-            </div>
-            <div class="demo-calc__row demo-calc__row--total">
-              <dt>{{ t.motor.totalLabel }}</dt>
-              <dd>{{ formatCLP(demoBreakdown.liquido) }}</dd>
-            </div>
-          </dl>
-          <p class="jpws__footnote">{{ t.motor.note }}</p>
-        </div>
-      </div>
-
-      <!-- NÓMINA -->
-      <div *ngIf="activeView === 'nomina'" class="jpws__view">
-        <p class="jpws__view-sub">{{ t.nomina.title }}</p>
-        <ol class="jpws__steps">
-          <li
-            *ngFor="let step of t.nomina.steps; let i = index"
-            class="jpws__step"
-            [class.is-done]="i < t.nomina.activeStep"
-            [class.is-active]="i === t.nomina.activeStep"
-          >
-            <span class="jpws__step-index">{{ i + 1 }}</span>
-            <span>{{ step }}</span>
-          </li>
-        </ol>
-        <p class="jpws__footnote">{{ t.nomina.footnote }}</p>
-      </div>
-
-      <!-- REPORTES -->
-      <div *ngIf="activeView === 'reportes'" class="jpws__view">
-        <p class="jpws__view-sub">{{ t.reportes.title }}</p>
-        <ul class="jpws__reports">
-          <li *ngFor="let report of t.reportes.items" class="jpws__report">
-            <div>
-              <p class="jpws__report-name">{{ report.name }}</p>
-              <p class="jpws__kpi-sub">{{ report.desc }}</p>
-            </div>
-            <span class="jpws__tag">{{ report.tag }}</span>
-          </li>
-        </ul>
+        <label class="block text-xs mb-1.5 jpws__kpi-label" for="jpws-gross">{{ t.motor.grossLabel }}</label>
+        <input
+          id="jpws-gross"
+          type="text"
+          inputmode="numeric"
+          class="demo-calc__input"
+          [value]="demoGross"
+          (input)="onDemoGrossChange($any($event.target).value)"
+        />
+        <dl class="mt-4 space-y-2 text-sm">
+          <div class="demo-calc__row">
+            <dt>{{ t.motor.taxableLabel }}</dt>
+            <dd>{{ formatCLP(demoBreakdown.imponible) }}</dd>
+          </div>
+          <div class="demo-calc__row">
+            <dt>{{ t.motor.afpLabel }}</dt>
+            <dd>−{{ formatCLP(demoBreakdown.afp) }}</dd>
+          </div>
+          <div class="demo-calc__row">
+            <dt>{{ t.motor.healthLabel }}</dt>
+            <dd>−{{ formatCLP(demoBreakdown.salud) }}</dd>
+          </div>
+          <div class="demo-calc__row">
+            <dt>{{ t.motor.unemploymentLabel }}</dt>
+            <dd>−{{ formatCLP(demoBreakdown.cesantia) }}</dd>
+          </div>
+          <div class="demo-calc__row demo-calc__row--total">
+            <dt>{{ t.motor.totalLabel }}</dt>
+            <dd>{{ formatCLP(demoBreakdown.liquido) }}</dd>
+          </div>
+        </dl>
+        <p class="jpws__footnote">{{ t.motor.note }}</p>
       </div>
     </div>
+
+    <p class="jpws__creds">{{ t.demoNote }}</p>
   </div>
 </div>

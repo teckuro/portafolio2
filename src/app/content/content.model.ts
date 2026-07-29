@@ -1,47 +1,14 @@
 export type Lang = 'es' | 'en';
 
-export type WorkspaceViewId =
-  | 'resumen'
-  | 'empleados'
-  | 'parametros'
-  | 'motor'
-  | 'nomina'
-  | 'reportes';
-
 export interface NavLink {
   id: string;
   label: string;
-}
-
-export interface WorkspaceKpi {
-  label: string;
-  value: string;
-  sub: string;
 }
 
 export interface WorkspaceParam {
   label: string;
   value: string;
   delta: string;
-}
-
-export interface EmployeeRow {
-  rut: string;
-  name: string;
-  role: string;
-  status: string;
-  warn?: boolean;
-}
-
-export interface ChartBar {
-  month: string;
-  pct: number;
-}
-
-export interface ReportItem {
-  name: string;
-  desc: string;
-  tag: string;
 }
 
 export interface ProjectItem {
@@ -124,18 +91,6 @@ export interface SiteContent {
     openDemo: string;
     demoNote: string;
     philosophy: string[];
-    views: { id: WorkspaceViewId; label: string }[];
-    resumen: {
-      greeting: string;
-      kpis: WorkspaceKpi[];
-      chartTitle: string;
-      chart: ChartBar[];
-    };
-    empleados: {
-      headers: string[];
-      rows: EmployeeRow[];
-      footnote: string;
-    };
     parametros: {
       title: string;
       items: WorkspaceParam[];
@@ -150,16 +105,6 @@ export interface SiteContent {
       unemploymentLabel: string;
       totalLabel: string;
       note: string;
-    };
-    nomina: {
-      title: string;
-      steps: string[];
-      activeStep: number;
-      footnote: string;
-    };
-    reportes: {
-      title: string;
-      items: ReportItem[];
     };
     teaser: string;
   };
@@ -197,7 +142,6 @@ export interface SiteContent {
     titleHighlight: string;
     impactLabel: string;
     items: JobItem[];
-    teaser: string;
   };
   contact: {
     links: ContactLink[];

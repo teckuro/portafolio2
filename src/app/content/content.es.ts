@@ -34,7 +34,7 @@ export const CONTENT_ES: SiteContent = {
     title: 'JP·Workspace',
     titleHighlight: 'ERP Remuneraciones',
     subtitle:
-      'Simulación navegable del sistema en desarrollo. Todo es representativo del producto real; el Motor ejecuta código de cálculo de verdad.',
+      'El motor de cálculo del ERP ejecutándose en esta página, alimentado por los parámetros del período. El sistema completo está en el demo real.',
     productLabel: 'jp.workspace — ERP Remuneraciones · Chile',
     openDemo: 'Abrir demo real',
     demoNote: 'Acceso demo: demo@demo.cl · DEMO1234',
@@ -44,45 +44,8 @@ export const CONTENT_ES: SiteContent = {
       'La mantenibilidad es una funcionalidad.',
       'Los sistemas complejos se diseñan. No aparecen por accidente.'
     ],
-    views: [
-      { id: 'resumen', label: 'Resumen' },
-      { id: 'empleados', label: 'Empleados' },
-      { id: 'parametros', label: 'Parámetros' },
-      { id: 'motor', label: 'Motor' },
-      { id: 'nomina', label: 'Nómina' },
-      { id: 'reportes', label: 'Reportes' }
-    ],
-    resumen: {
-      greeting: 'Período Julio 2026 · Empresa Prueba',
-      kpis: [
-        { label: 'Empleados activos', value: '13', sub: 'Dotación del período' },
-        { label: 'Aptos para nómina', value: '100%', sub: '13 de 13 trabajadores' },
-        { label: 'Nómina en curso', value: 'Etapa 3/6', sub: 'Cálculo de liquidaciones' },
-        { label: 'Licencias pendientes', value: '6', sub: 'Requieren revisión' }
-      ],
-      chartTitle: 'Evolución del costo empresa',
-      chart: [
-        { month: 'Feb', pct: 6 },
-        { month: 'Mar', pct: 6 },
-        { month: 'Abr', pct: 42 },
-        { month: 'May', pct: 100 },
-        { month: 'Jun', pct: 14 },
-        { month: 'Jul', pct: 9 }
-      ]
-    },
-    empleados: {
-      headers: ['RUT', 'Empleado', 'Cargo', 'Estado'],
-      rows: [
-        { rut: '12.345.678-9', name: 'C. Fuentes', role: 'Jefa de Turno', status: 'Activo' },
-        { rut: '13.456.789-0', name: 'M. Riquelme', role: 'Contador', status: 'Activo' },
-        { rut: '14.567.890-1', name: 'P. Salazar', role: 'Analista de Operaciones', status: 'Activo' },
-        { rut: '15.678.901-2', name: 'V. Aravena', role: 'Supervisora de Bodega', status: 'Licencia', warn: true },
-        { rut: '16.789.012-3', name: 'R. Castillo', role: 'Vendedor Sucursal', status: 'Activo' }
-      ],
-      footnote: 'Ficha completa: contratos, previsión, salud, banca y parámetros por período.'
-    },
     parametros: {
-      title: 'Indicadores del período',
+      title: 'Parámetros del período',
       items: [
         { label: 'UF', value: '$40.820,31', delta: '+0,52%' },
         { label: 'UTM', value: '$71.506', delta: '+1,30%' },
@@ -100,28 +63,6 @@ export const CONTENT_ES: SiteContent = {
       unemploymentLabel: 'Seguro cesantía (0,6%)',
       totalLabel: 'Líquido estimado',
       note: 'Extracto simplificado del motor real. Valores referenciales (UF fija, sin impuesto único).'
-    },
-    nomina: {
-      title: 'Proceso de nómina',
-      steps: [
-        'Apertura del período',
-        'Movimientos del mes',
-        'Cálculo de liquidaciones',
-        'Revisión y ajustes',
-        'Aprobación',
-        'Cierre · LRE y Previred'
-      ],
-      activeStep: 2,
-      footnote: 'Cada etapa valida la anterior; no hay cierre con inconsistencias abiertas.'
-    },
-    reportes: {
-      title: 'Salidas del sistema',
-      items: [
-        { name: 'Libro de Remuneraciones Electrónico', desc: 'Formato Dirección del Trabajo', tag: 'CSV' },
-        { name: 'Archivo Previred', desc: 'Cotizaciones previsionales del período', tag: 'TXT' },
-        { name: 'Liquidaciones de sueldo', desc: 'Por trabajador, firmables', tag: 'PDF' },
-        { name: 'Centralización contable', desc: 'Asiento por centro de costo', tag: 'SQL' }
-      ]
     },
     teaser: 'Cómo resuelve problemas'
   },
@@ -341,8 +282,7 @@ export const CONTENT_ES: SiteContent = {
         impact: 'Funcionalidades entregadas en un portal de autoatención usado por clientes finales.',
         tech: ['Angular', 'Laravel', 'PHP', 'JavaScript', 'TypeScript']
       }
-    ],
-    teaser: 'Hablemos'
+    ]
   },
   contact: {
     links: [
