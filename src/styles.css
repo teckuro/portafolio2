@@ -490,7 +490,7 @@ body {
 .impact-line {
   margin-top: 1.25rem;
   padding: 0.8rem 1rem;
-  border-left: 2px solid var(--accent);
+  border-left: 2px solid var(--line-strong);
   background: rgba(18, 24, 32, 0.04);
   border-radius: 0 0.5rem 0.5rem 0;
 }
