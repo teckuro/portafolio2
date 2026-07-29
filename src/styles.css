@@ -491,7 +491,7 @@ body {
   margin-top: 1.25rem;
   padding: 0.8rem 1rem;
   border-left: 2px solid var(--accent);
-  background: var(--accent-soft);
+  background: rgba(18, 24, 32, 0.04);
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
@@ -637,7 +637,7 @@ body {
 }
 
 .project-list__item.is-active {
-  background: rgba(36, 92, 78, 0.1);
+  background: rgba(18, 24, 32, 0.05);
   padding-left: 1.1rem;
   border-left: 2px solid var(--accent);
 }
