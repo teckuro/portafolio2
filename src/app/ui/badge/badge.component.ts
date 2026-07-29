@@ -1,16 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-export type BadgeVariant =
-  | 'violet'
-  | 'cyan'
-  | 'indigo'
-  | 'green'
-  | 'ghost'
-  | 'orange'
-  | 'pink'
-  | 'yellow'
-  | 'teal'
-  | 'red';
+export type BadgeVariant = 'default' | 'green' | 'soft' | 'ghost';
 
 export type BadgeSize = 'sm' | 'md';
 
@@ -19,26 +9,30 @@ export type BadgeSize = 'sm' | 'md';
   templateUrl: './badge.component.html'
 })
 export class BadgeComponent {
-  @Input() variant: BadgeVariant = 'ghost';
+  @Input() variant: BadgeVariant | string = 'default';
   @Input() size: BadgeSize = 'sm';
   @Input() dot = false;
   @Input() className = '';
 
+  private resolveVariant(): BadgeVariant {
+    if (this.variant === 'green' || this.variant === 'soft' || this.variant === 'ghost') {
+      return this.variant;
+    }
+    if (this.variant === 'default') {
+      return 'default';
+    }
+    // Legacy color names from content data map to default tonal tag
+    return 'default';
+  }
+
   get variantClass(): string {
-    // Soft tonal tags that sit well on mist / sage / ink bands
     const variants: Record<BadgeVariant, string> = {
-      violet: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      cyan: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      indigo: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
+      default: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
       green: 'bg-[var(--accent-soft)] border-transparent text-[var(--accent)]',
-      ghost: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      orange: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      pink: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      yellow: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      teal: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]',
-      red: 'bg-[rgba(18,24,32,0.05)] border-[var(--line)] text-[var(--muted)]'
+      soft: 'bg-[rgba(36,92,78,0.08)] border-[var(--line)] text-[var(--ink)]',
+      ghost: 'bg-transparent border-[var(--line)] text-[var(--muted)]'
     };
-    return variants[this.variant] ?? variants.ghost;
+    return variants[this.resolveVariant()];
   }
 
   get sizeClass(): string {
@@ -50,6 +44,6 @@ export class BadgeComponent {
   }
 
   get dotClass(): string {
-    return this.variant === 'green' ? 'bg-[var(--accent)]' : 'bg-[var(--faint)]';
+    return this.resolveVariant() === 'green' ? 'bg-[var(--accent)]' : 'bg-[var(--faint)]';
   }
 }
