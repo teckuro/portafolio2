@@ -135,6 +135,8 @@ export const CONTENT_ES: SiteContent = {
         tags: ['IA', 'Automatización', 'Supabase', 'Vercel'],
         github: 'https://github.com/teckuro',
         demoUrl: 'https://huntos.vercel.app/',
+        demoNote: 'Acceso demo: demo@huntos.app · DemoHuntOS2026!',
+        screenshot: 'assets/projects/huntos.jpg',
         mockupLabel: 'HuntOS',
         previewDomain: 'huntos.vercel.app'
       }

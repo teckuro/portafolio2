@@ -194,13 +194,23 @@
               *ngFor="let project of [activeProject]; trackBy: trackProject"
               class="project-stage"
             >
-              <div class="project-mock" aria-hidden="true">
-                <div class="project-mock__chrome">
+              <div class="project-mock">
+                <div class="project-mock__chrome" aria-hidden="true">
                   <span class="project-mock__dot"></span>
                   <span class="project-mock__dot"></span>
                   <span class="project-mock__dot"></span>
                   <span class="ml-2 text-[11px] text-white/40 font-mono">{{ project.previewDomain }}</span>
                 </div>
+                <a
+                  *ngIf="project.demoUrl"
+                  [href]="project.demoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-mock__open"
+                  [attr.aria-label]="content.projects.demoLabel + ' — ' + project.shortTitle"
+                >
+                  <span>{{ content.projects.demoLabel }} ↗</span>
+                </a>
                 <img
                   *ngIf="project.screenshot"
                   [src]="project.screenshot"

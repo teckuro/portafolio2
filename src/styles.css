@@ -807,12 +807,51 @@ body {
 
 /* Project mock UI */
 .project-mock {
+  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--line-strong);
   background: #1a222b;
   color: #e8eef3;
   box-shadow: 0 18px 40px rgba(18, 24, 32, 0.18);
+  transition: box-shadow var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+
+.project-mock:hover {
+  box-shadow: 0 24px 52px rgba(18, 24, 32, 0.26);
+  transform: translateY(-2px);
+}
+
+.project-mock__open {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0.9rem;
+  opacity: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(18, 24, 32, 0.5) 100%);
+  transition: opacity var(--duration) var(--ease);
+}
+
+.project-mock__open span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(232, 238, 243, 0.2);
+  background: #121820;
+  color: #6eb89a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.project-mock:hover .project-mock__open,
+.project-mock__open:focus-visible {
+  opacity: 1;
 }
 
 .project-mock__chrome {
@@ -853,6 +892,11 @@ body {
   min-height: 210px;
   object-fit: cover;
   object-position: top;
+  transition: transform 0.5s var(--ease);
+}
+
+.project-mock:hover .project-mock__screenshot {
+  transform: scale(1.015);
 }
 
 .project-mock__side {
@@ -1114,7 +1158,9 @@ body {
   .section-teaser:hover,
   .project-list__item.is-active,
   .project-stage,
-  .accordion-panel {
+  .accordion-panel,
+  .project-mock:hover,
+  .project-mock:hover .project-mock__screenshot {
     transform: none;
     padding-left: inherit;
     animation: none !important;
