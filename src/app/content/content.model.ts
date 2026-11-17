@@ -144,6 +144,11 @@ export interface SiteContent {
     items: JobItem[];
   };
   contact: {
+    eyebrow: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    emailCta: string;
     links: ContactLink[];
     whatsappAria: string;
   };

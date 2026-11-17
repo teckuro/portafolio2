@@ -1,5 +1,12 @@
 
-import { LucideArrowRight, LucideChevronDown, LucideExternalLink } from '@lucide/angular';
+import {
+  LucideArrowRight,
+  LucideArrowUpRight,
+  LucideChevronDown,
+  LucideDownload,
+  LucideFolderGit,
+  LucideMail,
+} from '@lucide/angular';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ErpWorkspaceComponent } from './components/erp-workspace/erp-workspace.component';
@@ -17,7 +24,7 @@ import { Lang, ProjectItem, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
 
 @Component({
-  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideExternalLink, LucideChevronDown],
+  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideArrowUpRight, LucideChevronDown, LucideDownload, LucideFolderGit, LucideMail],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -32,6 +39,11 @@ export class AppComponent implements OnInit, OnDestroy {
   /** Recursos que no cambian con el idioma. */
   readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf';
   readonly whatsappUrl = 'https://wa.me/56988292018';
+
+  /** Enlace mailto tomado del primer contacto de tipo email. */
+  get emailHref(): string {
+    return this.content.contact.links.find((l) => l.href.startsWith('mailto:'))?.href ?? '#contacto';
+  }
 
   private readonly language = inject(LanguageService);
 
