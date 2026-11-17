@@ -1104,6 +1104,13 @@ body {
   color: var(--ink);
 }
 
+/* Variante táctil (barra móvil): áreas de toque ≥ 36px */
+.lang-toggle--touch button {
+  min-width: 2.6rem;
+  min-height: 2.25rem;
+  font-size: 0.8rem;
+}
+
 .lang-toggle button.is-active {
   background: var(--ink);
   color: var(--bg);
