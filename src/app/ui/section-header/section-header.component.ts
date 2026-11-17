@@ -1,6 +1,8 @@
+import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
+  imports: [NgClass],
   selector: 'app-section-header',
   templateUrl: './section-header.component.html'
 })
