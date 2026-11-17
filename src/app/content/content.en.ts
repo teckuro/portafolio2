@@ -105,7 +105,7 @@ export const CONTENT_EN: SiteContent = {
         github: 'https://github.com/teckuro',
         demoUrl: 'https://erp-beta-bay.vercel.app/',
         demoNote: 'Demo access: demo@demo.cl · DEMO1234',
-        screenshot: 'assets/projects/erp-remuneraciones.png',
+        screenshot: 'assets/projects/erp-remuneraciones.webp',
         mockupLabel: 'Payroll',
         previewDomain: 'erp-beta-bay.vercel.app'
       },

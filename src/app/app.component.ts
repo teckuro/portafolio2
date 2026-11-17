@@ -1,24 +1,49 @@
-import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+
+import { LucideArrowRight, LucideChevronDown, LucideExternalLink } from '@lucide/angular';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ErpWorkspaceComponent } from './components/erp-workspace/erp-workspace.component';
+import { SectionHeaderComponent } from './ui/section-header/section-header.component';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  afterNextRender,
+  inject,
+  signal,
+} from '@angular/core';
 import { Lang, ProjectItem, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
 
 @Component({
+  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideExternalLink, LucideChevronDown],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   activeProjectId = 3;
   expandedJobIndex = 0;
   expandedAdrIndex = 0;
-  scrollProgress = 0;
+  readonly scrollProgress = signal(0);
   private revealObserver?: IntersectionObserver;
 
   /** Recursos que no cambian con el idioma. */
   readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf';
   readonly whatsappUrl = 'https://wa.me/56988292018';
 
-  constructor(private readonly language: LanguageService) {}
+  private readonly language = inject(LanguageService);
+
+  constructor() {
+    // Solo navegador, tras hidratar: idioma preferido, reveals y progreso de scroll.
+    afterNextRender(() => {
+      this.language.applyPreferredLang();
+      this.initRevealObserver();
+      this.updateScrollProgress();
+      this.logConsoleGreeting();
+    });
+  }
 
   get content(): SiteContent {
     return this.language.content;
@@ -30,12 +55,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.language.applyDocumentMeta();
-  }
-
-  ngAfterViewInit(): void {
-    this.initRevealObserver();
-    this.updateScrollProgress();
-    this.logConsoleGreeting();
   }
 
   ngOnDestroy(): void {
@@ -58,7 +77,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     const doc = document.documentElement;
     const max = doc.scrollHeight - window.innerHeight;
-    this.scrollProgress = max > 0 ? Math.round(Math.min(100, Math.max(0, (window.scrollY / max) * 100))) : 0;
+    this.scrollProgress.set(
+      max > 0 ? Math.round(Math.min(100, Math.max(0, (window.scrollY / max) * 100))) : 0
+    );
   }
 
   private initRevealObserver(): void {

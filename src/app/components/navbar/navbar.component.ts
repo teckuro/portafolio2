@@ -1,8 +1,11 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { LucideMenu, LucideX } from '@lucide/angular';
+import { Component, HostListener, Input, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { Lang, SiteContent } from '../../content/content.model';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
+  imports: [LucideMenu, LucideX],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
@@ -14,6 +17,8 @@ export class NavbarComponent implements OnInit {
   scrolled = false;
   menuOpen = false;
   activeSection = '';
+
+  private readonly platformId = inject(PLATFORM_ID);
 
   constructor(private readonly language: LanguageService) {}
 
@@ -30,7 +35,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.onScroll();
+    if (isPlatformBrowser(this.platformId)) {
+      this.onScroll();
+    }
   }
 
   @HostListener('window:scroll')

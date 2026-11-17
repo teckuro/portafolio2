@@ -1,8 +1,11 @@
+
+import { LucideExternalLink } from '@lucide/angular';
 import { Component } from '@angular/core';
 import { SiteContent } from '../../content/content.model';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
+  imports: [LucideExternalLink],
   selector: 'app-erp-workspace',
   templateUrl: './erp-workspace.component.html'
 })

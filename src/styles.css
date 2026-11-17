@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap");
-
+/* Fuentes: se cargan desde index.html (preconnect + carga no bloqueante). */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

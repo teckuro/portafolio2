@@ -3,38 +3,40 @@
   [class]="scrolled
     ? 'bg-[#d5dbe4]/92 backdrop-blur-xl border-b border-[rgba(18,24,32,0.12)] shadow-[0_8px_24px_rgba(18,24,32,0.06)]'
     : 'bg-transparent'"
->
+  >
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="flex items-center justify-between h-16">
       <button
         (click)="scrollTo('inicio')"
         class="group flex items-baseline gap-1"
         type="button"
-      >
+        >
         <span
           class="font-display text-[var(--ink)] tracking-tight text-[1.05rem]"
           style="font-weight: 700"
-        >
+          >
           Juan Pablo Huerta
         </span>
       </button>
 
       <div class="hidden lg:flex items-center gap-1">
-        <button
-          *ngFor="let link of content.nav.links"
-          type="button"
-          (click)="scrollTo(link.id)"
-          class="relative px-3 py-2 text-[13px] transition-colors duration-200"
+        @for (link of content.nav.links; track $index) {
+          <button
+            type="button"
+            (click)="scrollTo(link.id)"
+            class="relative px-3 py-2 text-[13px] transition-colors duration-200"
           [class]="activeSection === link.id
             ? 'text-[var(--ink)]'
             : 'text-[var(--muted)] hover:text-[var(--ink)]'"
-        >
-          {{ link.label }}
-          <span
-            *ngIf="activeSection === link.id"
-            class="absolute left-3 right-3 -bottom-0.5 h-px bg-[var(--accent)]"
-          ></span>
-        </button>
+            >
+            {{ link.label }}
+            @if (activeSection === link.id) {
+              <span
+                class="absolute left-3 right-3 -bottom-0.5 h-px bg-[var(--accent)]"
+              ></span>
+            }
+          </button>
+        }
       </div>
 
       <div class="hidden lg:flex items-center gap-4">
@@ -43,20 +45,21 @@
           <span aria-hidden="true">/</span>
           <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
         </div>
-        <a
-          *ngIf="cvHref"
-          [href]="cvHref"
-          download
-          class="text-[13px] text-[var(--muted)] hover:text-[var(--ink)] link-underline"
-        >
-          {{ content.nav.cv }}
-        </a>
+        @if (cvHref) {
+          <a
+            [href]="cvHref"
+            download
+            class="text-[13px] text-[var(--muted)] hover:text-[var(--ink)] link-underline"
+            >
+            {{ content.nav.cv }}
+          </a>
+        }
         <button
           type="button"
           class="px-4 py-2 text-[13px] rounded-md bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--accent)] active:translate-y-px transition-all"
           style="font-weight: 500"
           (click)="scrollTo('contacto')"
-        >
+          >
           {{ content.nav.contact }}
         </button>
       </div>
@@ -66,56 +69,61 @@
         (click)="menuOpen = !menuOpen"
         class="lg:hidden w-9 h-9 flex items-center justify-center text-[var(--ink)]"
         [attr.aria-label]="content.nav.menuAria"
-      >
-        <lucide-icon *ngIf="!menuOpen" name="menu" class="w-5 h-5"></lucide-icon>
-        <lucide-icon *ngIf="menuOpen" name="x" class="w-5 h-5"></lucide-icon>
+        >
+        @if (!menuOpen) {
+          <svg lucideMenu class="w-5 h-5"></svg>
+        }
+        @if (menuOpen) {
+          <svg lucideX class="w-5 h-5"></svg>
+        }
       </button>
     </div>
   </div>
 </nav>
 
-<div
-  *ngIf="menuOpen"
-  class="fixed top-16 left-0 right-0 z-40 bg-[#d5dbe4]/96 backdrop-blur-xl border-b border-[rgba(18,24,32,0.12)] shadow-lg lg:hidden"
->
-  <div class="max-w-content mx-auto px-5 py-4 space-y-1">
-    <button
-      *ngFor="let link of content.nav.links"
-      type="button"
-      (click)="scrollTo(link.id)"
-      class="w-full text-left px-2 py-3 text-sm transition-colors border-b border-[rgba(18,24,32,0.1)] last:border-0"
+@if (menuOpen) {
+  <div
+    class="fixed top-16 left-0 right-0 z-40 bg-[#d5dbe4]/96 backdrop-blur-xl border-b border-[rgba(18,24,32,0.12)] shadow-lg lg:hidden"
+    >
+    <div class="max-w-content mx-auto px-5 py-4 space-y-1">
+      @for (link of content.nav.links; track $index) {
+        <button
+          type="button"
+          (click)="scrollTo(link.id)"
+          class="w-full text-left px-2 py-3 text-sm transition-colors border-b border-[rgba(18,24,32,0.1)] last:border-0"
       [class]="activeSection === link.id
         ? 'text-[var(--ink)]'
         : 'text-[var(--muted)]'"
-    >
-      {{ link.label }}
-    </button>
-
-    <div class="pt-3 flex items-center justify-between">
-      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
-        <button type="button" [class.is-active]="lang === 'es'" (click)="setLang('es')">ES</button>
-        <span aria-hidden="true">/</span>
-        <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
+          >
+          {{ link.label }}
+        </button>
+      }
+      <div class="pt-3 flex items-center justify-between">
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" [class.is-active]="lang === 'es'" (click)="setLang('es')">ES</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
+        </div>
+      </div>
+      <div class="pt-3 flex gap-3">
+        @if (cvHref) {
+          <a
+            [href]="cvHref"
+            download
+            class="flex-1 py-2.5 text-sm text-center border border-[rgba(18,24,32,0.18)] rounded-md text-[var(--ink)] bg-[var(--paper)]/40"
+            >
+            {{ content.nav.cv }}
+          </a>
+        }
+        <button
+          type="button"
+          (click)="scrollTo('contacto')"
+          class="flex-1 py-2.5 text-sm rounded-md bg-[var(--ink)] text-[var(--paper)]"
+          style="font-weight: 500"
+          >
+          {{ content.nav.contact }}
+        </button>
       </div>
     </div>
-
-    <div class="pt-3 flex gap-3">
-      <a
-        *ngIf="cvHref"
-        [href]="cvHref"
-        download
-        class="flex-1 py-2.5 text-sm text-center border border-[rgba(18,24,32,0.18)] rounded-md text-[var(--ink)] bg-[var(--paper)]/40"
-      >
-        {{ content.nav.cv }}
-      </a>
-      <button
-        type="button"
-        (click)="scrollTo('contacto')"
-        class="flex-1 py-2.5 text-sm rounded-md bg-[var(--ink)] text-[var(--paper)]"
-        style="font-weight: 500"
-      >
-        {{ content.nav.contact }}
-      </button>
-    </div>
   </div>
-</div>
+}

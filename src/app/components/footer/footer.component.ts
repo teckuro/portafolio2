@@ -1,8 +1,10 @@
+
 import { Component } from '@angular/core';
 import { SiteContent } from '../../content/content.model';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
+  imports: [],
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
