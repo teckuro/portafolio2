@@ -37,7 +37,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private revealObserver?: IntersectionObserver;
 
   /** Recursos que no cambian con el idioma. */
-  readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf';
+  /** `?v=` invalida la caché de /assets en Vercel al publicar un CV nuevo. */
+  readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf?v=2026-11';
   readonly whatsappUrl = 'https://wa.me/56988292018';
 
   /** Enlace mailto tomado del primer contacto de tipo email. */

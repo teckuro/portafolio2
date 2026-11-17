@@ -39,7 +39,7 @@
           <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
         </div>
         @if (cvHref) {
-          <a [href]="cvHref" download class="text-sm text-[var(--muted)] hover:text-[var(--ink)] link-underline">
+          <a [href]="cvHref" download="JuanPabloHuerta-CV.pdf" class="text-sm text-[var(--muted)] hover:text-[var(--ink)] link-underline">
             {{ content.nav.cv }}
           </a>
         }
@@ -85,7 +85,7 @@
         </div>
         <div class="flex gap-2">
           @if (cvHref) {
-            <a [href]="cvHref" download class="btn-secondary !py-2.5 !px-4 !text-sm">{{ content.nav.cv }}</a>
+            <a [href]="cvHref" download="JuanPabloHuerta-CV.pdf" class="btn-secondary !py-2.5 !px-4 !text-sm">{{ content.nav.cv }}</a>
           }
           <button type="button" (click)="scrollTo('contacto')" class="btn-primary !py-2.5 !px-4 !text-sm">
             {{ content.nav.contact }}
