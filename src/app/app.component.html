@@ -11,123 +11,72 @@
 
 <app-navbar [cvHref]="cvPdf"></app-navbar>
 
-<div class="min-h-screen bg-[var(--bg)] text-[var(--ink)] overflow-x-hidden antialiased" id="inicio">
+<div class="min-h-screen bg-[var(--bg)] text-[var(--ink)] overflow-x-clip antialiased" id="inicio">
   <main>
     <!-- HERO · ¿Quién es? -->
-    <section class="relative min-h-screen flex items-end sm:items-center overflow-hidden px-5 sm:px-8 pt-20 pb-20">
+    <section class="band-ink relative min-h-[100svh] flex items-center overflow-hidden px-5 sm:px-8 pt-28 pb-16">
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          class="absolute inset-0"
-          style="
-            background:
-              linear-gradient(125deg, #8fa4ae 0%, #a9bbb4 26%, #bec8d4 55%, #9aafbc 100%);
-          "
-        ></div>
-        <div
-          class="absolute top-0 right-0 h-full w-[42%] hidden lg:block"
-          style="
-            background:
-              linear-gradient(200deg, rgba(36, 92, 78, 0.42) 0%, rgba(18, 40, 58, 0.28) 55%, rgba(18, 40, 58, 0.08) 100%);
-          "
-        ></div>
-        <div
-          class="absolute -top-24 -right-[12%] w-[70vw] max-w-[780px] aspect-square rounded-full animate-drift"
-          style="
-            background: radial-gradient(circle at 40% 40%, rgba(36, 92, 78, 0.5) 0%, rgba(36, 92, 78, 0.12) 42%, transparent 70%);
-            filter: blur(8px);
-          "
-        ></div>
-        <div
-          class="absolute -bottom-32 -left-[18%] w-[75vw] max-w-[820px] aspect-square rounded-full"
-          style="
-            background: radial-gradient(circle at 55% 45%, rgba(18, 40, 58, 0.38) 0%, rgba(18, 40, 58, 0.1) 45%, transparent 70%);
-            filter: blur(10px);
-          "
-        ></div>
-        <div
-          class="absolute inset-0 opacity-[0.25]"
-          style="
-            background-image: radial-gradient(circle, rgba(18, 24, 32, 0.18) 1px, transparent 1px);
-            background-size: 26px 26px;
-          "
-        ></div>
-        <div
-          class="absolute inset-0"
-          style="background: linear-gradient(180deg, transparent 50%, rgba(213, 219, 228, 0.65) 100%);"
-        ></div>
-        <p
-          class="absolute right-[-2%] top-[18%] hidden lg:block font-display select-none pointer-events-none animate-fade-in delay-2"
-          style="
-            font-size: clamp(10rem, 22vw, 18rem);
-            font-weight: 800;
-            line-height: 0.8;
-            letter-spacing: -0.06em;
-            color: rgba(18, 24, 32, 0.07);
-          "
-          >
-          JH
-        </p>
+        <div class="absolute inset-0 grid-overlay"></div>
+        <div class="hero-glow absolute -top-40 -right-40 w-[80vw] max-w-[900px] aspect-square rounded-full animate-drift"></div>
+        <p class="hero-monogram absolute right-[-2%] top-1/2 -translate-y-1/2 hidden lg:block animate-fade-in delay-3">JH</p>
       </div>
 
       <div class="relative z-10 max-w-content mx-auto w-full">
-        <div class="max-w-3xl">
-          <p class="text-[11px] uppercase tracking-[0.24em] text-[var(--ink)]/60 mb-6 animate-fade-up">
+        <div class="max-w-4xl">
+          <p class="hero-status animate-fade-up">
+            <span class="status-dot" aria-hidden="true"></span>
             {{ content.hero.eyebrow }}
           </p>
 
-          <h1
-            class="font-display tracking-tight leading-[0.95] text-[var(--ink)] animate-fade-up delay-1"
-            style="font-weight: 800; font-size: clamp(2.75rem, 9vw, 5.75rem);"
-            >
-            Juan Pablo<br />Huerta
+          <h1 class="hero-name mt-8 animate-fade-up delay-1">
+            Juan Pablo<br /><span class="hero-name__accent">Huerta</span>
           </h1>
 
-          <div class="mt-5 h-px w-16 bg-[var(--accent)] animate-draw-line delay-2"></div>
+          <div class="mt-8 flex flex-col gap-2 animate-fade-up delay-2">
+            <p class="font-display text-[var(--ink)] tracking-tight" style="font-weight: 600; font-size: clamp(1.25rem, 2.6vw, 1.75rem)">
+              {{ content.hero.role }}
+            </p>
+            <p class="text-[var(--accent)] text-sm sm:text-base tracking-wide" style="font-weight: 600">
+              {{ content.hero.specialization }}
+            </p>
+          </div>
 
-          <p
-            class="mt-6 font-display text-[var(--ink)] tracking-tight animate-fade-up delay-2"
-            style="font-weight: 600; font-size: clamp(1.15rem, 2.4vw, 1.55rem);"
-            >
-            {{ content.hero.role }}
-          </p>
-
-          <p class="mt-2 text-[var(--accent)] text-sm tracking-wide animate-fade-up delay-2" style="font-weight: 600">
-            {{ content.hero.specialization }}
-          </p>
-
-          <p class="mt-4 text-[var(--ink)]/75 max-w-xl leading-relaxed text-[1.05rem] animate-fade-up delay-3">
+          <p class="mt-5 text-[var(--muted)] max-w-2xl leading-relaxed text-[1.05rem] sm:text-lg animate-fade-up delay-3">
             {{ content.hero.statement }}
           </p>
 
-          <div class="mt-6 flex flex-wrap gap-2 animate-fade-up delay-3">
+          <div class="mt-7 flex flex-wrap gap-2 animate-fade-up delay-3">
             @for (tech of content.hero.stack; track $index) {
               <span class="hero-chip">{{ tech }}</span>
             }
           </div>
 
-          <div class="mt-9 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
+          <div class="mt-10 flex flex-wrap items-center gap-3 animate-fade-up delay-4">
             <button type="button" (click)="scrollTo('workspace')" class="btn-primary">
               {{ content.hero.ctaWorkspace }}
               <svg lucideArrowRight class="w-4 h-4 btn-arrow"></svg>
             </button>
-            <a [href]="cvPdf" download class="btn-secondary">{{ content.hero.ctaCv }}</a>
+            <a [href]="cvPdf" download="JuanPabloHuerta-CV.pdf" class="btn-secondary">
+              <svg lucideDownload class="w-4 h-4"></svg>
+              {{ content.hero.ctaCv }}
+            </a>
             <button type="button" (click)="scrollTo('contacto')" class="btn-secondary">
               {{ content.hero.ctaContact }}
             </button>
           </div>
         </div>
 
-        <div class="mt-14 sm:mt-16 animate-fade-up delay-5">
+        <div class="mt-16 animate-fade-up delay-5">
           <button type="button" class="scroll-cue" (click)="scrollTo('workspace')" [attr.aria-label]="content.hero.scrollCue">
-            <span>{{ content.hero.scrollCue }}</span>
             <span class="scroll-cue__line"></span>
+            <span>{{ content.hero.scrollCue }}</span>
           </button>
         </div>
       </div>
     </section>
 
     <!-- WORKSPACE · ¿Qué construye? -->
-    <section id="workspace" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
+    <section id="workspace" class="relative band-base section-pad">
       <div class="max-w-content mx-auto">
         <div class="reveal">
           <app-section-header
@@ -161,7 +110,7 @@
     </section>
 
     <!-- PROYECTOS · ¿Cómo resuelve problemas? -->
-    <section id="proyectos" class="relative band-soft py-24 sm:py-28 px-5 sm:px-8">
+    <section id="proyectos" class="relative band-alt section-pad">
       <div class="max-w-content mx-auto">
         <div class="reveal">
           <app-section-header
@@ -173,39 +122,35 @@
           ></app-section-header>
         </div>
 
-        <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
-          <aside class="lg:col-span-4 reveal reveal-delay-1">
-            <ul class="project-list space-y-0">
-              @for (p of content.projects.items; track p.id) {
-                <li>
-                  <button
-                    type="button"
-                    class="project-list__item"
-                    [class.is-active]="activeProject.id === p.id"
-                    (click)="setActiveProject(p.id)"
-                    >
-                    <span class="project-list__num">{{ p.number }}</span>
-                    <span class="min-w-0">
-                      <span class="project-list__title">{{ p.shortTitle }}</span>
-                      <span class="project-list__cat">{{ p.category }}</span>
-                    </span>
-                  </button>
-                </li>
-              }
-            </ul>
-          </aside>
+        <div class="project-tabs reveal reveal-delay-1" role="tablist" [attr.aria-label]="content.projects.title">
+          @for (p of content.projects.items; track p.id) {
+            <button
+              type="button"
+              role="tab"
+              class="project-tab"
+              [class.is-active]="activeProject.id === p.id"
+              [attr.aria-selected]="activeProject.id === p.id"
+              (click)="setActiveProject(p.id)"
+              >
+              <span class="project-tab__num">{{ p.number }}</span>
+              <span class="min-w-0">
+                <span class="project-tab__title">{{ p.shortTitle }}</span>
+                <span class="project-tab__cat">{{ p.category }}</span>
+              </span>
+            </button>
+          }
+        </div>
 
-          <div class="lg:col-span-8 reveal reveal-delay-2">
-            @for (project of [activeProject]; track trackProject($index, project)) {
-              <article
-                class="project-stage"
-                >
+        <div class="reveal reveal-delay-2">
+          @for (project of [activeProject]; track trackProject($index, project)) {
+            <article class="project-stage grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              <div class="lg:col-span-7 lg:sticky lg:top-24 space-y-4">
                 <div class="project-mock" aria-hidden="true">
                   <div class="project-mock__chrome">
                     <span class="project-mock__dot"></span>
                     <span class="project-mock__dot"></span>
                     <span class="project-mock__dot"></span>
-                    <span class="ml-2 text-[11px] text-white/40 font-mono">{{ project.previewDomain }}</span>
+                    <span class="project-mock__domain">{{ project.previewDomain }}</span>
                   </div>
                   @if (project.screenshot) {
                     <img
@@ -217,8 +162,7 @@
                       loading="lazy"
                       decoding="async"
                       />
-                  }
-                  @if (!project.screenshot) {
+                  } @else {
                     <div class="project-mock__body">
                       <div class="project-mock__side">
                         <span class="project-mock__nav is-active"></span>
@@ -244,82 +188,71 @@
                     </div>
                   }
                 </div>
-                <div class="mt-6 space-y-5">
-                  <div>
-                    <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">{{ project.number }}</p>
-                    <h3 class="font-display text-2xl sm:text-3xl text-[var(--ink)] leading-snug" style="font-weight: 700">
-                      {{ project.title }}
-                    </h3>
-                  </div>
-                  <div class="grid sm:grid-cols-3 gap-3">
-                    @for (metric of project.metrics; track $index) {
-                      <div
-                        class="rounded-xl bg-[rgba(18,24,32,0.05)] px-4 py-4 border border-[var(--line)]"
-                        >
-                        <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
-                        <p class="text-[var(--faint)] text-xs mt-1 leading-snug">{{ metric.label }}</p>
-                      </div>
-                    }
-                  </div>
-                  <div class="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">{{ content.projects.problemLabel }}</p>
-                      <p class="text-[var(--muted)] leading-relaxed text-sm">{{ project.problem }}</p>
+
+                <div class="grid grid-cols-3 gap-3">
+                  @for (metric of project.metrics; track $index) {
+                    <div class="metric-card">
+                      <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
+                      <p class="text-[var(--muted)] text-xs sm:text-sm mt-1 leading-snug">{{ metric.label }}</p>
                     </div>
-                    <div>
-                      <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-2">{{ content.projects.solutionLabel }}</p>
-                      <p class="text-[var(--muted)] leading-relaxed text-sm">{{ project.solution }}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-3">{{ content.projects.architectureLabel }}</p>
-                    <div class="arch-diagram">
-                      @for (layer of project.architectureLayers; track $index; let last = $last) {
-                        <span class="arch-diagram__layer">{{ layer }}</span>
-                        @if (!last) {
-                          <span class="arch-diagram__arrow" aria-hidden="true">↓</span>
-                        }
-                      }
-                    </div>
-                    <p class="text-[var(--faint)] text-xs mt-3 leading-relaxed max-w-md">{{ project.architectureNote }}</p>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-4">
-                    <div class="flex flex-wrap gap-2">
-                      @for (tag of project.tags; track $index) {
-                        <span class="hero-chip">{{ tag }}</span>
-                      }
-                    </div>
-                    @if (project.demoUrl) {
-                      <a
-                        [href]="project.demoUrl"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors link-underline"
-                        style="font-weight: 600"
-                        >
-                        {{ content.projects.demoLabel }}
-                        <svg lucideExternalLink class="w-3.5 h-3.5"></svg>
-                      </a>
-                    }
-                    <a
-                      [href]="project.github"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors link-underline"
-                      >
-                      {{ content.projects.codeLabel }}
-                      <svg lucideExternalLink class="w-3.5 h-3.5"></svg>
-                    </a>
-                  </div>
-                  @if (project.demoNote) {
-                    <p class="text-xs text-[var(--faint)] font-mono">
-                      {{ project.demoNote }}
-                    </p>
                   }
                 </div>
-              </article>
-            }
-          </div>
+              </div>
+
+              <div class="lg:col-span-5 space-y-7">
+                <div>
+                  <p class="label mb-3">{{ project.number }} · {{ project.category }}</p>
+                  <h3 class="font-display text-2xl sm:text-[2rem] text-[var(--ink)] leading-tight tracking-tight" style="font-weight: 700">
+                    {{ project.title }}
+                  </h3>
+                </div>
+
+                <div class="space-y-5">
+                  <div>
+                    <p class="label mb-2">{{ content.projects.problemLabel }}</p>
+                    <p class="text-[var(--muted)] leading-relaxed">{{ project.problem }}</p>
+                  </div>
+                  <div>
+                    <p class="label mb-2">{{ content.projects.solutionLabel }}</p>
+                    <p class="text-[var(--ink)] leading-relaxed">{{ project.solution }}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <p class="label mb-3">{{ content.projects.architectureLabel }}</p>
+                  <div class="arch-diagram">
+                    @for (layer of project.architectureLayers; track $index) {
+                      <span class="arch-diagram__layer">{{ layer }}</span>
+                    }
+                  </div>
+                  <p class="text-[var(--muted)] text-sm mt-3 leading-relaxed">{{ project.architectureNote }}</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                  @for (tag of project.tags; track $index) {
+                    <span class="tag">{{ tag }}</span>
+                  }
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                  @if (project.demoUrl) {
+                    <a [href]="project.demoUrl" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                      {{ content.projects.demoLabel }}
+                      <svg lucideArrowUpRight class="w-4 h-4 btn-arrow"></svg>
+                    </a>
+                  }
+                  <a [href]="project.github" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    <svg lucideFolderGit class="w-4 h-4"></svg>
+                    {{ content.projects.codeLabel }}
+                  </a>
+                </div>
+
+                @if (project.demoNote) {
+                  <p class="demo-note">{{ project.demoNote }}</p>
+                }
+              </div>
+            </article>
+          }
         </div>
 
         <div class="mt-14 reveal">
@@ -332,7 +265,7 @@
     </section>
 
     <!-- THINKING · ¿Cómo piensa y decide? -->
-    <section id="thinking" class="relative band-sage py-24 sm:py-28 px-5 sm:px-8">
+    <section id="thinking" class="relative band-ink section-pad overflow-hidden">
       <div class="max-w-content mx-auto">
         <div class="reveal">
           <app-section-header
@@ -356,16 +289,13 @@
                 [attr.aria-expanded]="expandedAdrIndex === i"
                 (click)="toggleAdr(i)"
                 >
-                <div class="min-w-0 text-left flex items-baseline gap-4">
-                  <span class="adr-code">{{ adr.code }}</span>
-                  <h3 class="font-display text-base sm:text-lg text-[var(--ink)] leading-snug" style="font-weight: 600">
+                <div class="min-w-0 text-left flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <span class="adr-code self-start sm:self-auto">{{ adr.code }}</span>
+                  <h3 class="font-display text-lg sm:text-xl text-[var(--ink)] leading-snug" style="font-weight: 600">
                     {{ adr.title }}
                   </h3>
                 </div>
-                <svg
-                  lucideChevronDown
-                  class="accordion-chevron w-5 h-5 text-[var(--faint)] shrink-0"
-                ></svg>
+                <svg lucideChevronDown class="accordion-chevron w-5 h-5 shrink-0"></svg>
               </button>
               @if (expandedAdrIndex === i) {
                 <div class="accordion-panel">
@@ -407,7 +337,7 @@
     </section>
 
     <!-- EXPERIENCIA · ¿Dónde lo aplicó? -->
-    <section id="experiencia" class="relative band-elevated py-24 sm:py-28 px-5 sm:px-8">
+    <section id="experiencia" class="relative band-base section-pad">
       <div class="max-w-content mx-auto">
         <div class="reveal">
           <app-section-header
@@ -418,12 +348,13 @@
           ></app-section-header>
         </div>
 
-        <div class="space-y-3 reveal reveal-delay-1">
+        <div class="timeline space-y-4 reveal reveal-delay-1">
           @for (job of content.experience.items; track $index; let i = $index) {
             <article
-              class="accordion-item surface-panel overflow-hidden"
+              class="timeline-item accordion-item surface-panel"
               [class.is-open]="expandedJobIndex === i"
               >
+              <span class="timeline-dot" aria-hidden="true"></span>
               <button
                 type="button"
                 class="accordion-trigger"
@@ -431,25 +362,22 @@
                 (click)="toggleJob(i)"
                 >
                 <div class="min-w-0 text-left">
-                  <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] mb-1">{{ job.period }}</p>
-                  <h3 class="font-display text-lg sm:text-xl text-[var(--ink)] leading-snug" style="font-weight: 700">
+                  <p class="label !text-[var(--accent)] mb-2">{{ job.period }}</p>
+                  <h3 class="font-display text-xl sm:text-2xl text-[var(--ink)] leading-snug tracking-tight" style="font-weight: 700">
                     {{ job.role }}
                   </h3>
-                  <p class="text-[var(--muted)] text-sm mt-1">{{ job.company }} · {{ job.location }}</p>
+                  <p class="text-[var(--muted)] mt-1">{{ job.company }} · {{ job.location }}</p>
                 </div>
-                <svg
-                  lucideChevronDown
-                  class="accordion-chevron w-5 h-5 text-[var(--faint)] shrink-0"
-                ></svg>
+                <svg lucideChevronDown class="accordion-chevron w-5 h-5 shrink-0"></svg>
               </button>
               @if (expandedJobIndex === i) {
                 <div class="accordion-panel">
-                  <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">{{ job.summary }}</p>
-                  <ul class="space-y-4">
+                  <p class="text-[var(--ink)] leading-relaxed pt-5 mb-6 max-w-3xl">{{ job.summary }}</p>
+                  <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-5">
                     @for (item of job.responsibilities; track $index) {
-                      <li class="border-t border-[var(--line)] pt-4 first:border-0 first:pt-0">
-                        <p class="text-[var(--ink)] text-sm" style="font-weight: 600">{{ item.title }}</p>
-                        <p class="text-[var(--muted)] text-sm mt-1 leading-relaxed">{{ item.desc }}</p>
+                      <li>
+                        <p class="text-[var(--ink)]" style="font-weight: 600">{{ item.title }}</p>
+                        <p class="text-[var(--muted)] text-[0.95rem] mt-1 leading-relaxed">{{ item.desc }}</p>
                       </li>
                     }
                   </ul>
@@ -457,13 +385,11 @@
                     <span class="impact-line__label">{{ content.experience.impactLabel }}</span>
                     <p>{{ job.impact }}</p>
                   </div>
-                  <p class="mt-5 text-sm text-[var(--faint)] leading-relaxed">
-                    @for (tech of job.tech; track $index; let last = $last) {
-                      <span>{{ tech }}@if (!last) {
-                        <span> · </span>
-                      }</span>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    @for (tech of job.tech; track $index) {
+                      <span class="tag">{{ tech }}</span>
                     }
-                  </p>
+                  </div>
                 </div>
               }
             </article>
@@ -472,11 +398,55 @@
       </div>
     </section>
 
+    <!-- CONTACTO · cierre -->
+    <section id="contacto" class="band-ink relative section-pad overflow-hidden">
+      <div class="absolute inset-0 grid-overlay pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-content mx-auto grid lg:grid-cols-12 gap-12 items-end">
+        <div class="lg:col-span-7 min-w-0 reveal">
+          <p class="section-eyebrow">{{ content.contact.eyebrow }}</p>
+          <h2 class="contact-title mt-6">
+            {{ content.contact.title }}
+            <span class="text-[var(--accent)]">{{ content.contact.titleHighlight }}</span>
+          </h2>
+          <p class="mt-6 text-[var(--muted)] text-lg leading-relaxed max-w-xl">{{ content.contact.subtitle }}</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a [href]="emailHref" class="btn-primary">
+              <svg lucideMail class="w-4 h-4"></svg>
+              {{ content.contact.emailCta }}
+            </a>
+            <a [href]="cvPdf" download="JuanPabloHuerta-CV.pdf" class="btn-secondary">
+              <svg lucideDownload class="w-4 h-4"></svg>
+              {{ content.hero.ctaCv }}
+            </a>
+          </div>
+        </div>
+
+        <ul class="lg:col-span-5 min-w-0 space-y-3 reveal reveal-delay-1">
+          @for (link of content.contact.links; track $index) {
+            <li>
+              <a
+                [href]="link.href"
+                [attr.target]="link.external ? '_blank' : null"
+                [attr.rel]="link.external ? 'noopener noreferrer' : null"
+                class="contact-card"
+                >
+                <span class="min-w-0">
+                  <span class="label block">{{ link.label }}</span>
+                  <span class="block mt-1 text-[var(--ink)] truncate" style="font-weight: 500">{{ link.value }}</span>
+                </span>
+                <svg lucideArrowUpRight class="w-5 h-5 shrink-0 text-[var(--faint)] btn-arrow"></svg>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+
     <a
       [href]="whatsappUrl"
       target="_blank"
       rel="noopener noreferrer"
-      class="wa-fab fixed bottom-5 right-5 z-[60] w-12 h-12 rounded-full bg-[var(--ink-deep)] text-[var(--paper)] flex items-center justify-center shadow-lg shadow-black/25 hover:bg-[var(--accent)]"
+      class="wa-fab fixed bottom-5 right-5 z-[60] w-12 h-12 rounded-full bg-[#1b6a56] text-white flex items-center justify-center shadow-lg shadow-black/25 hover:bg-[#14523f]"
       [attr.aria-label]="content.contact.whatsappAria"
       >
       <svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true">

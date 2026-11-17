@@ -21,7 +21,7 @@ module.exports = {
         body: ['"IBM Plex Sans"', "sans-serif"],
       },
       maxWidth: {
-        content: "1100px",
+        content: "1180px",
       },
     },
   },

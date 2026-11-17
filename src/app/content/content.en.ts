@@ -285,6 +285,12 @@ export const CONTENT_EN: SiteContent = {
     ]
   },
   contact: {
+    eyebrow: '05 · Contact',
+    title: 'Shall we talk about',
+    titleHighlight: 'your next system?',
+    subtitle:
+      'Open to software engineering roles and enterprise systems projects: ERP, architecture, and AI-driven automation.',
+    emailCta: 'Send an email',
     links: [
       { label: 'Email', value: 'jphuerta.dev@gmail.com', href: 'mailto:jphuerta.dev@gmail.com', external: false },
       { label: 'LinkedIn', value: 'linkedin.com/in/jphuerta1', href: 'https://www.linkedin.com/in/jphuerta1/', external: true },

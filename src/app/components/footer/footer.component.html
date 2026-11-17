@@ -1,55 +1,57 @@
-<footer id="contacto" class="band-ink border-t border-[rgba(232,238,243,0.1)]">
-  <div class="max-w-content mx-auto px-5 sm:px-8 py-14">
-    <div class="grid sm:grid-cols-3 gap-10 mb-12">
-      <div>
-        <p
-          class="font-display text-[var(--ink)] tracking-tight mb-3"
-          style="font-weight: 700; font-size: 1.1rem"
-          >
+<footer class="band-ink border-t border-[var(--line)]">
+  <div class="max-w-content mx-auto px-5 sm:px-8 py-12">
+    <div class="flex flex-col md:flex-row md:items-start justify-between gap-10">
+      <div class="max-w-sm">
+        <p class="font-display text-[var(--ink)] tracking-tight mb-3" style="font-weight: 800; font-size: 1.25rem">
           JP·Workspace
         </p>
-        <p class="text-[var(--muted)] text-sm leading-relaxed max-w-xs">
+        <p class="text-[var(--muted)] text-sm leading-relaxed">
           {{ content.footer.tagline }}
         </p>
       </div>
 
-      <div>
-        <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">
-          {{ content.footer.navTitle }}
-        </p>
-        <div class="grid grid-cols-2 gap-y-2 gap-x-4">
-          @for (link of content.nav.links; track $index) {
-            <button
-              type="button"
-              class="text-left text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-              (click)="scrollTo(link.id)"
-              >
-              {{ link.label }}
-            </button>
-          }
+      <div class="grid grid-cols-2 gap-10 sm:gap-16">
+        <div>
+          <p class="label mb-4">{{ content.footer.navTitle }}</p>
+          <ul class="space-y-2">
+            @for (link of content.nav.links; track $index) {
+              <li>
+                <button
+                  type="button"
+                  class="py-1 text-left text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+                  (click)="scrollTo(link.id)"
+                  >
+                  {{ link.label }}
+                </button>
+              </li>
+            }
+          </ul>
         </div>
-      </div>
 
-      <div>
-        <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--faint)] mb-4">
-          {{ content.footer.contactTitle }}
-        </p>
-        <div class="space-y-2 text-sm text-[var(--muted)]">
-          @for (link of content.contact.links; track $index) {
-            <a
-              [href]="link.href"
-              [attr.target]="link.external ? '_blank' : null"
-              [attr.rel]="link.external ? 'noopener noreferrer' : null"
-              class="block hover:text-[var(--accent)] transition-colors"
-            >{{ link.value }}</a>
-          }
+        <div>
+          <p class="label mb-4">{{ content.footer.contactTitle }}</p>
+          <ul class="space-y-2">
+            @for (link of content.contact.links; track $index) {
+              <li>
+                <a
+                  [href]="link.href"
+                  [attr.target]="link.external ? '_blank' : null"
+                  [attr.rel]="link.external ? 'noopener noreferrer' : null"
+                  class="inline-block py-1 text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+                >{{ link.label }}</a>
+              </li>
+            }
+          </ul>
         </div>
       </div>
     </div>
 
-    <div class="pt-8 border-t border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-      <p class="text-[var(--faint)] text-xs">{{ content.footer.rights }}</p>
-      <p class="text-[var(--faint)] text-xs">{{ content.footer.availability }}</p>
+    <div class="mt-12 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-[var(--faint)] text-sm">{{ content.footer.rights }}</p>
+      <p class="inline-flex items-center gap-2 text-[var(--faint)] text-sm">
+        <span class="status-dot" aria-hidden="true"></span>
+        {{ content.footer.availability }}
+      </p>
     </div>
   </div>
 </footer>
