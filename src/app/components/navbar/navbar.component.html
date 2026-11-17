@@ -7,13 +7,13 @@
   >
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="flex items-center justify-between h-16">
-      <button (click)="scrollTo('inicio')" class="flex items-center gap-2.5" type="button">
+      <button (click)="scrollTo('inicio')" class="flex items-center gap-2.5 min-w-0" type="button" aria-label="Juan Pablo Huerta">
         <span
           class="grid place-items-center w-8 h-8 rounded-lg bg-[var(--ink)] text-[var(--bg)] font-display text-[0.8rem] transition-colors"
           style="font-weight: 800"
           aria-hidden="true"
           >JH</span>
-        <span class="font-display text-[var(--ink)] tracking-tight text-[1.05rem]" style="font-weight: 700">
+        <span class="hidden min-[400px]:inline font-display text-[var(--ink)] tracking-tight text-[1.05rem] whitespace-nowrap" style="font-weight: 700">
           Juan Pablo Huerta
         </span>
       </button>
@@ -48,19 +48,26 @@
         </button>
       </div>
 
-      <button
-        type="button"
-        (click)="menuOpen = !menuOpen"
-        class="lg:hidden w-10 h-10 -mr-2 flex items-center justify-center text-[var(--ink)]"
-        [attr.aria-label]="content.nav.menuAria"
-        [attr.aria-expanded]="menuOpen"
-        >
-        @if (!menuOpen) {
-          <svg lucideMenu class="w-5 h-5"></svg>
-        } @else {
-          <svg lucideX class="w-5 h-5"></svg>
-        }
-      </button>
+      <!-- Móvil: idioma siempre visible (un toque) + menú -->
+      <div class="lg:hidden flex items-center gap-2">
+        <div class="lang-toggle lang-toggle--touch" role="group" aria-label="Idioma / Language">
+          <button type="button" [class.is-active]="lang === 'es'" [attr.aria-pressed]="lang === 'es'" (click)="setLang('es')">ES</button>
+          <button type="button" [class.is-active]="lang === 'en'" [attr.aria-pressed]="lang === 'en'" (click)="setLang('en')">EN</button>
+        </div>
+        <button
+          type="button"
+          (click)="menuOpen = !menuOpen"
+          class="w-11 h-11 -mr-2 flex items-center justify-center text-[var(--ink)]"
+          [attr.aria-label]="content.nav.menuAria"
+          [attr.aria-expanded]="menuOpen"
+          >
+          @if (!menuOpen) {
+            <svg lucideMenu class="w-5 h-5"></svg>
+          } @else {
+            <svg lucideX class="w-5 h-5"></svg>
+          }
+        </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -78,16 +85,12 @@
           {{ link.label }}
         </button>
       }
-      <div class="pt-4 flex items-center justify-between gap-3">
-        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
-          <button type="button" [class.is-active]="lang === 'es'" (click)="setLang('es')">ES</button>
-          <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
-        </div>
-        <div class="flex gap-2">
+      <div class="pt-4">
+        <div class="grid grid-cols-2 gap-2">
           @if (cvHref) {
-            <a [href]="cvHref" download="JuanPabloHuerta-CV.pdf" class="btn-secondary !py-2.5 !px-4 !text-sm">{{ content.nav.cv }}</a>
+            <a [href]="cvHref" download="JuanPabloHuerta-CV.pdf" class="btn-secondary justify-center !py-3 !text-sm">{{ content.nav.cv }}</a>
           }
-          <button type="button" (click)="scrollTo('contacto')" class="btn-primary !py-2.5 !px-4 !text-sm">
+          <button type="button" (click)="scrollTo('contacto')" class="btn-primary justify-center !py-3 !text-sm">
             {{ content.nav.contact }}
           </button>
         </div>
