@@ -1,16 +1,20 @@
 import { SiteContent } from './content.model';
+import actividad from './erp-actividad.json';
+
+const ERP_REPO = 'https://github.com/teckuro/ERP';
 
 export const CONTENT_EN: SiteContent = {
   meta: {
-    title: 'JP·Workspace — Juan Pablo Huerta · Senior Software Engineer',
+    title: 'Juan Pablo Huerta · Full stack engineer · ERP and payroll',
     description:
-      'JP·Workspace: how a Senior Software Engineer designs and builds enterprise systems. Payroll ERP, architecture, and AI-driven automation.'
+      'I build business software: a payroll ERP for Chile, electronic invoicing, and integrations with the Chilean IRS (SII). You can try the calculation engine on the page.'
   },
   nav: {
     links: [
-      { id: 'workspace', label: 'Workspace' },
-      { id: 'proyectos', label: 'Projects' },
-      { id: 'thinking', label: 'Thinking' },
+      { id: 'workspace', label: 'Engine' },
+      { id: 'ahora', label: 'Now' },
+      { id: 'proyectos', label: 'ERP' },
+      { id: 'thinking', label: 'Decisions' },
       { id: 'experiencia', label: 'Experience' }
     ],
     cv: 'Resume',
@@ -18,59 +22,57 @@ export const CONTENT_EN: SiteContent = {
     menuAria: 'Open menu'
   },
   hero: {
-    eyebrow: 'Viña del Mar, Chile · Available immediately',
-    role: 'Senior Software Engineer',
-    specialization: 'Enterprise Systems · Software Architecture · Artificial Intelligence',
+    eyebrow: 'Viña del Mar, Chile · Available now',
+    role: 'Full stack engineer · ERP and payroll',
     statement:
-      'Designing enterprise platforms, business engines, and AI-driven automation.',
+      "Since 2021 I've built software for Chilean companies: electronic invoicing, SII and Transbank integrations, and payroll. Now I'm building my own payroll ERP, and its calculation engine runs right below.",
     stack: ['Angular', 'TypeScript', 'PostgreSQL', 'Python', 'Docker'],
-    ctaWorkspace: 'View workspace',
+    ctaWorkspace: 'Try the engine',
     ctaCv: 'Download resume',
-    ctaContact: 'Get in touch',
-    scrollCue: 'Explore'
+    ctaContact: 'Contact me',
+    scrollCue: 'See more'
   },
   workspace: {
-    eyebrow: '01 · What he builds',
-    title: 'JP·Workspace',
-    titleHighlight: 'Payroll ERP',
+    eyebrow: 'engine',
+    title: "My ERP's engine, running right here",
     subtitle:
-      'The ERP calculation engine running on this page, fed by the period parameters. The full system lives in the live demo.',
-    productLabel: 'jp.workspace — Payroll ERP · Chile',
-    openDemo: 'Open live demo',
-    demoNote: 'Demo access: demo@demo.cl · DEMO1234',
-    philosophy: [
-      'Architecture before framework.',
-      'Automate before repeating.',
-      'Maintainability is a feature.',
-      'Complex systems are designed. They do not happen by accident.'
-    ],
+      "An excerpt of my ERP's payroll calculation, using the period parameters. Change the gross salary and watch the payslip come together.",
+    productLabel: 'payroll-erp · calculation engine',
+    openDemo: 'Open the ERP',
     parametros: {
       title: 'Period parameters',
       items: [
         { label: 'UF', value: '$40,820.31', delta: '+0.52%' },
         { label: 'UTM', value: '$71,506', delta: '+1.30%' },
         { label: 'UTA', value: '$858,072', delta: '+1.30%' },
-        { label: 'Minimum wage', value: '$539,000', delta: 'No change' }
+        { label: 'Minimum wage', value: '$539,000', delta: 'no change' }
       ],
-      footnote: 'Parameters versioned per month in PostgreSQL; the engine consumes the active period.'
+      footnote: 'In the ERP, these parameters are versioned per month in PostgreSQL and the engine uses the active period.'
     },
     motor: {
       title: 'Calculation engine · live',
       grossLabel: 'Gross salary (CLP)',
       taxableLabel: 'Taxable base (87.8 UF cap)',
-      afpLabel: 'Pension fund (10% + ref. fee)',
+      afpLabel: 'Pension fund (11.15% ref.)',
       healthLabel: 'Health (7%)',
       unemploymentLabel: 'Unemployment insurance (0.6%)',
       totalLabel: 'Estimated net pay',
-      note: 'Simplified excerpt of the real engine. Reference values (fixed UF, income tax excluded).'
-    },
-    teaser: 'How he solves problems'
+      note: 'Simplified version: fixed UF and no income tax. The full engine lives in the ERP.'
+    }
+  },
+  now: {
+    eyebrow: 'now',
+    title: 'What I am working on',
+    subtitle: 'The latest changes to the ERP, read from the public repository every time this site is published.',
+    updated: 'Updated',
+    commitsLabel: 'commits on main',
+    viewAll: 'See all commits',
+    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    note: 'Commit messages are in Spanish.'
   },
   projects: {
-    eyebrow: '02 · How he solves problems',
-    title: 'Selected',
-    titleHighlight: 'projects',
-    subtitle: 'Selecting a project updates the detail view. Only one case open at a time.',
+    eyebrow: 'project',
+    title: 'Inside the ERP',
     problemLabel: 'Problem',
     solutionLabel: 'Solution',
     architectureLabel: 'Architecture',
@@ -79,14 +81,13 @@ export const CONTENT_EN: SiteContent = {
     items: [
       {
         id: 3,
-        number: '01',
-        title: 'Payroll System (ERP) · Chile',
+        title: 'Payroll ERP · Chile',
         shortTitle: 'Payroll ERP',
         category: 'Angular · TypeScript · Supabase · PostgreSQL',
         problem:
-          'Centralize employees, contracts, pension, and health data under Chilean rules while preventing payslip errors.',
+          'Running payroll in Chile means tracking employees, contracts, pension funds, health plans, medical leave, and caps that change every month. A mistake is money wrongly paid to a person.',
         solution:
-          'Angular/TypeScript architecture and a relational model on Supabase/PostgreSQL with typed flows, states, and validations.',
+          'An Angular ERP on Supabase/PostgreSQL. Calculation lives in a pure, tested rules engine, parameters are versioned per period, and the database enforces multi-company security with RLS.',
         architectureLayers: [
           'Angular · modular UI',
           'API · Supabase',
@@ -97,63 +98,46 @@ export const CONTENT_EN: SiteContent = {
         architectureNote:
           'Calculation lives in a pure, testable engine; the UI only orchestrates. Parameters versioned per period.',
         metrics: [
-          { value: 'ERP', label: 'Maintainable flows' },
-          { value: 'SQL', label: 'Relational model' },
-          { value: 'TS', label: 'Typing and scale' }
+          { value: String(actividad.cifras.migraciones), label: 'SQL migrations' },
+          { value: actividad.cifras.tests.toLocaleString('en-US'), label: 'automated tests' },
+          { value: String(actividad.cifras.modulos), label: 'domain modules' }
         ],
         tags: ['Angular', 'TypeScript', 'Supabase', 'PostgreSQL'],
-        github: 'https://github.com/teckuro',
+        github: ERP_REPO,
         demoUrl: 'https://erp-beta-bay.vercel.app/',
         demoNote: 'Demo access: demo@demo.cl · DEMO1234',
         screenshot: 'assets/projects/erp-remuneraciones.webp',
         mockupLabel: 'Payroll',
         previewDomain: 'erp-beta-bay.vercel.app'
-      },
-      {
-        id: 4,
-        number: '02',
-        title: 'HuntOS · Autonomous job-hunting agent',
-        shortTitle: 'HuntOS',
-        category: 'AI · Automation · Supabase · Vercel',
-        problem:
-          'Job hunting is repetitive: scanning boards, filtering openings, tailoring the resume, applying, and following up, every single day.',
-        solution:
-          'An autonomous agent that finds openings, scores them against the profile, optimizes the resume, and applies non-stop until an offer is accepted, with a traceable pipeline.',
-        architectureLayers: [
-          'Control panel · pipeline',
-          'API · health and approvals',
-          'AI agent · scoring and matching',
-          'Supabase · state and traceability'
-        ],
-        architectureNote:
-          'The agent runs behind a safety flag (HUNTING_ENABLED) and exposes health checks; every application is traceable in the pipeline.',
-        metrics: [
-          { value: 'AI', label: 'Job scoring' },
-          { value: '75–90', label: 'Score threshold' },
-          { value: '24/7', label: 'Autonomous applying' }
-        ],
-        tags: ['AI', 'Automation', 'Supabase', 'Vercel'],
-        github: 'https://github.com/teckuro',
-        demoUrl: 'https://huntos.vercel.app/',
-        mockupLabel: 'HuntOS',
-        previewDomain: 'huntos.vercel.app'
       }
-    ],
-    teaser: 'How he thinks and decides'
+    ]
   },
   thinking: {
-    eyebrow: '03 · How he thinks and decides',
-    title: 'Thinking',
-    titleHighlight: 'architecture decisions',
-    subtitle: 'Decision records (ADRs): problem, options, decision, trade-offs, and outcome.',
+    eyebrow: 'decisions',
+    title: 'How I decide',
+    subtitle:
+      'Architecture decisions written as ADRs: the problem, the options, what I chose, and what it cost me. I start with a real mistake.',
     labels: {
       problem: 'Problem',
       options: 'Options',
       decision: 'Decision',
-      tradeoffs: 'Trade-offs',
-      result: 'Outcome'
+      tradeoffs: 'What it cost',
+      result: 'Outcome',
+      code: 'In the code'
     },
     items: [
+      {
+        code: 'ADR-06',
+        title: 'A real mistake: shipping integration and UI together',
+        problem:
+          'In electronic invoicing, an SII integration change shipped to production together with UI improvements. A tax edge case blocked issuance for part of the customers.',
+        options: 'Quick hotfix and carry on, or redesign the delivery process.',
+        decision:
+          'Separate integration deployments from UI deployments, version the contracts, and turn SII edge cases into a regression suite.',
+        tradeoffs: 'Somewhat slower deliveries and more process discipline.',
+        result:
+          'Integration incidents stopped reaching customers. I learned that stability is designed into the process, not the hotfix.'
+      },
       {
         code: 'ADR-01',
         title: 'Angular for enterprise software',
@@ -174,7 +158,8 @@ export const CONTENT_EN: SiteContent = {
         decision:
           'PostgreSQL: strong constraints, views and functions for business rules, JSONB for flexible parameters, and RLS for multi-company.',
         tradeoffs: 'More logic in the database demands migration and versioning discipline.',
-        result: 'The relational model is the source of truth; the frontend never improvises rules.'
+        result: 'The relational model is the source of truth; the frontend never improvises rules.',
+        link: { label: 'supabase/migrations', href: `${ERP_REPO}/tree/main/supabase/migrations` }
       },
       {
         code: 'ADR-03',
@@ -197,7 +182,11 @@ export const CONTENT_EN: SiteContent = {
           'A pure TypeScript engine: deterministic functions (gross + period parameters → payslip), with parameters versioned per month in PostgreSQL.',
         tradeoffs: 'One more layer of indirection and keeping parameters in sync between database and engine.',
         result:
-          'Testable with real cases (87.8 UF / 131.9 UF caps). The Engine in this workspace runs an excerpt of that code.'
+          'Testable with real cases (87.8 UF / 131.9 UF caps). The engine on this page is an excerpt of that code.',
+        link: {
+          label: 'features/nomina-mensual/rules',
+          href: `${ERP_REPO}/tree/main/src/app/features/nomina-mensual/rules`
+        }
       },
       {
         code: 'ADR-05',
@@ -208,51 +197,39 @@ export const CONTENT_EN: SiteContent = {
         decision:
           'Domain modules with clear boundaries: each owns its routes, state, and data access; cross-cutting concerns live in core/shared.',
         tradeoffs: 'More upfront structure. Microfrontends would have been over-engineering for the team size.',
-        result: 'Medical leaves can be changed without fear of breaking payroll.'
-      },
-      {
-        code: 'ADR-06',
-        title: 'A real mistake: shipping integration and UI together',
-        problem:
-          'In electronic invoicing, an SII integration change shipped to production together with UI improvements. A tax edge case blocked issuance for part of the customers.',
-        options: 'Quick hotfix and carry on, or redesign the delivery process.',
-        decision:
-          'Separate integration deployments from UI deployments, version the contracts, and turn SII edge cases into a regression suite.',
-        tradeoffs: 'Somewhat slower deliveries and more process discipline.',
-        result:
-          'Integration incidents stopped reaching customers. Lesson: stability is designed into the process, not the hotfix.'
+        result: 'Medical leaves can be changed without fear of breaking payroll.',
+        link: { label: 'src/app/features', href: `${ERP_REPO}/tree/main/src/app/features` }
       }
-    ],
-    teaser: 'Where he applied it'
+    ]
   },
   experience: {
-    eyebrow: '04 · Where he applied that knowledge',
-    title: 'Professional',
-    titleHighlight: 'experience',
+    eyebrow: 'experience',
+    title: 'Experience',
     impactLabel: 'Impact',
     items: [
       {
-        role: 'Full Stack Developer / Team Lead',
+        role: 'Full stack developer / Team lead',
         company: 'Desis Limitada',
         period: 'Aug 2021 – Aug 2025',
         location: 'Chile',
-        summary: 'Scalable products, ERP modules, and SII/Transbank integrations with technical leadership.',
+        summary:
+          'Electronic invoicing, SII and Transbank integrations, and ERP modules for customers across Chile. For 8 months I also led a team.',
         responsibilities: [
           {
             title: 'Technical leadership',
-            desc: 'Led a development team for 8 months, overseeing delivery quality and complex technical issues.'
+            desc: 'Led a development team for 8 months: reviewing deliveries and working through complex technical issues.'
           },
           {
-            title: 'ERP development',
-            desc: 'Accounting, payroll, and inventory modules integrated with PHP and JavaScript.'
+            title: 'ERP modules',
+            desc: 'Accounting, payroll, and inventory, in PHP and JavaScript.'
           },
           {
-            title: 'Strategic integrations',
-            desc: 'Integrations with the Chilean IRS (SII) and Transbank payment gateways for process automation.'
+            title: 'SII and Transbank integrations',
+            desc: 'Tax document issuance with the Chilean IRS (SII) and payments with Transbank.'
           },
           {
-            title: 'Data optimization',
-            desc: 'PostgreSQL views and functions for business rules and reporting.'
+            title: 'PostgreSQL',
+            desc: 'Views and functions for business rules and reporting.'
           }
         ],
         impact:
@@ -260,11 +237,11 @@ export const CONTENT_EN: SiteContent = {
         tech: ['PHP', 'Laravel', 'Angular', 'PostgreSQL', 'GraphQL', 'SII', 'Transbank', 'Docker', 'AWS']
       },
       {
-        role: 'Junior Developer',
+        role: 'Junior developer',
         company: 'Anida Latam',
         period: 'Jan 2021 – Aug 2021',
         location: 'Chile',
-        summary: 'Web development with Angular/JavaScript and a Laravel/PHP backend.',
+        summary: 'Web development with Angular and a Laravel/PHP backend.',
         responsibilities: [
           {
             title: 'Angular frontend',
@@ -285,11 +262,10 @@ export const CONTENT_EN: SiteContent = {
     ]
   },
   contact: {
-    eyebrow: '05 · Contact',
-    title: 'Shall we talk about',
-    titleHighlight: 'your next system?',
+    eyebrow: 'contact',
+    title: "Let's talk",
     subtitle:
-      'Open to software engineering roles and enterprise systems projects: ERP, architecture, and AI-driven automation.',
+      "I'm looking for a software engineering role on a team that builds business systems. If you have an ERP, an integration, or a process to automate, write to me.",
     emailCta: 'Send an email',
     links: [
       { label: 'Email', value: 'jphuerta.dev@gmail.com', href: 'mailto:jphuerta.dev@gmail.com', external: false },
@@ -300,15 +276,15 @@ export const CONTENT_EN: SiteContent = {
     whatsappAria: 'Contact via WhatsApp'
   },
   footer: {
-    tagline: 'Senior Software Engineer. Enterprise systems, architecture, and AI-driven automation.',
+    tagline: 'Full stack engineer in Viña del Mar. ERP, payroll, and integrations.',
     navTitle: 'Navigation',
     contactTitle: 'Contact',
     rights: '© 2026 Juan Pablo Huerta',
-    availability: 'Available immediately'
+    availability: 'Available now'
   },
   consoleGreeting: {
-    title: 'JP·Workspace — Juan Pablo Huerta · Senior Software Engineer',
+    title: 'Juan Pablo Huerta · Full stack engineer',
     body:
-      'Inspecting the code? Angular + Tailwind, no UI libraries.\nRepository: https://github.com/teckuro\nContact: jphuerta.dev@gmail.com'
+      'Inspecting the code? Angular + Tailwind, no UI libraries.\nERP repository: https://github.com/teckuro/ERP\nContact: jphuerta.dev@gmail.com'
   }
 };

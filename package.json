@@ -2,10 +2,11 @@
   "name": "jp-workspace",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
+    "prebuild": "node scripts/actualizar-erp.mjs",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "actualizar-erp": "node scripts/actualizar-erp.mjs"
   },
   "private": true,
   "engines": {

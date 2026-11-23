@@ -1,0 +1,52 @@
+<!doctype html>
+<!--
+  Plantilla de la imagen para redes (1200×630). Para regenerar public/og-image.png:
+  chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630
+         --virtual-time-budget=8000 --screenshot=public/og-image.png scripts/og/og.html
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@600&display=block">
+  <style>
+    html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+    body {
+      box-sizing: border-box;
+      padding: 72px 80px;
+      background: #18191c;
+      color: #dcdde0;
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+    .eyebrow { font-size: 26px; color: #888a91; }
+    .eyebrow b { color: #93aed6; font-weight: 400; }
+    h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 112px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: #dcdde0;
+    }
+    .sel { background: #2c3a52; padding: 0 0.06em; border-radius: 0.06em; }
+    .caret { display: inline-block; width: 0.06em; height: 0.82em; margin-left: 0.06em; vertical-align: -0.04em; background: #dcdde0; }
+    .role { margin-top: 28px; font-size: 30px; color: #a9abb1; }
+    .foot { display: flex; justify-content: space-between; align-items: baseline; font-size: 22px; color: #888a91; }
+    .foot .url { color: #dcdde0; }
+  </style>
+</head>
+<body>
+  <div class="eyebrow mono"><b>//</b> erp de remuneraciones · chile</div>
+  <div>
+    <h1>Juan Pablo<br><span class="sel">Huerta</span><span class="caret"></span></h1>
+    <div class="role mono">Full stack engineer · ERP y remuneraciones</div>
+  </div>
+  <div class="foot mono">
+    <span class="url">jphuerta.vercel.app</span>
+    <span>70 migraciones · 2.164 tests · 15 módulos</span>
+  </div>
+</body>
+</html>

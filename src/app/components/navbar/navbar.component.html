@@ -2,18 +2,18 @@
   class="fixed top-0 w-full z-50 transition-colors duration-300"
   [class.on-dark]="!scrolled && !menuOpen"
   [class]="scrolled || menuOpen
-    ? 'bg-[#f3f1ec]/90 backdrop-blur-xl border-b border-[rgba(15,23,32,0.08)]'
+    ? 'nav-solid'
     : 'bg-transparent border-b border-transparent'"
   >
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="flex items-center justify-between h-16">
       <button (click)="scrollTo('inicio')" class="flex items-center gap-2.5 min-w-0" type="button" aria-label="Juan Pablo Huerta">
         <span
-          class="grid place-items-center w-8 h-8 rounded-lg bg-[var(--ink)] text-[var(--bg)] font-display text-[0.8rem] transition-colors"
-          style="font-weight: 800"
+          class="grid place-items-center w-8 h-8 rounded-md bg-[var(--ink)] text-[var(--bg)] font-mono text-[0.8rem] transition-colors"
+          style="font-weight: 600"
           aria-hidden="true"
           >JH</span>
-        <span class="hidden min-[400px]:inline font-display text-[var(--ink)] tracking-tight text-[1.05rem] whitespace-nowrap" style="font-weight: 700">
+        <span class="hidden min-[400px]:inline font-display text-[var(--ink)] tracking-tight text-[1rem] whitespace-nowrap" style="font-weight: 600">
           Juan Pablo Huerta
         </span>
       </button>
@@ -23,7 +23,7 @@
           <button
             type="button"
             (click)="scrollTo(link.id)"
-            class="relative px-3.5 py-2 text-sm rounded-full transition-colors duration-200"
+            class="relative px-3 py-1.5 text-sm rounded-md transition-colors duration-200"
             [class]="activeSection === link.id
               ? 'text-[var(--ink)] bg-[var(--accent-soft)]'
               : 'text-[var(--muted)] hover:text-[var(--ink)]'"
@@ -73,7 +73,7 @@
 </nav>
 
 @if (menuOpen) {
-  <div class="fixed top-16 left-0 right-0 z-40 bg-[#f3f1ec]/95 backdrop-blur-xl border-b border-[rgba(15,23,32,0.08)] shadow-lg lg:hidden">
+  <div class="nav-solid fixed top-16 left-0 right-0 z-40 shadow-lg lg:hidden">
     <div class="max-w-content mx-auto px-5 py-4 space-y-1">
       @for (link of content.nav.links; track $index) {
         <button

@@ -20,8 +20,10 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { Lang, ProjectItem, SiteContent } from './content/content.model';
+import { Lang, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
+import { instalarLiquidar } from './motor/consola';
+import actividad from './content/erp-actividad.json';
 
 @Component({
   imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideArrowUpRight, LucideChevronDown, LucideDownload, LucideFolderGit, LucideMail],
@@ -30,16 +32,29 @@ import { LanguageService } from './services/language.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  activeProjectId = 3;
   expandedJobIndex = 0;
   expandedAdrIndex = 0;
   readonly scrollProgress = signal(0);
   private revealObserver?: IntersectionObserver;
+  private revealMutations?: MutationObserver;
 
   /** Recursos que no cambian con el idioma. */
   /** `?v=` invalida la caché de /assets en Vercel al publicar un CV nuevo. */
   readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf?v=2026-11';
   readonly whatsappUrl = 'https://wa.me/56988292018';
+
+  /** Commits y cifras del ERP, generados en cada build por scripts/actualizar-erp.mjs. */
+  readonly actividad = actividad;
+
+  /** `2026-11-20` → `20 nov`. Sin Date ni zona horaria: igual en SSR y en el navegador. */
+  fechaCorta(iso: string): string {
+    const [, mes, dia] = iso.split('-').map(Number);
+    return `${dia} ${this.content.now.months[mes - 1] ?? ''}`;
+  }
+
+  fechaLarga(iso: string): string {
+    return `${this.fechaCorta(iso)} ${iso.slice(0, 4)}`;
+  }
 
   /** Enlace mailto tomado del primer contacto de tipo email. */
   get emailHref(): string {
@@ -72,6 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
+    this.revealMutations?.disconnect();
   }
 
   @HostListener('window:scroll')
@@ -100,11 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
-
-    if (reducedMotion) {
-      nodes.forEach((el) => el.classList.add('is-visible'));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
@@ -117,27 +129,44 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0, rootMargin: '0px 0px -5% 0px' }
     );
 
-    nodes.forEach((el) => this.revealObserver?.observe(el));
+    // Lo que ya está en pantalla se marca visible al tiro (sin parpadeo); el resto se observa.
+    const preparar = (el: HTMLElement): void => {
+      if (el.classList.contains('is-visible')) {
+        return;
+      }
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('is-visible');
+      } else {
+        this.revealObserver?.observe(el);
+      }
+    };
+
+    document.querySelectorAll<HTMLElement>('.reveal').forEach(preparar);
+
+    // Angular puede reemplazar nodos después del primer render; sin esto, el observer
+    // seguía mirando los nodos viejos y las secciones nuevas quedaban en opacidad 0.
+    this.revealMutations = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) {
+            if (node.matches('.reveal')) {
+              preparar(node);
+            }
+            node.querySelectorAll<HTMLElement>('.reveal').forEach(preparar);
+          }
+        });
+      }
+    });
+    this.revealMutations.observe(document.body, { childList: true, subtree: true });
+
+    document.documentElement.classList.add('reveal-ready');
   }
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  setActiveProject(projectId: number): void {
-    this.activeProjectId = projectId;
-  }
-
-  trackProject(_index: number, project: ProjectItem): number {
-    return project.id;
-  }
-
-  get activeProject(): ProjectItem {
-    const items = this.content.projects.items;
-    return items.find((p) => p.id === this.activeProjectId) ?? items[0];
   }
 
   toggleJob(index: number): void {
@@ -148,12 +177,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.expandedAdrIndex = this.expandedAdrIndex === index ? -1 : index;
   }
 
+  /** Saludo en consola + `liquidar(bruto)` con el mismo motor de la calculadora. */
   private logConsoleGreeting(): void {
     if (typeof console === 'undefined') {
       return;
     }
-    const greeting = this.content.consoleGreeting;
-    console.log('%c' + greeting.title, 'font-size:14px;font-weight:700;color:#245c4e;');
-    console.log('%c' + greeting.body, 'color:#3f4a57;line-height:1.5;');
+    instalarLiquidar(() => this.lang, this.content.consoleGreeting);
   }
 }
