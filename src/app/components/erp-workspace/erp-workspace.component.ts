@@ -13,7 +13,7 @@ export class ErpWorkspaceComponent {
   demoGross = 1500000;
 
   /** Valores referenciales del motor (UF y topes imponibles). */
-  private readonly UF_CLP = 39500;
+  private readonly UF_CLP = 40820.31; // la misma UF que muestra el panel de parámetros
   private readonly TOPE_IMPONIBLE_UF = 87.8;
   private readonly TOPE_CESANTIA_UF = 131.9;
 

@@ -104,9 +104,18 @@ export class AppComponent implements OnInit, OnDestroy {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
 
     if (reducedMotion) {
-      nodes.forEach((el) => el.classList.add('is-visible'));
       return;
     }
+
+    // Lo que ya está en pantalla se marca visible antes de activar el ocultamiento,
+    // así no parpadea al hidratar.
+    const viewportBottom = window.innerHeight;
+    nodes.forEach((el) => {
+      if (el.getBoundingClientRect().top < viewportBottom) {
+        el.classList.add('is-visible');
+      }
+    });
+    document.documentElement.classList.add('reveal-ready');
 
     this.revealObserver = new IntersectionObserver(
       (entries) => {
@@ -117,10 +126,12 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0, rootMargin: '0px 0px -5% 0px' }
     );
 
-    nodes.forEach((el) => this.revealObserver?.observe(el));
+    nodes
+      .filter((el) => !el.classList.contains('is-visible'))
+      .forEach((el) => this.revealObserver?.observe(el));
   }
 
   scrollTo(id: string): void {
