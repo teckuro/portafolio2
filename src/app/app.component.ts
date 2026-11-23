@@ -36,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
   expandedAdrIndex = 0;
   readonly scrollProgress = signal(0);
   private revealObserver?: IntersectionObserver;
+  private revealMutations?: MutationObserver;
 
   /** Recursos que no cambian con el idioma. */
   /** `?v=` invalida la caché de /assets en Vercel al publicar un CV nuevo. */
@@ -86,6 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
+    this.revealMutations?.disconnect();
   }
 
   @HostListener('window:scroll')
@@ -114,22 +116,9 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
-
-    if (reducedMotion) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
-
-    // Lo que ya está en pantalla se marca visible antes de activar el ocultamiento,
-    // así no parpadea al hidratar.
-    const viewportBottom = window.innerHeight;
-    nodes.forEach((el) => {
-      if (el.getBoundingClientRect().top < viewportBottom) {
-        el.classList.add('is-visible');
-      }
-    });
-    document.documentElement.classList.add('reveal-ready');
 
     this.revealObserver = new IntersectionObserver(
       (entries) => {
@@ -143,9 +132,37 @@ export class AppComponent implements OnInit, OnDestroy {
       { threshold: 0, rootMargin: '0px 0px -5% 0px' }
     );
 
-    nodes
-      .filter((el) => !el.classList.contains('is-visible'))
-      .forEach((el) => this.revealObserver?.observe(el));
+    // Lo que ya está en pantalla se marca visible al tiro (sin parpadeo); el resto se observa.
+    const preparar = (el: HTMLElement): void => {
+      if (el.classList.contains('is-visible')) {
+        return;
+      }
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('is-visible');
+      } else {
+        this.revealObserver?.observe(el);
+      }
+    };
+
+    document.querySelectorAll<HTMLElement>('.reveal').forEach(preparar);
+
+    // Angular puede reemplazar nodos después del primer render; sin esto, el observer
+    // seguía mirando los nodos viejos y las secciones nuevas quedaban en opacidad 0.
+    this.revealMutations = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) {
+            if (node.matches('.reveal')) {
+              preparar(node);
+            }
+            node.querySelectorAll<HTMLElement>('.reveal').forEach(preparar);
+          }
+        });
+      }
+    });
+    this.revealMutations.observe(document.body, { childList: true, subtree: true });
+
+    document.documentElement.classList.add('reveal-ready');
   }
 
   scrollTo(id: string): void {
