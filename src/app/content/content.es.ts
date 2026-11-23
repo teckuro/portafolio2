@@ -11,7 +11,7 @@ export const CONTENT_ES: SiteContent = {
   nav: {
     links: [
       { id: 'workspace', label: 'Motor' },
-      { id: 'proyectos', label: 'Proyectos' },
+      { id: 'proyectos', label: 'ERP' },
       { id: 'thinking', label: 'Decisiones' },
       { id: 'experiencia', label: 'Experiencia' }
     ],
@@ -59,8 +59,8 @@ export const CONTENT_ES: SiteContent = {
     }
   },
   projects: {
-    eyebrow: 'proyectos',
-    title: 'Proyectos',
+    eyebrow: 'proyecto',
+    title: 'El ERP por dentro',
     problemLabel: 'Problema',
     solutionLabel: 'Solución',
     architectureLabel: 'Arquitectura',
@@ -97,34 +97,6 @@ export const CONTENT_ES: SiteContent = {
         screenshot: 'assets/projects/erp-remuneraciones.webp',
         mockupLabel: 'Remuneraciones',
         previewDomain: 'erp-beta-bay.vercel.app'
-      },
-      {
-        id: 4,
-        title: 'HuntOS · Agente autónomo de búsqueda de empleo',
-        shortTitle: 'HuntOS',
-        category: 'IA · Automatización · Supabase · Vercel',
-        problem:
-          'Buscar trabajo es repetitivo: revisar portales, filtrar vacantes, adaptar el CV, postular y hacer seguimiento, todos los días.',
-        solution:
-          'Un agente que busca vacantes, las puntúa contra mi perfil, ajusta el CV y postula, con cada paso registrado en un pipeline.',
-        architectureLayers: [
-          'Panel de control · pipeline',
-          'API · health y aprobaciones',
-          'Agente IA · scoring y matching',
-          'Supabase · estado y trazabilidad'
-        ],
-        architectureNote:
-          'El agente corre tras un flag de seguridad (HUNTING_ENABLED) y expone health checks; cada postulación queda trazable en el pipeline.',
-        metrics: [
-          { value: '75–90', label: 'umbral de score' },
-          { value: '24/7', label: 'búsqueda continua' },
-          { value: '1', label: 'flag para apagarlo' }
-        ],
-        tags: ['IA', 'Automatización', 'Supabase', 'Vercel'],
-        github: 'https://github.com/teckuro',
-        demoUrl: 'https://huntos.vercel.app/',
-        mockupLabel: 'HuntOS',
-        previewDomain: 'huntos.vercel.app'
       }
     ]
   },
