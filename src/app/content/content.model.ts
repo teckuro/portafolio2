@@ -13,7 +13,6 @@ export interface WorkspaceParam {
 
 export interface ProjectItem {
   id: number;
-  number: string;
   title: string;
   shortTitle: string;
   category: string;
@@ -32,6 +31,12 @@ export interface ProjectItem {
   previewDomain: string;
 }
 
+/** Enlace a código real; `label` se muestra como ruta del repo. */
+export interface CodeLink {
+  label: string;
+  href: string;
+}
+
 export interface AdrItem {
   code: string;
   title: string;
@@ -40,6 +45,7 @@ export interface AdrItem {
   decision: string;
   tradeoffs: string;
   result: string;
+  link?: CodeLink;
 }
 
 export interface JobItem {
@@ -74,7 +80,6 @@ export interface SiteContent {
   hero: {
     eyebrow: string;
     role: string;
-    specialization: string;
     statement: string;
     stack: string[];
     ctaWorkspace: string;
@@ -85,12 +90,9 @@ export interface SiteContent {
   workspace: {
     eyebrow: string;
     title: string;
-    titleHighlight: string;
     subtitle: string;
     productLabel: string;
     openDemo: string;
-    demoNote: string;
-    philosophy: string[];
     parametros: {
       title: string;
       items: WorkspaceParam[];
@@ -106,25 +108,20 @@ export interface SiteContent {
       totalLabel: string;
       note: string;
     };
-    teaser: string;
   };
   projects: {
     eyebrow: string;
     title: string;
-    titleHighlight: string;
-    subtitle: string;
     problemLabel: string;
     solutionLabel: string;
     architectureLabel: string;
     demoLabel: string;
     codeLabel: string;
     items: ProjectItem[];
-    teaser: string;
   };
   thinking: {
     eyebrow: string;
     title: string;
-    titleHighlight: string;
     subtitle: string;
     labels: {
       problem: string;
@@ -132,21 +129,19 @@ export interface SiteContent {
       decision: string;
       tradeoffs: string;
       result: string;
+      code: string;
     };
     items: AdrItem[];
-    teaser: string;
   };
   experience: {
     eyebrow: string;
     title: string;
-    titleHighlight: string;
     impactLabel: string;
     items: JobItem[];
   };
   contact: {
     eyebrow: string;
     title: string;
-    titleHighlight: string;
     subtitle: string;
     emailCta: string;
     links: ContactLink[];

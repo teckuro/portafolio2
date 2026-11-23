@@ -20,7 +20,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { Lang, ProjectItem, SiteContent } from './content/content.model';
+import { Lang, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
 
 @Component({
@@ -30,7 +30,6 @@ import { LanguageService } from './services/language.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  activeProjectId = 3;
   expandedJobIndex = 0;
   expandedAdrIndex = 0;
   readonly scrollProgress = signal(0);
@@ -136,19 +135,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  setActiveProject(projectId: number): void {
-    this.activeProjectId = projectId;
-  }
-
-  trackProject(_index: number, project: ProjectItem): number {
-    return project.id;
-  }
-
-  get activeProject(): ProjectItem {
-    const items = this.content.projects.items;
-    return items.find((p) => p.id === this.activeProjectId) ?? items[0];
   }
 
   toggleJob(index: number): void {

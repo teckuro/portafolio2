@@ -861,11 +861,27 @@ body {
   }
 }
 
+.project-list {
+  display: grid;
+  gap: 6rem;
+}
+
 .metric-card {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.25rem;
   padding: 1rem 1.1rem;
   border-radius: var(--radius-sm);
   background: var(--surface);
   border: 1px solid var(--line);
+}
+
+.metric-value {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink);
 }
 
 /* Diagrama de arquitectura: capas apiladas */

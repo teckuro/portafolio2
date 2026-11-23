@@ -1,16 +1,18 @@
 import { SiteContent } from './content.model';
 
+const ERP_REPO = 'https://github.com/teckuro/ERP';
+
 export const CONTENT_ES: SiteContent = {
   meta: {
-    title: 'JP·Workspace — Juan Pablo Huerta · Senior Software Engineer',
+    title: 'Juan Pablo Huerta · Full stack engineer · ERP y remuneraciones',
     description:
-      'JP·Workspace: cómo un Senior Software Engineer diseña y construye sistemas empresariales. ERP de remuneraciones, arquitectura y automatización con IA.'
+      'Hago software empresarial: un ERP de remuneraciones para Chile, facturación electrónica e integraciones con el SII. Puedes probar el motor de cálculo en la página.'
   },
   nav: {
     links: [
-      { id: 'workspace', label: 'Workspace' },
+      { id: 'workspace', label: 'Motor' },
       { id: 'proyectos', label: 'Proyectos' },
-      { id: 'thinking', label: 'Thinking' },
+      { id: 'thinking', label: 'Decisiones' },
       { id: 'experiencia', label: 'Experiencia' }
     ],
     cv: 'CV',
@@ -18,59 +20,47 @@ export const CONTENT_ES: SiteContent = {
     menuAria: 'Abrir menú'
   },
   hero: {
-    eyebrow: 'Viña del Mar, Chile · Disponibilidad inmediata',
-    role: 'Senior Software Engineer',
-    specialization: 'Enterprise Systems · Software Architecture · Artificial Intelligence',
+    eyebrow: 'Viña del Mar, Chile · Disponible ahora',
+    role: 'Full stack engineer · ERP y remuneraciones',
     statement:
-      'Diseñando plataformas empresariales, motores de negocio y automatización mediante inteligencia artificial.',
+      'Desde 2021 hago software para empresas chilenas: facturación electrónica, integraciones con el SII y Transbank, y remuneraciones. Ahora construyo mi propio ERP de remuneraciones, y su motor de cálculo corre aquí abajo.',
     stack: ['Angular', 'TypeScript', 'PostgreSQL', 'Python', 'Docker'],
-    ctaWorkspace: 'Ver workspace',
+    ctaWorkspace: 'Probar el motor',
     ctaCv: 'Descargar CV',
-    ctaContact: 'Contactar',
-    scrollCue: 'Explorar'
+    ctaContact: 'Escribirme',
+    scrollCue: 'Ver más'
   },
   workspace: {
-    eyebrow: '01 · Qué construye',
-    title: 'JP·Workspace',
-    titleHighlight: 'ERP Remuneraciones',
+    eyebrow: 'motor',
+    title: 'El motor de mi ERP, funcionando aquí',
     subtitle:
-      'El motor de cálculo del ERP ejecutándose en esta página, alimentado por los parámetros del período. El sistema completo está en el demo real.',
-    productLabel: 'jp.workspace — ERP Remuneraciones · Chile',
-    openDemo: 'Abrir demo real',
-    demoNote: 'Acceso demo: demo@demo.cl · DEMO1234',
-    philosophy: [
-      'Arquitectura antes que framework.',
-      'Automatizar antes que repetir.',
-      'La mantenibilidad es una funcionalidad.',
-      'Los sistemas complejos se diseñan. No aparecen por accidente.'
-    ],
+      'Un extracto del cálculo de remuneraciones de mi ERP, con los parámetros del período. Cambia el sueldo bruto y mira cómo se arma la liquidación.',
+    productLabel: 'erp-remuneraciones · motor de cálculo',
+    openDemo: 'Abrir el ERP',
     parametros: {
       title: 'Parámetros del período',
       items: [
         { label: 'UF', value: '$40.820,31', delta: '+0,52%' },
         { label: 'UTM', value: '$71.506', delta: '+1,30%' },
         { label: 'UTA', value: '$858.072', delta: '+1,30%' },
-        { label: 'Sueldo mínimo', value: '$539.000', delta: 'Sin variación' }
+        { label: 'Sueldo mínimo', value: '$539.000', delta: 'sin variación' }
       ],
-      footnote: 'Parámetros versionados por mes en PostgreSQL; el motor consume el período activo.'
+      footnote: 'En el ERP, estos parámetros se versionan por mes en PostgreSQL y el motor usa los del período activo.'
     },
     motor: {
       title: 'Motor de cálculo · en vivo',
       grossLabel: 'Sueldo bruto (CLP)',
       taxableLabel: 'Imponible (tope 87,8 UF)',
-      afpLabel: 'AFP (10% + comisión ref.)',
+      afpLabel: 'AFP (11,15% ref.)',
       healthLabel: 'Salud (7%)',
-      unemploymentLabel: 'Seguro cesantía (0,6%)',
+      unemploymentLabel: 'Seguro de cesantía (0,6%)',
       totalLabel: 'Líquido estimado',
-      note: 'Extracto simplificado del motor real. Valores referenciales (UF fija, sin impuesto único).'
-    },
-    teaser: 'Cómo resuelve problemas'
+      note: 'Versión simplificada: UF fija y sin impuesto único. El motor completo está en el ERP.'
+    }
   },
   projects: {
-    eyebrow: '02 · Cómo resuelve problemas',
+    eyebrow: 'proyectos',
     title: 'Proyectos',
-    titleHighlight: 'seleccionados',
-    subtitle: 'Seleccionar un proyecto actualiza el detalle. Un solo caso abierto a la vez.',
     problemLabel: 'Problema',
     solutionLabel: 'Solución',
     architectureLabel: 'Arquitectura',
@@ -79,14 +69,13 @@ export const CONTENT_ES: SiteContent = {
     items: [
       {
         id: 3,
-        number: '01',
-        title: 'Sistema de Remuneraciones (ERP) · Chile',
-        shortTitle: 'Remuneraciones ERP',
+        title: 'ERP de remuneraciones · Chile',
+        shortTitle: 'ERP de remuneraciones',
         category: 'Angular · TypeScript · Supabase · PostgreSQL',
         problem:
-          'Centralizar trabajadores, contratos, previsión y salud con reglas chilenas, evitando errores en liquidaciones.',
+          'Calcular remuneraciones en Chile es llevar trabajadores, contratos, AFP, salud, licencias y topes que cambian cada mes. Un error es plata mal pagada a una persona.',
         solution:
-          'Arquitectura Angular/TypeScript y modelo relacional en Supabase/PostgreSQL con flujos tipados, estados y validaciones.',
+          'Un ERP en Angular sobre Supabase/PostgreSQL. El cálculo vive en un motor de reglas puro y testeado, los parámetros se versionan por período y la base valida la seguridad multiempresa con RLS.',
         architectureLayers: [
           'Angular · UI modular',
           'API · Supabase',
@@ -97,12 +86,12 @@ export const CONTENT_ES: SiteContent = {
         architectureNote:
           'El cálculo vive en un motor puro y testeable; la UI solo orquesta. Parámetros versionados por período.',
         metrics: [
-          { value: 'ERP', label: 'Flujos mantenibles' },
-          { value: 'SQL', label: 'Modelo relacional' },
-          { value: 'TS', label: 'Tipado y escala' }
+          { value: '70', label: 'migraciones SQL' },
+          { value: '2.164', label: 'tests automatizados' },
+          { value: '15', label: 'módulos de dominio' }
         ],
         tags: ['Angular', 'TypeScript', 'Supabase', 'PostgreSQL'],
-        github: 'https://github.com/teckuro',
+        github: ERP_REPO,
         demoUrl: 'https://erp-beta-bay.vercel.app/',
         demoNote: 'Acceso demo: demo@demo.cl · DEMO1234',
         screenshot: 'assets/projects/erp-remuneraciones.webp',
@@ -111,14 +100,13 @@ export const CONTENT_ES: SiteContent = {
       },
       {
         id: 4,
-        number: '02',
         title: 'HuntOS · Agente autónomo de búsqueda de empleo',
         shortTitle: 'HuntOS',
         category: 'IA · Automatización · Supabase · Vercel',
         problem:
           'Buscar trabajo es repetitivo: revisar portales, filtrar vacantes, adaptar el CV, postular y hacer seguimiento, todos los días.',
         solution:
-          'Agente autónomo que busca vacantes, las puntúa contra el perfil, optimiza el CV y postula sin detenerse hasta una oferta aceptada, con pipeline trazable.',
+          'Un agente que busca vacantes, las puntúa contra mi perfil, ajusta el CV y postula, con cada paso registrado en un pipeline.',
         architectureLayers: [
           'Panel de control · pipeline',
           'API · health y aprobaciones',
@@ -128,9 +116,9 @@ export const CONTENT_ES: SiteContent = {
         architectureNote:
           'El agente corre tras un flag de seguridad (HUNTING_ENABLED) y expone health checks; cada postulación queda trazable en el pipeline.',
         metrics: [
-          { value: 'IA', label: 'Scoring de vacantes' },
-          { value: '75–90', label: 'Umbral de score' },
-          { value: '24/7', label: 'Postulación autónoma' }
+          { value: '75–90', label: 'umbral de score' },
+          { value: '24/7', label: 'búsqueda continua' },
+          { value: '1', label: 'flag para apagarlo' }
         ],
         tags: ['IA', 'Automatización', 'Supabase', 'Vercel'],
         github: 'https://github.com/teckuro',
@@ -138,22 +126,34 @@ export const CONTENT_ES: SiteContent = {
         mockupLabel: 'HuntOS',
         previewDomain: 'huntos.vercel.app'
       }
-    ],
-    teaser: 'Cómo piensa y decide'
+    ]
   },
   thinking: {
-    eyebrow: '03 · Cómo piensa y decide',
-    title: 'Thinking',
-    titleHighlight: 'decisiones de arquitectura',
-    subtitle: 'Registros de decisión (ADR): problema, opciones, decisión, trade-offs y resultado.',
+    eyebrow: 'decisiones',
+    title: 'Cómo decido',
+    subtitle:
+      'Decisiones de arquitectura escritas como ADR: el problema, las opciones, lo que elegí y lo que me costó. Parto por un error real.',
     labels: {
       problem: 'Problema',
       options: 'Opciones',
       decision: 'Decisión',
-      tradeoffs: 'Trade-offs',
-      result: 'Resultado'
+      tradeoffs: 'Lo que me costó',
+      result: 'Resultado',
+      code: 'En el código'
     },
     items: [
+      {
+        code: 'ADR-06',
+        title: 'Un error real: desplegar integración y UI juntos',
+        problem:
+          'En facturación electrónica, un cambio de integración con el SII salió a producción junto con mejoras de UI. Un caso borde tributario bloqueó la emisión para parte de los clientes.',
+        options: 'Hotfix rápido y seguir igual, o rediseñar el proceso de entrega.',
+        decision:
+          'Separar los despliegues de integraciones de los de UI, versionar los contratos y convertir los casos borde del SII en una suite de regresión.',
+        tradeoffs: 'Entregas algo más lentas y más disciplina de proceso.',
+        result:
+          'Los incidentes de integración dejaron de llegar a clientes. Aprendí que la estabilidad se diseña en el proceso, no en el hotfix.'
+      },
       {
         code: 'ADR-01',
         title: 'Angular para software empresarial',
@@ -174,7 +174,8 @@ export const CONTENT_ES: SiteContent = {
         decision:
           'PostgreSQL: constraints fuertes, vistas y funciones para reglas de negocio, JSONB para parámetros flexibles y RLS para multiempresa.',
         tradeoffs: 'Más lógica en la base exige disciplina de migraciones y versionado.',
-        result: 'El modelo relacional es la fuente de verdad; el frontend no improvisa reglas.'
+        result: 'El modelo relacional es la fuente de verdad; el frontend no improvisa reglas.',
+        link: { label: 'supabase/migrations', href: `${ERP_REPO}/tree/main/supabase/migrations` }
       },
       {
         code: 'ADR-03',
@@ -197,7 +198,11 @@ export const CONTENT_ES: SiteContent = {
           'Motor puro en TypeScript: funciones deterministas (bruto + parámetros del período → liquidación), con parámetros versionados por mes en PostgreSQL.',
         tradeoffs: 'Una capa más de indirección y sincronizar parámetros entre base y motor.',
         result:
-          'Testeable con casos reales (topes 87,8 UF / 131,9 UF). El Motor de este workspace ejecuta un extracto de ese código.'
+          'Testeable con casos reales (topes 87,8 UF / 131,9 UF). El motor de esta página es un extracto de ese código.',
+        link: {
+          label: 'features/nomina-mensual/rules',
+          href: `${ERP_REPO}/tree/main/src/app/features/nomina-mensual/rules`
+        }
       },
       {
         code: 'ADR-05',
@@ -207,52 +212,40 @@ export const CONTENT_ES: SiteContent = {
         options: 'Feature folders sueltos, microfrontends, módulos por dominio.',
         decision:
           'Módulos por dominio con frontera clara: cada uno posee sus rutas, estado y acceso a datos; lo transversal vive en core/shared.',
-        tradeoffs: 'Más estructura inicial. Microfrontends habría sido sobre-ingeniería para el tamaño del equipo.',
-        result: 'Se puede modificar licencias médicas sin miedo a romper nóminas.'
-      },
-      {
-        code: 'ADR-06',
-        title: 'Un error real: desplegar integración y UI juntos',
-        problem:
-          'En facturación electrónica, un cambio de integración SII salió a producción junto con mejoras de UI. Un caso borde tributario bloqueó la emisión para parte de los clientes.',
-        options: 'Hotfix rápido y seguir igual, o rediseñar el proceso de entrega.',
-        decision:
-          'Separar despliegues de integraciones de los de UI, versionar contratos y convertir los casos borde del SII en suite de regresión.',
-        tradeoffs: 'Entregas algo más lentas y más disciplina de proceso.',
-        result:
-          'Los incidentes de integración dejaron de llegar a clientes. Aprendizaje: la estabilidad se diseña en el proceso, no en el hotfix.'
+        tradeoffs: 'Más estructura inicial. Microfrontends habría sido sobreingeniería para el tamaño del equipo.',
+        result: 'Se puede modificar licencias médicas sin miedo a romper nóminas.',
+        link: { label: 'src/app/features', href: `${ERP_REPO}/tree/main/src/app/features` }
       }
-    ],
-    teaser: 'Dónde lo aplicó'
+    ]
   },
   experience: {
-    eyebrow: '04 · Dónde aplicó ese conocimiento',
+    eyebrow: 'experiencia',
     title: 'Experiencia',
-    titleHighlight: 'profesional',
     impactLabel: 'Impacto',
     items: [
       {
-        role: 'Desarrollador Full Stack / Líder de Equipo',
+        role: 'Desarrollador full stack / Líder de equipo',
         company: 'Desis Limitada',
         period: 'ago. 2021 – ago. 2025',
         location: 'Chile',
-        summary: 'Productos escalables, módulos ERP e integraciones SII/Transbank con liderazgo técnico.',
+        summary:
+          'Facturación electrónica, integraciones con el SII y Transbank, y módulos ERP para clientes en todo Chile. Durante 8 meses también lideré un equipo.',
         responsibilities: [
           {
             title: 'Liderazgo técnico',
-            desc: 'Apoyo a un equipo de desarrollo durante 8 meses, supervisando calidad de entregas y problemas técnicos complejos.'
+            desc: 'Lideré un equipo de desarrollo durante 8 meses: revisión de entregas y problemas técnicos complejos.'
           },
           {
-            title: 'Desarrollo de ERP',
-            desc: 'Módulos de contabilidad, remuneraciones e inventario integrados con PHP y JavaScript.'
+            title: 'Módulos ERP',
+            desc: 'Contabilidad, remuneraciones e inventario, en PHP y JavaScript.'
           },
           {
-            title: 'Integraciones estratégicas',
-            desc: 'Integraciones con SII y pasarelas de pago Transbank para automatización de procesos.'
+            title: 'Integraciones SII y Transbank',
+            desc: 'Emisión de documentos tributarios con el SII y pagos con Transbank.'
           },
           {
-            title: 'Optimización de datos',
-            desc: 'Vistas y funciones en PostgreSQL para reglas de negocio y reportería.'
+            title: 'PostgreSQL',
+            desc: 'Vistas y funciones para reglas de negocio y reportes.'
           }
         ],
         impact:
@@ -260,11 +253,11 @@ export const CONTENT_ES: SiteContent = {
         tech: ['PHP', 'Laravel', 'Angular', 'PostgreSQL', 'GraphQL', 'SII', 'Transbank', 'Docker', 'AWS']
       },
       {
-        role: 'Programador Junior',
+        role: 'Programador junior',
         company: 'Anida Latam',
         period: 'ene. 2021 – ago. 2021',
         location: 'Chile',
-        summary: 'Desarrollo web con Angular/JavaScript y backend Laravel/PHP.',
+        summary: 'Desarrollo web con Angular y backend en Laravel/PHP.',
         responsibilities: [
           {
             title: 'Frontend Angular',
@@ -285,11 +278,10 @@ export const CONTENT_ES: SiteContent = {
     ]
   },
   contact: {
-    eyebrow: '05 · Contacto',
-    title: '¿Conversamos sobre',
-    titleHighlight: 'tu próximo sistema?',
+    eyebrow: 'contacto',
+    title: '¿Hablamos?',
     subtitle:
-      'Disponible para roles de ingeniería de software y proyectos de sistemas empresariales: ERP, arquitectura y automatización con IA.',
+      'Busco un rol de ingeniería de software en un equipo que construya sistemas empresariales. Si tienes un ERP, una integración o un proceso que automatizar, escríbeme.',
     emailCta: 'Escribir un email',
     links: [
       { label: 'Email', value: 'jphuerta.dev@gmail.com', href: 'mailto:jphuerta.dev@gmail.com', external: false },
@@ -300,15 +292,15 @@ export const CONTENT_ES: SiteContent = {
     whatsappAria: 'Contactar por WhatsApp'
   },
   footer: {
-    tagline: 'Senior Software Engineer. Sistemas empresariales, arquitectura y automatización con IA.',
+    tagline: 'Full stack engineer en Viña del Mar. ERP, remuneraciones e integraciones.',
     navTitle: 'Navegación',
     contactTitle: 'Contacto',
     rights: '© 2026 Juan Pablo Huerta',
-    availability: 'Disponibilidad inmediata'
+    availability: 'Disponible ahora'
   },
   consoleGreeting: {
-    title: 'JP·Workspace — Juan Pablo Huerta · Senior Software Engineer',
+    title: 'Juan Pablo Huerta · Full stack engineer',
     body:
-      '¿Inspeccionando el código? Angular + Tailwind, sin librerías de UI.\nRepositorio: https://github.com/teckuro\nContacto: jphuerta.dev@gmail.com'
+      '¿Revisando el código? Angular + Tailwind, sin librerías de UI.\nRepositorio del ERP: https://github.com/teckuro/ERP\nContacto: jphuerta.dev@gmail.com'
   }
 };

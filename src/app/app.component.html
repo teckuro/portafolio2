@@ -26,14 +26,9 @@
             Juan Pablo<br /><span class="hero-name__accent">Huerta</span><span class="hero-caret" aria-hidden="true"></span>
           </h1>
 
-          <div class="mt-8 flex flex-col gap-2 animate-fade-up delay-2">
-            <p class="font-display text-[var(--ink)] tracking-tight" style="font-weight: 600; font-size: clamp(1.25rem, 2.6vw, 1.75rem)">
-              {{ content.hero.role }}
-            </p>
-            <p class="text-[var(--accent)] text-sm sm:text-base tracking-wide" style="font-weight: 600">
-              {{ content.hero.specialization }}
-            </p>
-          </div>
+          <p class="mt-7 font-mono text-[var(--muted)] animate-fade-up delay-2" style="font-size: clamp(0.95rem, 1.6vw, 1.1rem)">
+            {{ content.hero.role }}
+          </p>
 
           <p class="mt-5 text-[var(--muted)] max-w-2xl leading-relaxed text-[1.05rem] sm:text-lg animate-fade-up delay-3">
             {{ content.hero.statement }}
@@ -77,7 +72,6 @@
             align="left"
             [eyebrow]="content.workspace.eyebrow"
             [title]="content.workspace.title"
-            [highlight]="content.workspace.titleHighlight"
             [subtitle]="content.workspace.subtitle"
           ></app-section-header>
         </div>
@@ -85,59 +79,23 @@
         <div class="reveal reveal-delay-1">
           <app-erp-workspace></app-erp-workspace>
         </div>
-
-        <div class="philosophy reveal reveal-delay-2">
-          @for (phrase of content.workspace.philosophy; track $index) {
-            <p class="philosophy__item">
-              {{ phrase }}
-            </p>
-          }
-        </div>
-
-        <div class="mt-12 reveal reveal-delay-2">
-          <button type="button" class="section-teaser" (click)="scrollTo('proyectos')">
-            <span>↓</span>
-            <span>{{ content.workspace.teaser }}</span>
-          </button>
-        </div>
       </div>
     </section>
 
-    <!-- PROYECTOS · ¿Cómo resuelve problemas? -->
-    <section id="proyectos" class="relative band-alt section-pad">
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="relative band-base section-pad">
       <div class="max-w-content mx-auto">
         <div class="reveal">
           <app-section-header
             align="left"
             [eyebrow]="content.projects.eyebrow"
             [title]="content.projects.title"
-            [highlight]="content.projects.titleHighlight"
-            [subtitle]="content.projects.subtitle"
           ></app-section-header>
         </div>
 
-        <div class="project-tabs reveal reveal-delay-1" role="tablist" [attr.aria-label]="content.projects.title">
-          @for (p of content.projects.items; track p.id) {
-            <button
-              type="button"
-              role="tab"
-              class="project-tab"
-              [class.is-active]="activeProject.id === p.id"
-              [attr.aria-selected]="activeProject.id === p.id"
-              (click)="setActiveProject(p.id)"
-              >
-              <span class="project-tab__num">{{ p.number }}</span>
-              <span class="min-w-0">
-                <span class="project-tab__title">{{ p.shortTitle }}</span>
-                <span class="project-tab__cat">{{ p.category }}</span>
-              </span>
-            </button>
-          }
-        </div>
-
-        <div class="reveal reveal-delay-2">
-          @for (project of [activeProject]; track trackProject($index, project)) {
-            <article class="project-stage grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div class="project-list">
+          @for (project of content.projects.items; track project.id) {
+            <article class="project-stage grid lg:grid-cols-12 gap-8 lg:gap-12 items-start reveal">
               <div class="lg:col-span-7 lg:sticky lg:top-24 space-y-4">
                 <div class="project-mock" aria-hidden="true">
                   <div class="project-mock__chrome">
@@ -183,20 +141,20 @@
                   }
                 </div>
 
-                <div class="grid grid-cols-3 gap-3">
+                <dl class="grid grid-cols-3 gap-3">
                   @for (metric of project.metrics; track $index) {
                     <div class="metric-card">
-                      <p class="font-display text-2xl text-[var(--accent)]" style="font-weight: 700">{{ metric.value }}</p>
-                      <p class="text-[var(--muted)] text-xs sm:text-sm mt-1 leading-snug">{{ metric.label }}</p>
+                      <dt class="text-[var(--muted)] text-xs sm:text-sm leading-snug order-2">{{ metric.label }}</dt>
+                      <dd class="metric-value">{{ metric.value }}</dd>
                     </div>
                   }
-                </div>
+                </dl>
               </div>
 
               <div class="lg:col-span-5 space-y-7">
                 <div>
-                  <p class="label mb-3">{{ project.number }} · {{ project.category }}</p>
-                  <h3 class="font-display text-2xl sm:text-[2rem] text-[var(--ink)] leading-tight tracking-tight" style="font-weight: 700">
+                  <p class="label mb-3">{{ project.category }}</p>
+                  <h3 class="font-display text-2xl sm:text-[1.75rem] text-[var(--ink)] leading-tight" style="font-weight: 600; letter-spacing: -0.02em">
                     {{ project.title }}
                   </h3>
                 </div>
@@ -248,13 +206,6 @@
             </article>
           }
         </div>
-
-        <div class="mt-14 reveal">
-          <button type="button" class="section-teaser" (click)="scrollTo('thinking')">
-            <span>↓</span>
-            <span>{{ content.projects.teaser }}</span>
-          </button>
-        </div>
       </div>
     </section>
 
@@ -266,7 +217,6 @@
             align="left"
             [eyebrow]="content.thinking.eyebrow"
             [title]="content.thinking.title"
-            [highlight]="content.thinking.titleHighlight"
             [subtitle]="content.thinking.subtitle"
           ></app-section-header>
         </div>
@@ -314,18 +264,22 @@
                       <dt>{{ content.thinking.labels.result }}</dt>
                       <dd>{{ adr.result }}</dd>
                     </div>
+                    @if (adr.link) {
+                      <div class="sm:col-span-2">
+                        <dt>{{ content.thinking.labels.code }}</dt>
+                        <dd>
+                          <a [href]="adr.link.href" target="_blank" rel="noopener noreferrer" class="text-link font-mono">
+                            {{ adr.link.label }}
+                            <svg lucideArrowUpRight class="w-4 h-4 btn-arrow"></svg>
+                          </a>
+                        </dd>
+                      </div>
+                    }
                   </dl>
                 </div>
               }
             </article>
           }
-        </div>
-
-        <div class="mt-14 reveal reveal-delay-2">
-          <button type="button" class="section-teaser" (click)="scrollTo('experiencia')">
-            <span>↓</span>
-            <span>{{ content.thinking.teaser }}</span>
-          </button>
         </div>
       </div>
     </section>
@@ -338,7 +292,6 @@
             align="left"
             [eyebrow]="content.experience.eyebrow"
             [title]="content.experience.title"
-            [highlight]="content.experience.titleHighlight"
           ></app-section-header>
         </div>
 
@@ -399,7 +352,6 @@
           <p class="section-eyebrow">{{ content.contact.eyebrow }}</p>
           <h2 class="contact-title mt-6">
             {{ content.contact.title }}
-            <span class="text-[var(--accent)]">{{ content.contact.titleHighlight }}</span>
           </h2>
           <p class="mt-6 text-[var(--muted)] text-lg leading-relaxed max-w-xl">{{ content.contact.subtitle }}</p>
           <div class="mt-9 flex flex-wrap gap-3">
