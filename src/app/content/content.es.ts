@@ -1,4 +1,5 @@
 import { SiteContent } from './content.model';
+import actividad from './erp-actividad.json';
 
 const ERP_REPO = 'https://github.com/teckuro/ERP';
 
@@ -11,6 +12,7 @@ export const CONTENT_ES: SiteContent = {
   nav: {
     links: [
       { id: 'workspace', label: 'Motor' },
+      { id: 'ahora', label: 'Ahora' },
       { id: 'proyectos', label: 'ERP' },
       { id: 'thinking', label: 'Decisiones' },
       { id: 'experiencia', label: 'Experiencia' }
@@ -58,6 +60,16 @@ export const CONTENT_ES: SiteContent = {
       note: 'Versión simplificada: UF fija y sin impuesto único. El motor completo está en el ERP.'
     }
   },
+  now: {
+    eyebrow: 'ahora',
+    title: 'En qué estoy trabajando',
+    subtitle:
+      'Los últimos cambios del ERP, leídos del repositorio público en cada publicación de este sitio.',
+    updated: 'Actualizado el',
+    commitsLabel: 'commits en main',
+    viewAll: 'Ver todos los commits',
+    months: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
+  },
   projects: {
     eyebrow: 'proyecto',
     title: 'El ERP por dentro',
@@ -86,9 +98,9 @@ export const CONTENT_ES: SiteContent = {
         architectureNote:
           'El cálculo vive en un motor puro y testeable; la UI solo orquesta. Parámetros versionados por período.',
         metrics: [
-          { value: '70', label: 'migraciones SQL' },
-          { value: '2.164', label: 'tests automatizados' },
-          { value: '15', label: 'módulos de dominio' }
+          { value: String(actividad.cifras.migraciones), label: 'migraciones SQL' },
+          { value: actividad.cifras.tests.toLocaleString('es-CL'), label: 'tests automatizados' },
+          { value: String(actividad.cifras.modulos), label: 'módulos de dominio' }
         ],
         tags: ['Angular', 'TypeScript', 'Supabase', 'PostgreSQL'],
         github: ERP_REPO,

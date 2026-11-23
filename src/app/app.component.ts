@@ -22,6 +22,8 @@ import {
 } from '@angular/core';
 import { Lang, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
+import { instalarLiquidar } from './motor/consola';
+import actividad from './content/erp-actividad.json';
 
 @Component({
   imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideArrowUpRight, LucideChevronDown, LucideDownload, LucideFolderGit, LucideMail],
@@ -39,6 +41,19 @@ export class AppComponent implements OnInit, OnDestroy {
   /** `?v=` invalida la caché de /assets en Vercel al publicar un CV nuevo. */
   readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf?v=2026-11';
   readonly whatsappUrl = 'https://wa.me/56988292018';
+
+  /** Commits y cifras del ERP, generados en cada build por scripts/actualizar-erp.mjs. */
+  readonly actividad = actividad;
+
+  /** `2026-11-20` → `20 nov`. Sin Date ni zona horaria: igual en SSR y en el navegador. */
+  fechaCorta(iso: string): string {
+    const [, mes, dia] = iso.split('-').map(Number);
+    return `${dia} ${this.content.now.months[mes - 1] ?? ''}`;
+  }
+
+  fechaLarga(iso: string): string {
+    return `${this.fechaCorta(iso)} ${iso.slice(0, 4)}`;
+  }
 
   /** Enlace mailto tomado del primer contacto de tipo email. */
   get emailHref(): string {
@@ -145,12 +160,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.expandedAdrIndex = this.expandedAdrIndex === index ? -1 : index;
   }
 
+  /** Saludo en consola + `liquidar(bruto)` con el mismo motor de la calculadora. */
   private logConsoleGreeting(): void {
     if (typeof console === 'undefined') {
       return;
     }
-    const greeting = this.content.consoleGreeting;
-    console.log('%c' + greeting.title, 'font-size:14px;font-weight:700;color:#245c4e;');
-    console.log('%c' + greeting.body, 'color:#3f4a57;line-height:1.5;');
+    instalarLiquidar(() => this.lang, this.content.consoleGreeting);
   }
 }

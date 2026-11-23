@@ -109,6 +109,17 @@ export interface SiteContent {
       note: string;
     };
   };
+  now: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    updated: string;
+    commitsLabel: string;
+    viewAll: string;
+    /** Abreviaturas de mes (ene…dic) para fechas deterministas en SSR y cliente. */
+    months: string[];
+    note?: string;
+  };
   projects: {
     eyebrow: string;
     title: string;

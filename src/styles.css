@@ -630,110 +630,108 @@ body {
   font-size: 1.2rem;
 }
 
-/* Principios de ingeniería */
-.philosophy {
-  margin-top: 3rem;
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-@media (min-width: 640px) {
-  .philosophy {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .philosophy {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.philosophy__item {
-  padding: 1.1rem 1.2rem;
-  border-top: 2px solid var(--accent);
+/* ==========================================================================
+   Ahora — git log del ERP
+   ========================================================================== */
+.gitlog {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background: var(--surface);
-  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-  font-size: 0.95rem;
-  line-height: 1.45;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+.gitlog__head,
+.gitlog__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1.1rem;
+  font-size: 0.78rem;
+  color: var(--faint);
+}
+
+.gitlog__head {
+  border-bottom: 1px solid var(--line);
+}
+
+.gitlog__foot {
+  border-top: 1px solid var(--line);
+}
+
+/* Una sola grilla para toda la lista (subgrid): las columnas quedan alineadas. */
+.gitlog__list {
+  display: grid;
+  grid-template-columns: auto auto auto minmax(0, 1fr);
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+}
+
+.gitlog__list li {
+  display: contents;
+}
+
+.gitlog__row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  column-gap: 1rem;
+  align-items: baseline;
+  padding: 0.55rem 1.1rem;
   color: var(--ink);
-  box-shadow: var(--shadow-card);
+  transition: background-color var(--duration) var(--ease);
+}
+
+.gitlog__row:hover {
+  background: var(--bg);
+}
+
+.gitlog__sha {
+  color: var(--accent);
+}
+
+.gitlog__date {
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+.gitlog__type {
+  justify-self: start;
+  padding: 0 0.35rem;
+  border-radius: 3px;
+  background: var(--bg-alt);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.gitlog__type[data-tipo="feat"] {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+.gitlog__msg {
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .gitlog__list {
+    grid-template-columns: auto auto minmax(0, 1fr);
+  }
+
+  .gitlog__msg {
+    grid-column: 1 / -1;
+  }
 }
 
 /* ==========================================================================
    Proyectos
    ========================================================================== */
-.project-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.project-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.7rem 1.1rem 0.7rem 0.8rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--muted);
-  text-align: left;
-  cursor: pointer;
-  transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease),
-    border-color var(--duration) var(--ease);
-}
-
-.project-tab:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
-.project-tab.is-active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
-
-.project-tab__num {
-  display: inline-grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.project-tab.is-active .project-tab__num {
-  background: var(--accent-bright);
-  color: var(--ink-deep);
-}
-
-.project-tab__title {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.project-tab__cat {
-  display: block;
-  font-size: 0.75rem;
-  opacity: 0.8;
-  margin-top: 0.15rem;
-}
-
-.project-stage {
-  animation: project-swap 0.4s var(--ease);
-}
-
 @keyframes project-swap {
   from {
     opacity: 0.4;
@@ -1302,7 +1300,6 @@ body {
   .scroll-cue__line,
   .status-dot::after,
   .demo-calc__pulse,
-  .project-stage,
   .accordion-panel {
     animation: none !important;
   }
