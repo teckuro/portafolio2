@@ -2,7 +2,7 @@
   class="fixed top-0 w-full z-50 transition-colors duration-300"
   [class.on-dark]="!scrolled && !menuOpen"
   [class]="scrolled || menuOpen
-    ? 'bg-[#f3f1ec]/90 backdrop-blur-xl border-b border-[rgba(15,23,32,0.08)]'
+    ? 'nav-solid'
     : 'bg-transparent border-b border-transparent'"
   >
   <div class="max-w-content mx-auto px-5 sm:px-8">
@@ -73,7 +73,7 @@
 </nav>
 
 @if (menuOpen) {
-  <div class="fixed top-16 left-0 right-0 z-40 bg-[#f3f1ec]/95 backdrop-blur-xl border-b border-[rgba(15,23,32,0.08)] shadow-lg lg:hidden">
+  <div class="nav-solid fixed top-16 left-0 right-0 z-40 shadow-lg lg:hidden">
     <div class="max-w-content mx-auto px-5 py-4 space-y-1">
       @for (link of content.nav.links; track $index) {
         <button

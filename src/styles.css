@@ -4,32 +4,41 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   Tokens
-   Base clara (papel cálido). Todas las combinaciones texto/fondo cumplen
-   WCAG AA (≥ 4.5:1) en bandas claras y oscuras.
+   Tokens · paleta "Selección"
+   Grises neutros de editor; el único color es el azul del texto seleccionado.
+   Todas las combinaciones texto/fondo cumplen WCAG AA (≥ 4.5:1).
    ========================================================================== */
 :root {
-  --bg: #f3f1ec;
-  --bg-alt: #e9e6df;
+  --bg: #eeeeec;
+  --bg-alt: #e5e5e2;
   --surface: #ffffff;
-  --paper: #f3f1ec;
-  --ink: #0f1720;
-  --muted: #3d4754;
-  --faint: #5a6470;
-  --line: rgba(15, 23, 32, 0.1);
-  --line-strong: rgba(15, 23, 32, 0.18);
-  --accent: #1b6a56;
-  --accent-hover: #14523f;
-  --accent-soft: rgba(27, 106, 86, 0.1);
-  --accent-bright: #6fd1aa;
-  --ink-deep: #0c1217;
+  --paper: #eeeeec;
+  --ink: #1a1b1e;
+  --muted: #45474d;
+  --faint: #5f6168;
+  --line: rgba(26, 27, 30, 0.1);
+  --line-strong: rgba(26, 27, 30, 0.18);
+  --accent: #3d5a85;
+  --accent-hover: #2e4669;
+  --accent-soft: rgba(61, 90, 133, 0.1);
+  --accent-bright: #93aed6;
+  --ink-deep: #18191c;
   --on-accent: #ffffff;
+  --selection: #cfd8e6;
+  /* Superficies oscuras fijas (ventanas de producto en bandas claras) */
+  --dark-bg: #18191c;
+  --dark-surface: #202226;
+  --dark-chrome: #141518;
+  --dark-ink: #dcdde0;
+  --dark-muted: #a9abb1;
+  --dark-faint: #888a91;
+  --dark-line: rgba(220, 221, 224, 0.1);
   --font-display: "Syne", sans-serif;
   --font-body: "IBM Plex Sans", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --radius: 18px;
   --radius-sm: 10px;
-  --shadow-card: 0 1px 2px rgba(15, 23, 32, 0.04), 0 12px 32px -12px rgba(15, 23, 32, 0.16);
+  --shadow-card: 0 1px 2px rgba(26, 27, 30, 0.04);
   --shadow-float: 0 30px 60px -24px rgba(12, 18, 23, 0.45);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 0.35s;
@@ -37,19 +46,22 @@
 
 /* Variables para superficies oscuras (sin fondo): hero, navbar sobre hero, bandas ink. */
 .on-dark,
-.band-ink {
-  --ink: #eef2ef;
-  --muted: #b6c1c9;
-  --faint: #8e9ba6;
-  --line: rgba(238, 242, 239, 0.1);
-  --line-strong: rgba(238, 242, 239, 0.2);
-  --accent: #6fd1aa;
-  --accent-hover: #93e0c0;
-  --accent-soft: rgba(111, 209, 170, 0.14);
-  --bg: #0c1217;
-  --surface: #141c23;
-  --paper: #eef2ef;
-  --on-accent: #0c1217;
+.band-ink,
+.jpws,
+.project-mock {
+  --ink: var(--dark-ink);
+  --muted: var(--dark-muted);
+  --faint: var(--dark-faint);
+  --line: var(--dark-line);
+  --line-strong: rgba(220, 221, 224, 0.2);
+  --accent: #93aed6;
+  --accent-hover: #adc3e2;
+  --accent-soft: rgba(147, 174, 214, 0.14);
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --paper: var(--dark-ink);
+  --on-accent: var(--dark-bg);
+  --selection: #2c3a52;
 }
 
 html {
@@ -66,9 +78,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* La selección es el concepto de la paleta: se ve igual que en el editor. */
 ::selection {
-  background: rgba(111, 209, 170, 0.35);
-  color: #0f1720;
+  background: var(--selection);
+  color: var(--ink);
 }
 
 :focus-visible {
@@ -99,21 +112,8 @@ body {
 }
 
 .band-ink {
-  background:
-    radial-gradient(ellipse 60% 50% at 85% 0%, rgba(111, 209, 170, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(70, 110, 150, 0.12) 0%, transparent 60%),
-    #0c1217;
+  background: var(--dark-bg);
   color: var(--ink);
-}
-
-/* Grilla técnica sutil para bandas oscuras */
-.grid-overlay {
-  background-image:
-    linear-gradient(rgba(238, 242, 239, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(238, 242, 239, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 85%);
 }
 
 .section-pad {
@@ -139,7 +139,7 @@ body {
 }
 
 .band-ink .surface-panel {
-  background: rgba(238, 242, 239, 0.035);
+  background: var(--dark-surface);
   box-shadow: none;
 }
 
@@ -258,7 +258,7 @@ body {
 .scroll-progress__bar {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, #1b6a56, #6fd1aa);
+  background: var(--accent);
   transition: width 0.1s linear;
 }
 
@@ -272,7 +272,7 @@ body {
   padding: 0.45rem 0.9rem 0.45rem 0.75rem;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  background: rgba(238, 242, 239, 0.04);
+  background: transparent;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   color: var(--muted);
@@ -317,23 +317,30 @@ body {
   color: var(--ink);
 }
 
+/* El apellido aparece "seleccionado", como en el editor, con el cursor al final. */
 .hero-name__accent {
-  color: var(--accent);
+  color: var(--ink);
+  background: var(--selection);
+  padding: 0 0.06em;
+  border-radius: 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-.hero-monogram {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(14rem, 26vw, 24rem);
-  line-height: 0.8;
-  letter-spacing: -0.06em;
-  color: rgba(238, 242, 239, 0.035);
-  user-select: none;
+.hero-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.82em;
+  margin-left: 0.06em;
+  vertical-align: -0.04em;
+  background: var(--ink);
+  animation: caret-blink 1.1s steps(1) infinite;
 }
 
-.hero-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(111, 209, 170, 0.28) 0%, rgba(111, 209, 170, 0.06) 40%, transparent 70%);
-  filter: blur(20px);
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-chip {
@@ -402,18 +409,12 @@ body {
 /* ==========================================================================
    JP·Workspace — shell oscuro del producto
    ========================================================================== */
+/* Las variables oscuras de .jpws vienen del bloque .on-dark/.band-ink de arriba. */
 .jpws {
-  --ink: #eef2ef;
-  --muted: #b6c1c9;
-  --faint: #8e9ba6;
-  --accent: #6fd1aa;
-  --accent-soft: rgba(111, 209, 170, 0.14);
-  --line: rgba(238, 242, 239, 0.1);
-  --line-strong: rgba(238, 242, 239, 0.18);
-  border: 1px solid rgba(15, 23, 32, 0.2);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   overflow: hidden;
-  background: #141c23;
+  background: var(--dark-surface);
   color: var(--ink);
   box-shadow: var(--shadow-float);
 }
@@ -424,8 +425,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: #0c1217;
-  border-bottom: 1px solid rgba(238, 242, 239, 0.08);
+  background: var(--dark-chrome);
+  border-bottom: 1px solid var(--dark-line);
 }
 
 .jpws__dot,
@@ -433,14 +434,14 @@ body {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: rgba(238, 242, 239, 0.18);
+  background: rgba(220, 221, 224, 0.18);
 }
 
 .jpws__product {
   margin-left: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: #8e9ba6;
+  color: var(--faint);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -452,8 +453,8 @@ body {
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(111, 209, 170, 0.14);
+  border-radius: 6px;
+  background: var(--accent-soft);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent);
@@ -462,7 +463,7 @@ body {
 }
 
 .jpws__demo-link:hover {
-  background: rgba(111, 209, 170, 0.24);
+  background: var(--selection);
 }
 
 .jpws__main {
@@ -500,7 +501,7 @@ body {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 0.85rem 0.95rem;
-  background: rgba(238, 242, 239, 0.03);
+  background: var(--dark-chrome);
 }
 
 .jpws__kpi-label {
@@ -518,9 +519,11 @@ body {
   margin-top: 0.35rem;
 }
 
+/* Neutro a propósito: que la UF suba no es ni bueno ni malo. */
 .jpws__param-delta {
+  font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent);
+  color: var(--faint);
   margin-top: 0.15rem;
 }
 
@@ -566,7 +569,7 @@ body {
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #0c1217;
+  background: var(--dark-chrome);
   color: var(--ink);
   font-family: var(--font-mono);
   font-size: 1.05rem;
@@ -694,8 +697,8 @@ body {
 }
 
 .project-tab.is-active .project-tab__num {
-  background: #6fd1aa;
-  color: #0c1217;
+  background: var(--accent-bright);
+  color: var(--ink-deep);
 }
 
 .project-tab__title {
@@ -730,9 +733,9 @@ body {
 .project-mock {
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 32, 0.2);
-  background: #141c23;
-  color: #eef2ef;
+  border: 1px solid var(--line-strong);
+  background: var(--dark-surface);
+  color: var(--ink);
   box-shadow: var(--shadow-float);
 }
 
@@ -740,7 +743,7 @@ body {
   margin-left: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: #8e9ba6;
+  color: var(--faint);
 }
 
 .project-mock__screenshot {
@@ -757,8 +760,8 @@ body {
 
 .project-mock__side {
   padding: 0.85rem 0.65rem;
-  background: #0f171d;
-  border-right: 1px solid rgba(238, 242, 239, 0.08);
+  background: var(--dark-chrome);
+  border-right: 1px solid var(--dark-line);
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
@@ -767,11 +770,11 @@ body {
 .project-mock__nav {
   height: 0.45rem;
   border-radius: 999px;
-  background: rgba(238, 242, 239, 0.12);
+  background: rgba(220, 221, 224, 0.12);
 }
 
 .project-mock__nav.is-active {
-  background: #6fd1aa;
+  background: var(--accent);
   width: 70%;
 }
 
@@ -790,15 +793,15 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(238, 242, 239, 0.6);
+  color: var(--muted);
 }
 
 .project-mock__chip {
   font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  background: rgba(111, 209, 170, 0.18);
-  color: #6fd1aa;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .project-mock__table {
@@ -815,11 +818,11 @@ body {
 .project-mock__cell {
   height: 0.55rem;
   border-radius: 999px;
-  background: rgba(238, 242, 239, 0.12);
+  background: rgba(220, 221, 224, 0.12);
 }
 
 .project-mock__cell.is-accent {
-  background: rgba(111, 209, 170, 0.45);
+  background: var(--selection);
 }
 
 .project-mock__cell.is-short {
@@ -833,7 +836,7 @@ body {
   .project-mock__side {
     flex-direction: row;
     border-right: 0;
-    border-bottom: 1px solid rgba(238, 242, 239, 0.08);
+    border-bottom: 1px solid var(--dark-line);
   }
   .project-mock__nav {
     width: 2rem;
@@ -1060,13 +1063,13 @@ body {
   padding: 1.1rem 1.25rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: rgba(238, 242, 239, 0.03);
+  background: transparent;
   transition: border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
 }
 
 .contact-card:hover {
   border-color: var(--accent);
-  background: rgba(111, 209, 170, 0.06);
+  background: var(--accent-soft);
 }
 
 .contact-card:hover .btn-arrow {
@@ -1116,8 +1119,22 @@ body {
   color: var(--bg);
 }
 
+/* Barra de navegación al hacer scroll / menú móvil: fondo de la página translúcido */
+.nav-solid {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
 .wa-fab {
+  background: var(--accent);
+  color: var(--on-accent);
   transition: transform var(--duration) var(--ease), background-color var(--duration) var(--ease);
+}
+
+.wa-fab:hover {
+  background: var(--accent-hover);
 }
 
 .wa-fab:hover {
@@ -1254,6 +1271,7 @@ body {
   .animate-fade-up,
   .animate-fade-in,
   .animate-drift,
+  .hero-caret,
   .scroll-cue__line,
   .status-dot::after,
   .demo-calc__pulse,
