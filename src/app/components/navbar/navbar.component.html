@@ -9,11 +9,11 @@
     <div class="flex items-center justify-between h-16">
       <button (click)="scrollTo('inicio')" class="flex items-center gap-2.5 min-w-0" type="button" aria-label="Juan Pablo Huerta">
         <span
-          class="grid place-items-center w-8 h-8 rounded-lg bg-[var(--ink)] text-[var(--bg)] font-display text-[0.8rem] transition-colors"
-          style="font-weight: 800"
+          class="grid place-items-center w-8 h-8 rounded-md bg-[var(--ink)] text-[var(--bg)] font-mono text-[0.8rem] transition-colors"
+          style="font-weight: 600"
           aria-hidden="true"
           >JH</span>
-        <span class="hidden min-[400px]:inline font-display text-[var(--ink)] tracking-tight text-[1.05rem] whitespace-nowrap" style="font-weight: 700">
+        <span class="hidden min-[400px]:inline font-display text-[var(--ink)] tracking-tight text-[1rem] whitespace-nowrap" style="font-weight: 600">
           Juan Pablo Huerta
         </span>
       </button>
@@ -23,7 +23,7 @@
           <button
             type="button"
             (click)="scrollTo(link.id)"
-            class="relative px-3.5 py-2 text-sm rounded-full transition-colors duration-200"
+            class="relative px-3 py-1.5 text-sm rounded-md transition-colors duration-200"
             [class]="activeSection === link.id
               ? 'text-[var(--ink)] bg-[var(--accent-soft)]'
               : 'text-[var(--muted)] hover:text-[var(--ink)]'"
