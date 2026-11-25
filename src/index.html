@@ -58,6 +58,10 @@
   <app-root></app-root>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    // Visitas propias: localStorage.setItem('va-disable', '1') en la consola (Vercel no filtra por IP).
+    window.va('beforeSend', function (event) {
+      try { return localStorage.getItem('va-disable') !== null ? null : event; } catch (e) { return event; }
+    });
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
