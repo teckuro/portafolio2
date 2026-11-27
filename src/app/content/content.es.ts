@@ -42,22 +42,32 @@ export const CONTENT_ES: SiteContent = {
     parametros: {
       title: 'Parámetros del período',
       items: [
-        { label: 'UF', value: '$40.820,31', delta: '+0,52%' },
-        { label: 'UTM', value: '$71.506', delta: '+1,30%' },
-        { label: 'UTA', value: '$858.072', delta: '+1,30%' },
-        { label: 'Sueldo mínimo', value: '$539.000', delta: 'sin variación' }
+        { label: 'UF', value: '$41.439,89', delta: '+0,47%' },
+        { label: 'UTM', value: '$72.440', delta: '+0,40%' },
+        { label: 'UTA', value: '$869.280', delta: '+0,40%' },
+        { label: 'Sueldo mínimo', value: '$553.553', delta: 'sin variación' }
       ],
+      noChange: 'sin variación',
+      liveNote: 'Leídos de la base del ERP: el último período cargado.',
       footnote: 'En el ERP, estos parámetros se versionan por mes en PostgreSQL y el motor usa los del período activo.'
     },
     motor: {
       title: 'Motor de cálculo · en vivo',
       grossLabel: 'Sueldo bruto (CLP)',
-      taxableLabel: 'Imponible (tope 87,8 UF)',
-      afpLabel: 'AFP (11,15% ref.)',
-      healthLabel: 'Salud (7%)',
-      unemploymentLabel: 'Seguro de cesantía (0,6%)',
+      taxableLabel: 'Imponible (tope {tope} UF)',
+      afpLabel: 'AFP{afp} ({tasa}%)',
+      healthLabel: 'Salud ({tasa}%)',
+      unemploymentLabel: 'Seguro de cesantía ({tasa}%)',
       totalLabel: 'Líquido estimado',
-      note: 'Versión simplificada: UF fija y sin impuesto único. El motor completo está en el ERP.'
+      note: 'Versión simplificada: sin impuesto único. El motor completo está en el ERP.'
+    },
+    slip: {
+      title: 'Liquidación de sueldo',
+      earnings: 'Haberes',
+      deductions: 'Descuentos',
+      inWords: 'Son',
+      received: 'Recibí conforme',
+      capApplied: 'Se aplicó el tope imponible'
     }
   },
   now: {
@@ -286,5 +296,11 @@ export const CONTENT_ES: SiteContent = {
     title: 'Juan Pablo Huerta · Full stack engineer',
     body:
       '¿Revisando el código? Angular + Tailwind, sin librerías de UI.\nRepositorio del ERP: https://github.com/teckuro/ERP\nContacto: jphuerta.dev@gmail.com'
+  },
+  sheet: {
+    label: 'Hoja',
+    of: 'de',
+    end: 'Fin del listado',
+    totals: 'Totales'
   }
 };

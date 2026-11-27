@@ -95,18 +95,31 @@ export interface SiteContent {
     openDemo: string;
     parametros: {
       title: string;
+      /** Respaldo del build, mientras no lleguen los de la base. */
       items: WorkspaceParam[];
+      noChange: string;
+      liveNote: string;
       footnote: string;
     };
     motor: {
       title: string;
       grossLabel: string;
+      /** Plantillas: {tope}, {afp} (" Uno" o vacío) y {tasa} se rellenan con el período vigente. */
       taxableLabel: string;
       afpLabel: string;
       healthLabel: string;
       unemploymentLabel: string;
       totalLabel: string;
       note: string;
+    };
+    /** Rótulos de la liquidación impresa. */
+    slip: {
+      title: string;
+      earnings: string;
+      deductions: string;
+      inWords: string;
+      received: string;
+      capApplied: string;
     };
   };
   now: {
@@ -168,5 +181,12 @@ export interface SiteContent {
   consoleGreeting: {
     title: string;
     body: string;
+  };
+  /** Cabecera de cada hoja del papel continuo. */
+  sheet: {
+    label: string;
+    of: string;
+    end: string;
+    totals: string;
   };
 }

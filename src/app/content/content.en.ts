@@ -42,22 +42,32 @@ export const CONTENT_EN: SiteContent = {
     parametros: {
       title: 'Period parameters',
       items: [
-        { label: 'UF', value: '$40,820.31', delta: '+0.52%' },
-        { label: 'UTM', value: '$71,506', delta: '+1.30%' },
-        { label: 'UTA', value: '$858,072', delta: '+1.30%' },
-        { label: 'Minimum wage', value: '$539,000', delta: 'no change' }
+        { label: 'UF', value: '$41,439.89', delta: '+0.47%' },
+        { label: 'UTM', value: '$72,440', delta: '+0.40%' },
+        { label: 'UTA', value: '$869,280', delta: '+0.40%' },
+        { label: 'Minimum wage', value: '$553,553', delta: 'no change' }
       ],
+      noChange: 'no change',
+      liveNote: 'Read from the ERP database: the last period loaded.',
       footnote: 'In the ERP, these parameters are versioned per month in PostgreSQL and the engine uses the active period.'
     },
     motor: {
       title: 'Calculation engine · live',
       grossLabel: 'Gross salary (CLP)',
-      taxableLabel: 'Taxable base (87.8 UF cap)',
-      afpLabel: 'Pension fund (11.15% ref.)',
-      healthLabel: 'Health (7%)',
-      unemploymentLabel: 'Unemployment insurance (0.6%)',
+      taxableLabel: 'Taxable base ({tope} UF cap)',
+      afpLabel: 'Pension fund{afp} ({tasa}%)',
+      healthLabel: 'Health ({tasa}%)',
+      unemploymentLabel: 'Unemployment insurance ({tasa}%)',
       totalLabel: 'Estimated net pay',
-      note: 'Simplified version: fixed UF and no income tax. The full engine lives in the ERP.'
+      note: 'Simplified version: no income tax. The full engine lives in the ERP.'
+    },
+    slip: {
+      title: 'Pay slip',
+      earnings: 'Earnings',
+      deductions: 'Deductions',
+      inWords: 'Amount in words',
+      received: 'Received in full',
+      capApplied: 'Taxable cap applied'
     }
   },
   now: {
@@ -286,5 +296,11 @@ export const CONTENT_EN: SiteContent = {
     title: 'Juan Pablo Huerta · Full stack engineer',
     body:
       'Inspecting the code? Angular + Tailwind, no UI libraries.\nERP repository: https://github.com/teckuro/ERP\nContact: jphuerta.dev@gmail.com'
+  },
+  sheet: {
+    label: 'Sheet',
+    of: 'of',
+    end: 'End of listing',
+    totals: 'Totals'
   }
 };

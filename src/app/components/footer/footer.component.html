@@ -1,57 +1,24 @@
-<footer class="band-ink border-t border-[var(--line)]">
-  <div class="max-w-content mx-auto px-5 sm:px-8 py-12">
-    <div class="flex flex-col md:flex-row md:items-start justify-between gap-10">
-      <div class="max-w-sm">
-        <p class="font-display text-[var(--ink)] tracking-tight mb-3" style="font-weight: 600; font-size: 1.15rem">
-          Juan Pablo Huerta
-        </p>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">
-          {{ content.footer.tagline }}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 gap-10 sm:gap-16">
-        <div>
-          <p class="label mb-4">{{ content.footer.navTitle }}</p>
-          <ul class="space-y-2">
-            @for (link of content.nav.links; track $index) {
-              <li>
-                <button
-                  type="button"
-                  class="py-1 text-left text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-                  (click)="scrollTo(link.id)"
-                  >
-                  {{ link.label }}
-                </button>
-              </li>
-            }
-          </ul>
-        </div>
-
-        <div>
-          <p class="label mb-4">{{ content.footer.contactTitle }}</p>
-          <ul class="space-y-2">
-            @for (link of content.contact.links; track $index) {
-              <li>
-                <a
-                  [href]="link.href"
-                  [attr.target]="link.external ? '_blank' : null"
-                  [attr.rel]="link.external ? 'noopener noreferrer' : null"
-                  class="inline-block py-1 text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-                >{{ link.label }}</a>
-              </li>
-            }
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-12 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-      <p class="text-[var(--faint)] text-sm">{{ content.footer.rights }}</p>
-      <p class="inline-flex items-center gap-2 text-[var(--faint)] text-sm">
-        <span class="status-dot" aria-hidden="true"></span>
-        {{ content.footer.availability }}
-      </p>
-    </div>
+<footer class="fin">
+  <p class="fin__titulo">{{ content.sheet.end }}</p>
+  <div class="fin__grid">
+    <p class="fin__tagline">{{ content.footer.tagline }}</p>
+    <ul class="fin__links" [attr.aria-label]="content.footer.navTitle">
+      @for (link of content.nav.links; track $index) {
+        <li><button type="button" class="ink-link" (click)="scrollTo(link.id)">{{ link.label }}</button></li>
+      }
+    </ul>
+    <ul class="fin__links" [attr.aria-label]="content.footer.contactTitle">
+      @for (link of content.contact.links; track $index) {
+        <li>
+          <a
+            class="ink-link"
+            [href]="link.href"
+            [attr.target]="link.external ? '_blank' : null"
+            [attr.rel]="link.external ? 'noopener noreferrer' : null"
+          >{{ link.label }}</a>
+        </li>
+      }
+    </ul>
   </div>
+  <p class="fin__derechos">{{ content.footer.rights }}</p>
 </footer>

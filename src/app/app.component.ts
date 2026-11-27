@@ -1,16 +1,7 @@
 
-import {
-  LucideArrowRight,
-  LucideArrowUpRight,
-  LucideChevronDown,
-  LucideDownload,
-  LucideFolderGit,
-  LucideMail,
-} from '@lucide/angular';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ErpWorkspaceComponent } from './components/erp-workspace/erp-workspace.component';
-import { SectionHeaderComponent } from './ui/section-header/section-header.component';
 import {
   Component,
   HostListener,
@@ -23,10 +14,10 @@ import {
 import { Lang, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
 import { instalarLiquidar } from './motor/consola';
-import actividad from './content/erp-actividad.json';
+import { ActividadErp, ErpEnVivoService } from './services/erp-en-vivo.service';
 
 @Component({
-  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideArrowUpRight, LucideChevronDown, LucideDownload, LucideFolderGit, LucideMail],
+  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -43,8 +34,15 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf?v=2026-11';
   readonly whatsappUrl = 'https://wa.me/56988292018';
 
-  /** Commits y cifras del ERP, generados en cada build por scripts/actualizar-erp.mjs. */
-  readonly actividad = actividad;
+  private readonly erp = inject(ErpEnVivoService);
+
+  /**
+   * Commits y cifras del ERP: los del build (scripts/actualizar-erp.mjs) y, tras
+   * cargar, los que devuelve GitHub en ese momento.
+   */
+  get actividad(): ActividadErp {
+    return this.erp.actividad();
+  }
 
   /** `2026-11-20` → `20 nov`. Sin Date ni zona horaria: igual en SSR y en el navegador. */
   fechaCorta(iso: string): string {
@@ -54,6 +52,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   fechaLarga(iso: string): string {
     return `${this.fechaCorta(iso)} ${iso.slice(0, 4)}`;
+  }
+
+  /** Orden de las hojas del papel continuo; "ahora" solo existe si hay commits. */
+  get hojas(): string[] {
+    const todas = ['inicio', 'workspace', 'ahora', 'proyectos', 'thinking', 'experiencia', 'contacto'];
+    return this.actividad.commits.length ? todas : todas.filter((h) => h !== 'ahora');
+  }
+
+  /** "Hoja 3 de 7" para la cabecera de cada sección. */
+  hoja(id: string): string {
+    const s = this.content.sheet;
+    return `${s.label} ${this.hojas.indexOf(id) + 1} ${s.of} ${this.hojas.length}`;
   }
 
   /** Enlace mailto tomado del primer contacto de tipo email. */
@@ -67,6 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Solo navegador, tras hidratar: idioma preferido, reveals y progreso de scroll.
     afterNextRender(() => {
       this.language.applyPreferredLang();
+      this.erp.cargarUnaVez();
       this.initRevealObserver();
       this.updateScrollProgress();
       this.logConsoleGreeting();
@@ -182,6 +193,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (typeof console === 'undefined') {
       return;
     }
-    instalarLiquidar(() => this.lang, this.content.consoleGreeting);
+    instalarLiquidar(() => this.lang, this.content.consoleGreeting, () => this.erp.motor());
   }
 }
