@@ -42,10 +42,10 @@ export const CONTENT_EN: SiteContent = {
     parametros: {
       title: 'Period parameters',
       items: [
-        { label: 'UF', value: '$40,820.31', delta: '+0.52%' },
-        { label: 'UTM', value: '$71,506', delta: '+1.30%' },
-        { label: 'UTA', value: '$858,072', delta: '+1.30%' },
-        { label: 'Minimum wage', value: '$539,000', delta: 'no change' }
+        { label: 'UF', value: '$41,439.89', delta: '+0.47%' },
+        { label: 'UTM', value: '$72,440', delta: '+0.40%' },
+        { label: 'UTA', value: '$869,280', delta: '+0.40%' },
+        { label: 'Minimum wage', value: '$553,553', delta: 'no change' }
       ],
       noChange: 'no change',
       liveNote: 'Read from the ERP database: the last period loaded.',

@@ -42,10 +42,10 @@ export const CONTENT_ES: SiteContent = {
     parametros: {
       title: 'Parámetros del período',
       items: [
-        { label: 'UF', value: '$40.820,31', delta: '+0,52%' },
-        { label: 'UTM', value: '$71.506', delta: '+1,30%' },
-        { label: 'UTA', value: '$858.072', delta: '+1,30%' },
-        { label: 'Sueldo mínimo', value: '$539.000', delta: 'sin variación' }
+        { label: 'UF', value: '$41.439,89', delta: '+0,47%' },
+        { label: 'UTM', value: '$72.440', delta: '+0,40%' },
+        { label: 'UTA', value: '$869.280', delta: '+0,40%' },
+        { label: 'Sueldo mínimo', value: '$553.553', delta: 'sin variación' }
       ],
       noChange: 'sin variación',
       liveNote: 'Leídos de la base del ERP: el último período cargado.',

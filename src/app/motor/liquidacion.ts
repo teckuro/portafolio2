@@ -21,11 +21,13 @@ export interface ParametrosPeriodo {
 
 /** Respaldo del build: se usa hasta que llegan los del ERP (o si no llegan). */
 export const PERIODO_ACTUAL: ParametrosPeriodo = {
+  // Indicadores PreviRed de noviembre 2026 (UF al 30-11-2026, SII); los mismos del panel.
   periodo: '2026-11',
-  uf: 40820.31, // la misma UF que muestra el panel de parámetros
-  topeImponibleUf: 87.8,
-  topeCesantiaUf: 131.9,
-  tasaAfp: 0.1115,
+  uf: 41439.89,
+  topeImponibleUf: 90,
+  topeCesantiaUf: 135.2,
+  tasaAfp: 0.1046,
+  afpNombre: 'Uno',
   tasaSalud: 0.07,
   tasaCesantia: 0.006
 };

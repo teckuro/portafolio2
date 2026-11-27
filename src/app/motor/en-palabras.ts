@@ -2,7 +2,7 @@
  * Monto en palabras para la línea "Son: …" de la liquidación, como se imprime
  * en una liquidación de sueldo chilena. Cubre 0 … 999.999.999.
  */
-import { Lang } from '../content/content.model';
+import type { Lang } from '../content/content.model';
 
 const UNIDADES = [
   'cero', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve',
@@ -63,8 +63,13 @@ export function numeroEnPalabrasEs(valor: number): string {
  * bien impresa de una calculadora.
  */
 export function conPesos(palabras: string, n: number): string {
-  // TODO(human): ajustar la gramática de la moneda (ver la petición en el chat).
-  return `${palabras} pesos`;
+  if (n === 1) {
+    return 'un peso';
+  }
+  // Millones exactos llevan "de": "dos millones de pesos", pero "un millón quinientos mil pesos".
+  const millonesExactos = n > 0 && n % 1_000_000 === 0;
+  // "uno" se apocopa delante del sustantivo: "veintiún pesos", "un millón un pesos".
+  return `${apocope(palabras)}${millonesExactos ? ' de' : ''} pesos`;
 }
 
 /* ---------- English ---------- */

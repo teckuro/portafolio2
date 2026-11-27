@@ -1,61 +1,61 @@
 {
-  "generado": "2026-11-23",
+  "generado": "2026-11-27",
   "repo": "https://github.com/teckuro/ERP",
   "cifras": {
-    "commits": 449,
+    "commits": 468,
     "migraciones": 70,
     "modulos": 15,
-    "specs": 274,
+    "specs": 275,
     "tests": 2164
   },
   "commits": [
     {
-      "sha": "36b238d",
-      "fecha": "2026-11-21",
-      "tipo": "fix",
+      "sha": "96ac6e6",
+      "fecha": "2026-11-24",
+      "tipo": "test",
       "alcance": "empleados",
-      "mensaje": "capitalizar solo la primera letra del cargo",
-      "url": "https://github.com/teckuro/ERP/commit/36b238d759f3467bd1560fa351b0c42beee2cfbb"
+      "mensaje": "restaurar HTMLElement.prototype.focus tras el test",
+      "url": "https://github.com/teckuro/ERP/commit/96ac6e6ffa195b8a4e28cd0ff0b1ab62b4fc3445"
     },
     {
-      "sha": "bc73b8d",
-      "fecha": "2026-11-20",
+      "sha": "ae25f5e",
+      "fecha": "2026-11-24",
+      "tipo": "test",
+      "alcance": "dotacion",
+      "mensaje": "test de foco determinista con whenStable (QA-FOC-01)",
+      "url": "https://github.com/teckuro/ERP/commit/ae25f5ea2b709bab91d97bd313efabf9b0c700c6"
+    },
+    {
+      "sha": "100b6aa",
+      "fecha": "2026-11-24",
+      "tipo": "test",
+      "alcance": "dotacion",
+      "mensaje": "esperar el foco restaurado con vi.waitFor (QA-FOC-01)",
+      "url": "https://github.com/teckuro/ERP/commit/100b6aa7a023f2060c99f34b36a5f44c3efbf246"
+    },
+    {
+      "sha": "3fab604",
+      "fecha": "2026-11-24",
       "tipo": "test",
       "alcance": "",
-      "mensaje": "versionar specs e2e y helpers; ignorar solo capturas y reportes",
-      "url": "https://github.com/teckuro/ERP/commit/bc73b8d449e7392c0b2df32c34ff061bf689b617"
+      "mensaje": "poner al día 36 tests unitarios y agregar CI",
+      "url": "https://github.com/teckuro/ERP/commit/3fab604af0e7b5b14ce14c4b83f588db7c9b1415"
     },
     {
-      "sha": "aed724c",
-      "fecha": "2026-11-20",
-      "tipo": "fix",
-      "alcance": "nomina",
-      "mensaje": "castear a text las columnas de listar_preview_creacion_trabajadores",
-      "url": "https://github.com/teckuro/ERP/commit/aed724c91b0989eff648d1302ab5fe4da57c930c"
-    },
-    {
-      "sha": "de9e0a7",
-      "fecha": "2026-11-19",
-      "tipo": "feat",
-      "alcance": "auth",
-      "mensaje": "modo solo lectura para el perfil de consulta",
-      "url": "https://github.com/teckuro/ERP/commit/de9e0a77851e6b44e151bfa4d201b1252c1a8647"
-    },
-    {
-      "sha": "7eefd81",
-      "fecha": "2026-11-19",
+      "sha": "700e8ab",
+      "fecha": "2026-11-24",
       "tipo": "fix",
       "alcance": "parametros",
-      "mensaje": "normalizar SUPABASE_DB_URL en el workflow y diagnosticar formato inválido",
-      "url": "https://github.com/teckuro/ERP/commit/7eefd81248dac95de62c6840ef0b91f8601d237f"
+      "mensaje": "solo main puede escribir en producción",
+      "url": "https://github.com/teckuro/ERP/commit/700e8ab02591c4a07e473d4dde5cf592e0c68b25"
     },
     {
-      "sha": "0fffb86",
-      "fecha": "2026-11-17",
+      "sha": "8c2d7c3",
+      "fecha": "2026-11-23",
       "tipo": "feat",
-      "alcance": "parametros",
-      "mensaje": "sincronización mensual real desde fuentes oficiales",
-      "url": "https://github.com/teckuro/ERP/commit/0fffb8637062ef8a3ed805dd1d41e1688888d01c"
+      "alcance": "analytics",
+      "mensaje": "Vercel Web Analytics con URLs sanitizadas",
+      "url": "https://github.com/teckuro/ERP/commit/8c2d7c3a59c2628c1bc7f40d03b3b7231f84d836"
     }
   ]
 }
