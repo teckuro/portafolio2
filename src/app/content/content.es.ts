@@ -58,6 +58,15 @@ export const CONTENT_ES: SiteContent = {
       unemploymentLabel: 'Seguro de cesantía (0,6%)',
       totalLabel: 'Líquido estimado',
       note: 'Versión simplificada: UF fija y sin impuesto único. El motor completo está en el ERP.'
+    },
+    slip: {
+      title: 'Liquidación de sueldo',
+      period: 'Noviembre 2026',
+      earnings: 'Haberes',
+      deductions: 'Descuentos',
+      inWords: 'Son',
+      received: 'Recibí conforme',
+      capApplied: 'Se aplicó el tope imponible'
     }
   },
   now: {
@@ -286,5 +295,11 @@ export const CONTENT_ES: SiteContent = {
     title: 'Juan Pablo Huerta · Full stack engineer',
     body:
       '¿Revisando el código? Angular + Tailwind, sin librerías de UI.\nRepositorio del ERP: https://github.com/teckuro/ERP\nContacto: jphuerta.dev@gmail.com'
+  },
+  sheet: {
+    label: 'Hoja',
+    of: 'de',
+    end: 'Fin del listado',
+    totals: 'Totales'
   }
 };

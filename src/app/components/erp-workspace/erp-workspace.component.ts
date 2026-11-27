@@ -1,11 +1,10 @@
-import { LucideExternalLink } from '@lucide/angular';
 import { Component, inject } from '@angular/core';
 import { SiteContent } from '../../content/content.model';
 import { LanguageService } from '../../services/language.service';
 import { Liquidacion, calcularLiquidacion, formatearCLP } from '../../motor/liquidacion';
+import { montoEnPalabras } from '../../motor/en-palabras';
 
 @Component({
-  imports: [LucideExternalLink],
   selector: 'app-erp-workspace',
   templateUrl: './erp-workspace.component.html'
 })
@@ -26,6 +25,17 @@ export class ErpWorkspaceComponent {
   /** Cálculo del motor compartido (mismo código que `liquidar()` en consola). */
   get demoBreakdown(): Liquidacion {
     return calcularLiquidacion(this.demoGross);
+  }
+
+  /** Total de descuentos legales, para la columna derecha de la liquidación. */
+  get totalDescuentos(): number {
+    const l = this.demoBreakdown;
+    return l.afp + l.salud + l.cesantia;
+  }
+
+  /** Línea "Son: …" de la liquidación impresa. */
+  get liquidoEnPalabras(): string {
+    return montoEnPalabras(this.demoBreakdown.liquido, this.language.lang);
   }
 
   formatCLP(value: number): string {

@@ -1,100 +1,53 @@
-<nav
-  class="fixed top-0 w-full z-50 transition-colors duration-300"
-  [class.on-dark]="!scrolled && !menuOpen"
-  [class]="scrolled || menuOpen
-    ? 'nav-solid'
-    : 'bg-transparent border-b border-transparent'"
-  >
-  <div class="max-w-content mx-auto px-5 sm:px-8">
-    <div class="flex items-center justify-between h-16">
-      <button (click)="scrollTo('inicio')" class="flex items-center gap-2.5 min-w-0" type="button" aria-label="Juan Pablo Huerta">
-        <span
-          class="grid place-items-center w-8 h-8 rounded-md bg-[var(--ink)] text-[var(--bg)] font-mono text-[0.8rem] transition-colors"
-          style="font-weight: 600"
-          aria-hidden="true"
-          >JH</span>
-        <span class="hidden min-[400px]:inline font-display text-[var(--ink)] tracking-tight text-[1rem] whitespace-nowrap" style="font-weight: 600">
-          Juan Pablo Huerta
-        </span>
-      </button>
+<nav class="barra" [class.is-scrolled]="scrolled" aria-label="Juan Pablo Huerta">
+  <div class="barra__inner">
+    <button type="button" class="barra__marca" (click)="scrollTo('inicio')">Juan Pablo Huerta</button>
 
-      <div class="hidden lg:flex items-center gap-1">
-        @for (link of content.nav.links; track $index) {
-          <button
-            type="button"
-            (click)="scrollTo(link.id)"
-            class="relative px-3 py-1.5 text-sm rounded-md transition-colors duration-200"
-            [class]="activeSection === link.id
-              ? 'text-[var(--ink)] bg-[var(--accent-soft)]'
-              : 'text-[var(--muted)] hover:text-[var(--ink)]'"
-            >
-            {{ link.label }}
-          </button>
-        }
-      </div>
-
-      <div class="hidden lg:flex items-center gap-4">
-        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
-          <button type="button" [class.is-active]="lang === 'es'" (click)="setLang('es')">ES</button>
-          <button type="button" [class.is-active]="lang === 'en'" (click)="setLang('en')">EN</button>
-        </div>
-        @if (cvHref) {
-          <a [href]="cvHref" download="JuanPabloHuerta-CV.pdf" class="text-sm text-[var(--muted)] hover:text-[var(--ink)] link-underline">
-            {{ content.nav.cv }}
-          </a>
-        }
-        <button type="button" class="btn-primary !py-2.5 !px-4 !text-sm" (click)="scrollTo('contacto')">
-          {{ content.nav.contact }}
-        </button>
-      </div>
-
-      <!-- Móvil: idioma siempre visible (un toque) + menú -->
-      <div class="lg:hidden flex items-center gap-2">
-        <div class="lang-toggle lang-toggle--touch" role="group" aria-label="Idioma / Language">
-          <button type="button" [class.is-active]="lang === 'es'" [attr.aria-pressed]="lang === 'es'" (click)="setLang('es')">ES</button>
-          <button type="button" [class.is-active]="lang === 'en'" [attr.aria-pressed]="lang === 'en'" (click)="setLang('en')">EN</button>
-        </div>
-        <button
-          type="button"
-          (click)="menuOpen = !menuOpen"
-          class="w-11 h-11 -mr-2 flex items-center justify-center text-[var(--ink)]"
-          [attr.aria-label]="content.nav.menuAria"
-          [attr.aria-expanded]="menuOpen"
-          >
-          @if (!menuOpen) {
-            <svg lucideMenu class="w-5 h-5"></svg>
-          } @else {
-            <svg lucideX class="w-5 h-5"></svg>
-          }
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
-
-@if (menuOpen) {
-  <div class="nav-solid fixed top-16 left-0 right-0 z-40 shadow-lg lg:hidden">
-    <div class="max-w-content mx-auto px-5 py-4 space-y-1">
+    <div class="barra__links">
       @for (link of content.nav.links; track $index) {
         <button
           type="button"
+          class="barra__link"
+          [class.is-active]="activeSection === link.id"
+          [attr.aria-current]="activeSection === link.id ? 'true' : null"
           (click)="scrollTo(link.id)"
-          class="w-full text-left px-2 py-3 text-base transition-colors border-b border-[var(--line)] last:border-0"
-          [class]="activeSection === link.id ? 'text-[var(--accent)]' : 'text-[var(--ink)]'"
-          >
-          {{ link.label }}
-        </button>
+        >{{ link.label }}</button>
       }
-      <div class="pt-4">
-        <div class="grid grid-cols-2 gap-2">
-          @if (cvHref) {
-            <a [href]="cvHref" download="JuanPabloHuerta-CV.pdf" class="btn-secondary justify-center !py-3 !text-sm">{{ content.nav.cv }}</a>
-          }
-          <button type="button" (click)="scrollTo('contacto')" class="btn-primary justify-center !py-3 !text-sm">
-            {{ content.nav.contact }}
-          </button>
-        </div>
+    </div>
+
+    <div class="barra__acciones">
+      <div class="idioma" role="group" aria-label="Idioma / Language">
+        <button type="button" [class.is-active]="lang === 'es'" [attr.aria-pressed]="lang === 'es'" (click)="setLang('es')">ES</button>
+        <button type="button" [class.is-active]="lang === 'en'" [attr.aria-pressed]="lang === 'en'" (click)="setLang('en')">EN</button>
       </div>
+      @if (cvHref) {
+        <a class="barra__link barra__cv" [href]="cvHref" download="JuanPabloHuerta-CV.pdf">{{ content.nav.cv }}</a>
+      }
+      <button type="button" class="btn btn--calco btn--chico barra__contacto" (click)="scrollTo('contacto')">{{ content.nav.contact }}</button>
+      <button
+        type="button"
+        class="barra__menu"
+        (click)="menuOpen = !menuOpen"
+        [attr.aria-label]="content.nav.menuAria"
+        [attr.aria-expanded]="menuOpen"
+      >
+        @if (!menuOpen) {
+          <svg lucideMenu class="w-5 h-5"></svg>
+        } @else {
+          <svg lucideX class="w-5 h-5"></svg>
+        }
+      </button>
     </div>
   </div>
-}
+
+  @if (menuOpen) {
+    <div class="barra__panel">
+      @for (link of content.nav.links; track $index) {
+        <button type="button" class="barra__panel-link" [class.is-active]="activeSection === link.id" (click)="scrollTo(link.id)">{{ link.label }}</button>
+      }
+      @if (cvHref) {
+        <a class="barra__panel-link" [href]="cvHref" download="JuanPabloHuerta-CV.pdf">{{ content.nav.cv }}</a>
+      }
+      <button type="button" class="barra__panel-link" (click)="scrollTo('contacto')">{{ content.nav.contact }}</button>
+    </div>
+  }
+</nav>

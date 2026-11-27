@@ -1,74 +1,86 @@
-<div class="jpws">
-  <div class="jpws__chrome">
-    <span class="jpws__dot"></span>
-    <span class="jpws__dot"></span>
-    <span class="jpws__dot"></span>
-    <span class="jpws__product">{{ t.productLabel }}</span>
-    <a
-      [href]="'https://erp-beta-bay.vercel.app/'"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="jpws__demo-link"
-      >
-      {{ t.openDemo }}
-      <svg lucideExternalLink class="w-3 h-3"></svg>
-    </a>
+<div class="slip">
+  <div class="slip__head">
+    <p class="slip__title">{{ t.slip.title }}</p>
+    <p class="slip__period">{{ t.slip.period }}</p>
   </div>
 
-  <div class="jpws__main">
-    <div class="grid md:grid-cols-2 gap-8 lg:gap-10 items-start">
-      <div>
-        <p class="jpws__view-sub">{{ t.parametros.title }}</p>
-        <div class="jpws__params">
-          @for (param of t.parametros.items; track $index) {
-            <div class="jpws__param">
-              <p class="jpws__kpi-label">{{ param.label }}</p>
-              <p class="jpws__param-value">{{ param.value }}</p>
-              <p class="jpws__param-delta">{{ param.delta }}</p>
-            </div>
-          }
-        </div>
-        <p class="jpws__footnote">{{ t.parametros.footnote }}</p>
-      </div>
-
-      <div>
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <p class="jpws__view-sub !mb-0">{{ t.motor.title }}</p>
-          <span class="demo-calc__pulse" aria-hidden="true"></span>
-        </div>
-        <label class="block text-xs mb-1.5 jpws__kpi-label" for="jpws-gross">{{ t.motor.grossLabel }}</label>
-        <input
-          id="jpws-gross"
-          type="text"
-          inputmode="numeric"
-          class="demo-calc__input"
-          [value]="demoGross"
-          (input)="onDemoGrossChange($any($event.target).value)"
+  <div class="slip__cols">
+    <div class="slip__col">
+      <p class="slip__col-title">{{ t.slip.earnings }}</p>
+      <label class="slip__field" for="jpws-gross">
+        <span>{{ t.motor.grossLabel }}</span>
+        <span class="slip__input-wrap">
+          <span aria-hidden="true">$</span>
+          <input
+            id="jpws-gross"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
+            class="slip__input"
+            [value]="demoGross"
+            (input)="onDemoGrossChange($any($event.target).value)"
           />
-          <dl class="mt-4 space-y-2 text-sm">
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.taxableLabel }}</dt>
-              <dd>{{ formatCLP(demoBreakdown.imponible) }}</dd>
-            </div>
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.afpLabel }}</dt>
-              <dd>−{{ formatCLP(demoBreakdown.afp) }}</dd>
-            </div>
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.healthLabel }}</dt>
-              <dd>−{{ formatCLP(demoBreakdown.salud) }}</dd>
-            </div>
-            <div class="demo-calc__row">
-              <dt>{{ t.motor.unemploymentLabel }}</dt>
-              <dd>−{{ formatCLP(demoBreakdown.cesantia) }}</dd>
-            </div>
-            <div class="demo-calc__row demo-calc__row--total">
-              <dt>{{ t.motor.totalLabel }}</dt>
-              <dd>{{ formatCLP(demoBreakdown.liquido) }}</dd>
-            </div>
-          </dl>
-          <p class="jpws__footnote">{{ t.motor.note }}</p>
+        </span>
+      </label>
+      <dl class="slip__rows">
+        <div class="slip__row">
+          <dt>{{ t.motor.taxableLabel }}</dt>
+          <dd>{{ formatCLP(demoBreakdown.imponible) }}</dd>
         </div>
-      </div>
+      </dl>
+      @if (demoBreakdown.topeAplicado) {
+        <p class="slip__flag">{{ t.slip.capApplied }}</p>
+      }
+    </div>
+
+    <div class="slip__col">
+      <p class="slip__col-title">{{ t.slip.deductions }}</p>
+      <dl class="slip__rows">
+        <div class="slip__row">
+          <dt>{{ t.motor.afpLabel }}</dt>
+          <dd>{{ formatCLP(demoBreakdown.afp) }}</dd>
+        </div>
+        <div class="slip__row">
+          <dt>{{ t.motor.healthLabel }}</dt>
+          <dd>{{ formatCLP(demoBreakdown.salud) }}</dd>
+        </div>
+        <div class="slip__row">
+          <dt>{{ t.motor.unemploymentLabel }}</dt>
+          <dd>{{ formatCLP(demoBreakdown.cesantia) }}</dd>
+        </div>
+        <div class="slip__row slip__row--sum">
+          <dt>{{ t.slip.deductions }}</dt>
+          <dd>{{ formatCLP(totalDescuentos) }}</dd>
+        </div>
+      </dl>
     </div>
   </div>
+
+  <div class="slip__net" aria-live="polite">
+    <p class="slip__net-label">{{ t.motor.totalLabel }}</p>
+    <p class="slip__net-value">{{ formatCLP(demoBreakdown.liquido) }}</p>
+    <p class="slip__words">{{ t.slip.inWords }}: {{ liquidoEnPalabras }}.</p>
+  </div>
+
+  <div class="slip__sign">
+    <span class="slip__sign-line" aria-hidden="true"></span>
+    <span>{{ t.slip.received }}</span>
+  </div>
+</div>
+
+<div class="params">
+  <p class="params__title">{{ t.parametros.title }}</p>
+  <dl class="params__list">
+    @for (param of t.parametros.items; track $index) {
+      <div class="params__item">
+        <dt>{{ param.label }}</dt>
+        <dd>
+          {{ param.value }}
+          <span class="params__delta">{{ param.delta }}</span>
+        </dd>
+      </div>
+    }
+  </dl>
+  <p class="params__note">{{ t.parametros.footnote }} {{ t.motor.note }}</p>
+  <a class="ink-link" href="https://erp-beta-bay.vercel.app/" target="_blank" rel="noopener noreferrer">{{ t.openDemo }}</a>
+</div>

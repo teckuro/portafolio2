@@ -108,6 +108,16 @@ export interface SiteContent {
       totalLabel: string;
       note: string;
     };
+    /** Rótulos de la liquidación impresa. */
+    slip: {
+      title: string;
+      period: string;
+      earnings: string;
+      deductions: string;
+      inWords: string;
+      received: string;
+      capApplied: string;
+    };
   };
   now: {
     eyebrow: string;
@@ -168,5 +178,12 @@ export interface SiteContent {
   consoleGreeting: {
     title: string;
     body: string;
+  };
+  /** Cabecera de cada hoja del papel continuo. */
+  sheet: {
+    label: string;
+    of: string;
+    end: string;
+    totals: string;
   };
 }

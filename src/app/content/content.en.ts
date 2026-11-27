@@ -58,6 +58,15 @@ export const CONTENT_EN: SiteContent = {
       unemploymentLabel: 'Unemployment insurance (0.6%)',
       totalLabel: 'Estimated net pay',
       note: 'Simplified version: fixed UF and no income tax. The full engine lives in the ERP.'
+    },
+    slip: {
+      title: 'Pay slip',
+      period: 'November 2026',
+      earnings: 'Earnings',
+      deductions: 'Deductions',
+      inWords: 'Amount in words',
+      received: 'Received in full',
+      capApplied: 'Taxable cap applied'
     }
   },
   now: {
@@ -286,5 +295,11 @@ export const CONTENT_EN: SiteContent = {
     title: 'Juan Pablo Huerta · Full stack engineer',
     body:
       'Inspecting the code? Angular + Tailwind, no UI libraries.\nERP repository: https://github.com/teckuro/ERP\nContact: jphuerta.dev@gmail.com'
+  },
+  sheet: {
+    label: 'Sheet',
+    of: 'of',
+    end: 'End of listing',
+    totals: 'Totals'
   }
 };

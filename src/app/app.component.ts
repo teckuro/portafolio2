@@ -1,16 +1,7 @@
 
-import {
-  LucideArrowRight,
-  LucideArrowUpRight,
-  LucideChevronDown,
-  LucideDownload,
-  LucideFolderGit,
-  LucideMail,
-} from '@lucide/angular';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ErpWorkspaceComponent } from './components/erp-workspace/erp-workspace.component';
-import { SectionHeaderComponent } from './ui/section-header/section-header.component';
 import {
   Component,
   HostListener,
@@ -26,7 +17,7 @@ import { instalarLiquidar } from './motor/consola';
 import actividad from './content/erp-actividad.json';
 
 @Component({
-  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent, SectionHeaderComponent, LucideArrowRight, LucideArrowUpRight, LucideChevronDown, LucideDownload, LucideFolderGit, LucideMail],
+  imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -54,6 +45,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   fechaLarga(iso: string): string {
     return `${this.fechaCorta(iso)} ${iso.slice(0, 4)}`;
+  }
+
+  /** Orden de las hojas del papel continuo; "ahora" solo existe si hay commits. */
+  get hojas(): string[] {
+    const todas = ['inicio', 'workspace', 'ahora', 'proyectos', 'thinking', 'experiencia', 'contacto'];
+    return this.actividad.commits.length ? todas : todas.filter((h) => h !== 'ahora');
+  }
+
+  /** "Hoja 3 de 7" para la cabecera de cada sección. */
+  hoja(id: string): string {
+    const s = this.content.sheet;
+    return `${s.label} ${this.hojas.indexOf(id) + 1} ${s.of} ${this.hojas.length}`;
   }
 
   /** Enlace mailto tomado del primer contacto de tipo email. */
