@@ -1,7 +1,7 @@
 <div class="slip">
   <div class="slip__head">
     <p class="slip__title">{{ t.slip.title }}</p>
-    <p class="slip__period">{{ t.slip.period }}</p>
+    <p class="slip__period">{{ periodoLargo }}</p>
   </div>
 
   <div class="slip__cols">
@@ -24,7 +24,7 @@
       </label>
       <dl class="slip__rows">
         <div class="slip__row">
-          <dt>{{ t.motor.taxableLabel }}</dt>
+          <dt>{{ rotulos.imponible }}</dt>
           <dd>{{ formatCLP(demoBreakdown.imponible) }}</dd>
         </div>
       </dl>
@@ -37,15 +37,15 @@
       <p class="slip__col-title">{{ t.slip.deductions }}</p>
       <dl class="slip__rows">
         <div class="slip__row">
-          <dt>{{ t.motor.afpLabel }}</dt>
+          <dt>{{ rotulos.afp }}</dt>
           <dd>{{ formatCLP(demoBreakdown.afp) }}</dd>
         </div>
         <div class="slip__row">
-          <dt>{{ t.motor.healthLabel }}</dt>
+          <dt>{{ rotulos.salud }}</dt>
           <dd>{{ formatCLP(demoBreakdown.salud) }}</dd>
         </div>
         <div class="slip__row">
-          <dt>{{ t.motor.unemploymentLabel }}</dt>
+          <dt>{{ rotulos.cesantia }}</dt>
           <dd>{{ formatCLP(demoBreakdown.cesantia) }}</dd>
         </div>
         <div class="slip__row slip__row--sum">
@@ -71,16 +71,23 @@
 <div class="params">
   <p class="params__title">{{ t.parametros.title }}</p>
   <dl class="params__list">
-    @for (param of t.parametros.items; track $index) {
+    @for (param of indicadores; track param.label) {
       <div class="params__item">
         <dt>{{ param.label }}</dt>
         <dd>
           {{ param.value }}
-          <span class="params__delta">{{ param.delta }}</span>
+          @if (param.delta) {
+            <span class="params__delta">{{ param.delta }}</span>
+          }
         </dd>
       </div>
     }
   </dl>
-  <p class="params__note">{{ t.parametros.footnote }} {{ t.motor.note }}</p>
+  <p class="params__note">
+    @if (enVivo) {
+      {{ t.parametros.liveNote }}
+    }
+    {{ t.parametros.footnote }} {{ t.motor.note }}
+  </p>
   <a class="ink-link" href="https://erp-beta-bay.vercel.app/" target="_blank" rel="noopener noreferrer">{{ t.openDemo }}</a>
 </div>

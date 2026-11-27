@@ -95,12 +95,16 @@ export interface SiteContent {
     openDemo: string;
     parametros: {
       title: string;
+      /** Respaldo del build, mientras no lleguen los de la base. */
       items: WorkspaceParam[];
+      noChange: string;
+      liveNote: string;
       footnote: string;
     };
     motor: {
       title: string;
       grossLabel: string;
+      /** Plantillas: {tope}, {afp} (" Uno" o vacío) y {tasa} se rellenan con el período vigente. */
       taxableLabel: string;
       afpLabel: string;
       healthLabel: string;
@@ -111,7 +115,6 @@ export interface SiteContent {
     /** Rótulos de la liquidación impresa. */
     slip: {
       title: string;
-      period: string;
       earnings: string;
       deductions: string;
       inWords: string;

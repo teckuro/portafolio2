@@ -14,7 +14,7 @@ import {
 import { Lang, SiteContent } from './content/content.model';
 import { LanguageService } from './services/language.service';
 import { instalarLiquidar } from './motor/consola';
-import actividad from './content/erp-actividad.json';
+import { ActividadErp, ErpEnVivoService } from './services/erp-en-vivo.service';
 
 @Component({
   imports: [NavbarComponent, FooterComponent, ErpWorkspaceComponent],
@@ -34,8 +34,15 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly cvPdf = 'assets/JuanPabloHuerta-CV.pdf?v=2026-11';
   readonly whatsappUrl = 'https://wa.me/56988292018';
 
-  /** Commits y cifras del ERP, generados en cada build por scripts/actualizar-erp.mjs. */
-  readonly actividad = actividad;
+  private readonly erp = inject(ErpEnVivoService);
+
+  /**
+   * Commits y cifras del ERP: los del build (scripts/actualizar-erp.mjs) y, tras
+   * cargar, los que devuelve GitHub en ese momento.
+   */
+  get actividad(): ActividadErp {
+    return this.erp.actividad();
+  }
 
   /** `2026-11-20` → `20 nov`. Sin Date ni zona horaria: igual en SSR y en el navegador. */
   fechaCorta(iso: string): string {
@@ -70,6 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Solo navegador, tras hidratar: idioma preferido, reveals y progreso de scroll.
     afterNextRender(() => {
       this.language.applyPreferredLang();
+      this.erp.cargarUnaVez();
       this.initRevealObserver();
       this.updateScrollProgress();
       this.logConsoleGreeting();
@@ -185,6 +193,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (typeof console === 'undefined') {
       return;
     }
-    instalarLiquidar(() => this.lang, this.content.consoleGreeting);
+    instalarLiquidar(() => this.lang, this.content.consoleGreeting, () => this.erp.motor());
   }
 }

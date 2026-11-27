@@ -1,5 +1,5 @@
 import { Lang } from '../content/content.model';
-import { Liquidacion, PERIODO_ACTUAL, calcularLiquidacion, formatearCLP } from './liquidacion';
+import { Liquidacion, PERIODO_ACTUAL, ParametrosPeriodo, calcularLiquidacion, formatearCLP } from './liquidacion';
 
 /**
  * `liquidar(bruto)` en la consola del navegador: imprime la liquidación como una
@@ -24,12 +24,12 @@ const TEXTOS = {
     periodo: (p: string, uf: string) => `Período ${p} · UF ${uf}`,
     bruto: 'Sueldo bruto',
     imponible: 'Imponible',
-    afp: 'AFP 11,15%',
-    salud: 'Salud 7%',
-    cesantia: 'Seguro cesantía 0,6%',
+    afp: (tasa: string) => `AFP ${tasa}%`,
+    salud: (tasa: string) => `Salud ${tasa}%`,
+    cesantia: (tasa: string) => `Seguro cesantía ${tasa}%`,
     liquido: 'LÍQUIDO ESTIMADO',
-    tope: 'Se aplicó el tope imponible de 87,8 UF.',
-    nota: 'UF fija y sin impuesto único. Motor completo: github.com/teckuro/ERP',
+    tope: (uf: string) => `Se aplicó el tope imponible de ${uf} UF.`,
+    nota: 'Sin impuesto único. Motor completo: github.com/teckuro/ERP',
     uso: 'Uso: liquidar(1500000) · el sueldo bruto en pesos, sin puntos.',
     pista: 'Prueba el motor del ERP aquí mismo:'
   },
@@ -38,12 +38,12 @@ const TEXTOS = {
     periodo: (p: string, uf: string) => `Period ${p} · UF ${uf}`,
     bruto: 'Gross salary',
     imponible: 'Taxable base',
-    afp: 'Pension 11.15%',
-    salud: 'Health 7%',
-    cesantia: 'Unemployment 0.6%',
+    afp: (tasa: string) => `Pension ${tasa}%`,
+    salud: (tasa: string) => `Health ${tasa}%`,
+    cesantia: (tasa: string) => `Unemployment ${tasa}%`,
     liquido: 'ESTIMATED NET PAY',
-    tope: 'The 87.8 UF taxable cap was applied.',
-    nota: 'Fixed UF, no income tax. Full engine: github.com/teckuro/ERP',
+    tope: (uf: string) => `The ${uf} UF taxable cap was applied.`,
+    nota: 'No income tax. Full engine: github.com/teckuro/ERP',
     uso: 'Usage: liquidar(1500000) · gross salary in CLP, no separators.',
     pista: 'Try the ERP engine right here:'
   }
@@ -71,24 +71,24 @@ function texto(contenido: string, estilo: string): Segmento[] {
   ];
 }
 
-const ufConDecimales = (): string =>
-  '$' + PERIODO_ACTUAL.uf.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
 const borde = (izq: string, der: string): Segmento[] => [[izq + '─'.repeat(ANCHO + 2) + der + '\n', ESTILO.marco]];
 
-function imprimir(liq: Liquidacion, lang: Lang): void {
+function imprimir(liq: Liquidacion, lang: Lang, p: ParametrosPeriodo): void {
   const t = TEXTOS[lang];
+  const locale = lang === 'es' ? 'es-CL' : 'en-US';
+  const num = (v: number) => v.toLocaleString(locale, { maximumFractionDigits: 2 });
+  const uf = '$' + p.uf.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const menos = (v: number) => '−' + formatearCLP(v);
   const segmentos: Segmento[] = [
     ...borde('┌', '┐'),
     ...texto(t.titulo, ESTILO.titulo),
-    ...texto(t.periodo(PERIODO_ACTUAL.periodo, ufConDecimales()), ESTILO.tenue),
+    ...texto(t.periodo(p.periodo, uf), ESTILO.tenue),
     ...borde('├', '┤'),
     ...fila(t.bruto, formatearCLP(liq.bruto)),
     ...fila(t.imponible, formatearCLP(liq.imponible)),
-    ...fila(t.afp, menos(liq.afp), ESTILO.tenue),
-    ...fila(t.salud, menos(liq.salud), ESTILO.tenue),
-    ...fila(t.cesantia, menos(liq.cesantia), ESTILO.tenue),
+    ...fila(t.afp(num(p.tasaAfp * 100)), menos(liq.afp), ESTILO.tenue),
+    ...fila(t.salud(num(p.tasaSalud * 100)), menos(liq.salud), ESTILO.tenue),
+    ...fila(t.cesantia(num(p.tasaCesantia * 100)), menos(liq.cesantia), ESTILO.tenue),
     ...borde('├', '┤'),
     ['│ ', ESTILO.marco],
     [
@@ -101,13 +101,17 @@ function imprimir(liq: Liquidacion, lang: Lang): void {
 
   console.log(segmentos.map(([s]) => '%c' + s).join(''), ...segmentos.map(([, e]) => e));
   if (liq.topeAplicado) {
-    console.log('%c' + t.tope, ESTILO.nota);
+    console.log('%c' + t.tope(num(p.topeImponibleUf)), ESTILO.nota);
   }
   console.log('%c' + t.nota, ESTILO.nota);
 }
 
 /** Registra `window.liquidar` e imprime el saludo con la pista de uso. */
-export function instalarLiquidar(idioma: () => Lang, saludo: { title: string; body: string }): void {
+export function instalarLiquidar(
+  idioma: () => Lang,
+  saludo: { title: string; body: string },
+  parametros: () => ParametrosPeriodo = () => PERIODO_ACTUAL
+): void {
   if (typeof window === 'undefined') {
     return;
   }
@@ -119,8 +123,9 @@ export function instalarLiquidar(idioma: () => Lang, saludo: { title: string; bo
       console.log('%c' + t.uso, ESTILO.nota);
       return undefined;
     }
-    const liq = calcularLiquidacion(monto);
-    imprimir(liq, idioma());
+    const p = parametros();
+    const liq = calcularLiquidacion(monto, p);
+    imprimir(liq, idioma(), p);
     return liq;
   };
 

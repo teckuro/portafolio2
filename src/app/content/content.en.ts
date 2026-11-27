@@ -47,21 +47,22 @@ export const CONTENT_EN: SiteContent = {
         { label: 'UTA', value: '$858,072', delta: '+1.30%' },
         { label: 'Minimum wage', value: '$539,000', delta: 'no change' }
       ],
+      noChange: 'no change',
+      liveNote: 'Read from the ERP database: the last period loaded.',
       footnote: 'In the ERP, these parameters are versioned per month in PostgreSQL and the engine uses the active period.'
     },
     motor: {
       title: 'Calculation engine · live',
       grossLabel: 'Gross salary (CLP)',
-      taxableLabel: 'Taxable base (87.8 UF cap)',
-      afpLabel: 'Pension fund (11.15% ref.)',
-      healthLabel: 'Health (7%)',
-      unemploymentLabel: 'Unemployment insurance (0.6%)',
+      taxableLabel: 'Taxable base ({tope} UF cap)',
+      afpLabel: 'Pension fund{afp} ({tasa}%)',
+      healthLabel: 'Health ({tasa}%)',
+      unemploymentLabel: 'Unemployment insurance ({tasa}%)',
       totalLabel: 'Estimated net pay',
-      note: 'Simplified version: fixed UF and no income tax. The full engine lives in the ERP.'
+      note: 'Simplified version: no income tax. The full engine lives in the ERP.'
     },
     slip: {
       title: 'Pay slip',
-      period: 'November 2026',
       earnings: 'Earnings',
       deductions: 'Deductions',
       inWords: 'Amount in words',

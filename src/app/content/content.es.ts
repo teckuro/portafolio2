@@ -47,21 +47,22 @@ export const CONTENT_ES: SiteContent = {
         { label: 'UTA', value: '$858.072', delta: '+1,30%' },
         { label: 'Sueldo mínimo', value: '$539.000', delta: 'sin variación' }
       ],
+      noChange: 'sin variación',
+      liveNote: 'Leídos de la base del ERP: el último período cargado.',
       footnote: 'En el ERP, estos parámetros se versionan por mes en PostgreSQL y el motor usa los del período activo.'
     },
     motor: {
       title: 'Motor de cálculo · en vivo',
       grossLabel: 'Sueldo bruto (CLP)',
-      taxableLabel: 'Imponible (tope 87,8 UF)',
-      afpLabel: 'AFP (11,15% ref.)',
-      healthLabel: 'Salud (7%)',
-      unemploymentLabel: 'Seguro de cesantía (0,6%)',
+      taxableLabel: 'Imponible (tope {tope} UF)',
+      afpLabel: 'AFP{afp} ({tasa}%)',
+      healthLabel: 'Salud ({tasa}%)',
+      unemploymentLabel: 'Seguro de cesantía ({tasa}%)',
       totalLabel: 'Líquido estimado',
-      note: 'Versión simplificada: UF fija y sin impuesto único. El motor completo está en el ERP.'
+      note: 'Versión simplificada: sin impuesto único. El motor completo está en el ERP.'
     },
     slip: {
       title: 'Liquidación de sueldo',
-      period: 'Noviembre 2026',
       earnings: 'Haberes',
       deductions: 'Descuentos',
       inWords: 'Son',

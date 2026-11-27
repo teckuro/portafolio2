@@ -49,3 +49,6 @@ Thumbs.db
 *.zip
 *.rar
 .vercel
+
+# Generado por scripts/config-erp.mjs (URL y clave pública del ERP)
+/src/app/content/erp-publico.json

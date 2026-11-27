@@ -13,10 +13,13 @@ export interface ParametrosPeriodo {
   topeCesantiaUf: number;
   /** AFP: 10% obligatorio + comisión de referencia. */
   tasaAfp: number;
+  /** AFP de referencia (la de menor comisión), si viene de la base. */
+  afpNombre?: string;
   tasaSalud: number;
   tasaCesantia: number;
 }
 
+/** Respaldo del build: se usa hasta que llegan los del ERP (o si no llegan). */
 export const PERIODO_ACTUAL: ParametrosPeriodo = {
   periodo: '2026-11',
   uf: 40820.31, // la misma UF que muestra el panel de parámetros
